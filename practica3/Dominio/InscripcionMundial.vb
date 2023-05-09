@@ -32,7 +32,7 @@ Public Class InscripcionMundial
         Return Me.InscrMunDAO.Borrar(Me)
     End Function
 
-    Public Function ObtenerDorsalesInscripcion(ByVal i As Integer) As Collection
+    Public Function ObtenerDorsalesInscripcion(ByVal i As Integer) As Integer()
         Return Me.InscrMunDAO.ObtenerDorsales(i)
     End Function
 End Class

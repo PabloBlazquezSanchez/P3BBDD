@@ -4,8 +4,6 @@
     Private estadoPiloto As Integer
     Private piloto As Piloto
 
-
-
     Function comprobarNombrePropio(ByVal Nombre As String) As Boolean
         Dim valido As Boolean
         valido = True
@@ -173,7 +171,7 @@
         ' Habilitar el botón nuevamente
         Button12.Enabled = False
         DataGridView1.ReadOnly = True
-        DataGridView1.AllowUserToAddRows = False
+        DataGridView1.RowHeadersVisible = False
 
 
     End Sub

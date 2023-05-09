@@ -172,6 +172,8 @@
 
         ' Habilitar el botón nuevamente
         Button12.Enabled = False
+        DataGridView1.ReadOnly = True
+
     End Sub
 
 End Class

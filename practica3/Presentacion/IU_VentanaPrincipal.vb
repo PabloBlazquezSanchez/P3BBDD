@@ -157,14 +157,21 @@
         DataGridView1.Columns.Add("Dorsal", "Dorsal")
         DataGridView1.Columns.Add("Puntos", "Puntos")
 
-        ' Asignación de los arrays al control DataGridView
+        ' Asignación de los dorsales aleatorios al control DataGridView
+        Dim dorsalesDisponibles As New List(Of Integer)(dorsales)
+        Dim rnd As New Random()
         For i As Integer = 0 To puntos.Length - 1
-            DataGridView1.Rows.Add(dorsales(i), puntos(i))
+            Dim j As Integer = rnd.Next(0, dorsalesDisponibles.Count)
+            Dim dorsal As Integer = dorsalesDisponibles(j)
+            DataGridView1.Rows.Add(dorsal, puntos(i))
+            dorsalesDisponibles.RemoveAt(j)
         Next i
 
         ' Configuración de las propiedades del DataGridView
         DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill ' Ajusta el ancho de las columnas automáticamente
 
+        ' Habilitar el botón nuevamente
+        Button12.Enabled = False
     End Sub
 
 End Class

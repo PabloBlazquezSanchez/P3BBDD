@@ -854,7 +854,7 @@ Partial Class IU_VentanaPrincipal
         Me.GroupBox3.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox3.Name = "GroupBox3"
         Me.GroupBox3.Padding = New System.Windows.Forms.Padding(4)
-        Me.GroupBox3.Size = New System.Drawing.Size(248, 121)
+        Me.GroupBox3.Size = New System.Drawing.Size(248, 91)
         Me.GroupBox3.TabIndex = 17
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Opciones"
@@ -913,11 +913,11 @@ Partial Class IU_VentanaPrincipal
         Me.GroupBox1.Controls.Add(Me.Button4)
         Me.GroupBox1.Enabled = False
         Me.GroupBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox1.Location = New System.Drawing.Point(569, 168)
+        Me.GroupBox1.Location = New System.Drawing.Point(569, 151)
         Me.GroupBox1.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Padding = New System.Windows.Forms.Padding(4)
-        Me.GroupBox1.Size = New System.Drawing.Size(251, 115)
+        Me.GroupBox1.Size = New System.Drawing.Size(251, 102)
         Me.GroupBox1.TabIndex = 19
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Botones de edición"

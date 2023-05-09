@@ -4,49 +4,7 @@
     Private estadoPiloto As Integer
     Private piloto As Piloto
 
-    Private Sub Form2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        'Opciones de controles'
-        DateTimeNacimiento2.MaxDate = Now
-        DateTimeNacimiento2.Value = Now
-        llenarComboBoxPaises(CBPaisPiloto)
-        rutaEjecutable = Application.StartupPath
-        rutaEjecutable = rutaEjecutable.Substring(0, rutaEjecutable.Length - 9) & "Imagenes\"
-
-
-        estadoPartiPeli = 0
-        estadoPartiRol = 0
-        estadoCheckAñadir = 0
-        Dim personas As Personas
-        personas = New Personas()
-        Dim pelicula As ClasificacionCarrera
-        pelicula = New ClasificacionCarrera()
-        Dim generos = New Generos
-        Dim roles = New Roles()
-        generos.leertodo()
-        pelicula.leertodo()
-        personas.leertodo()
-        roles.leertodo()
-
-        For Each film As ClasificacionCarrera In pelicula.peliculasDAO.listaPeliculas()
-            ListBoxCircuitos.Items.Add(film.idPelicula & "   " & film.titulo)
-
-        Next
-
-        For Each piloto As Piloto In personas.personasDAO.listaPersonas()
-            ListBoxPilotos.Items.Add(person.idPersona & "  " & person.nombre & " " & person.apellido)
-        Next
-
-        For Each gener As Generos In generos.generoDAO.listaGeneros()
-            ListBoxPaises.Items.Add(gener.idGenero & "  " & gener.descGenero)
-        Next
-
-        For Each paiss As Pais In roles.rolesDAO.listaRoles()
-            ListBoxRoles.Items.Add(rol.idRol & "  " & rol.descRol)
-        Next
-
-
-    End Sub
 
     Function comprobarNombrePropio(ByVal Nombre As String) As Boolean
         Dim valido As Boolean
@@ -189,7 +147,24 @@
 
     End Sub
 
+
     Private Sub Button12_Click(sender As Object, e As EventArgs) Handles Button12.Click
+        ' Declaración e inicialización de los arrays
+        Dim puntos() As Integer = {10, 20, 30, 40, 50}
+        Dim dorsales() As Integer = {1, 2, 3, 4, 5}
+
+        ' Agrega las columnas al control DataGridView
+        DataGridView1.Columns.Add("Dorsal", "Dorsal")
+        DataGridView1.Columns.Add("Puntos", "Puntos")
+
+        ' Asignación de los arrays al control DataGridView
+        For i As Integer = 0 To puntos.Length - 1
+            DataGridView1.Rows.Add(dorsales(i), puntos(i))
+        Next i
+
+        ' Configuración de las propiedades del DataGridView
+        DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill ' Ajusta el ancho de las columnas automáticamente
 
     End Sub
+
 End Class

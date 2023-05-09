@@ -36,9 +36,18 @@
         Return AgenteBD.ObtenerAgente().Modificar("DELETE FROM INSCRIPCION_MUNDIAL WHERE PILOTO='" & i.PILOTO & "';")
     End Function
 
-    Public Function ObtenerDorsales(ByVal i As Integer) As Collection
-        Dim dorsales As Collection
-        dorsales = AgenteBD.ObtenerAgente.Leer("SELECT PILOTO FROM INSCRIPCION_MUNDIAL WHERE TEMPORADA='" & i & "';")
+    Public Function ObtenerDorsales(ByVal i As Integer) As Integer()
+        Dim dorsales() As Integer
+        Dim col As Collection
+        Dim aux As Collection
+        col = AgenteBD.ObtenerAgente.Leer("SELECT PILOTO FROM INSCRIPCION_MUNDIAL WHERE TEMPORADA='" & i & "';")
+        ReDim dorsales(col.Count - 1)
+        Dim j As Integer = 0
+        For Each aux In col
+            dorsales(j) = CInt(aux(1))
+            j += 1
+        Next
         Return dorsales
     End Function
+
 End Class

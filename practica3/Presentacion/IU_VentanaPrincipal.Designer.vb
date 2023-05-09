@@ -110,6 +110,10 @@ Partial Class IU_VentanaPrincipal
         Me.ListBoxPaises = New System.Windows.Forms.ListBox()
         Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.ToolTipAñadir = New System.Windows.Forms.ToolTip(Me.components)
+        Me.ListBoxEdición = New System.Windows.Forms.ListBox()
+        Me.Button10 = New System.Windows.Forms.Button()
+        Me.Button11 = New System.Windows.Forms.Button()
+        Me.Button12 = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
         Me.TabPageCircuitos.SuspendLayout()
         Me.GBEditarAñadirCircuito.SuspendLayout()
@@ -146,7 +150,7 @@ Partial Class IU_VentanaPrincipal
         Me.TabControl1.Margin = New System.Windows.Forms.Padding(4)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(4217, 1759)
+        Me.TabControl1.Size = New System.Drawing.Size(4217, 2031)
         Me.TabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed
         Me.TabControl1.TabIndex = 1
         '
@@ -737,6 +741,10 @@ Partial Class IU_VentanaPrincipal
         '
         Me.TabGranPremio.BackColor = System.Drawing.SystemColors.Control
         Me.TabGranPremio.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TabGranPremio.Controls.Add(Me.Button12)
+        Me.TabGranPremio.Controls.Add(Me.Button11)
+        Me.TabGranPremio.Controls.Add(Me.Button10)
+        Me.TabGranPremio.Controls.Add(Me.ListBoxEdición)
         Me.TabGranPremio.Controls.Add(Me.GroupBox5)
         Me.TabGranPremio.Controls.Add(Me.GroupBox3)
         Me.TabGranPremio.Controls.Add(Me.GroupBox1)
@@ -747,7 +755,7 @@ Partial Class IU_VentanaPrincipal
         Me.TabGranPremio.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.TabGranPremio.Name = "TabGranPremio"
         Me.TabGranPremio.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.TabGranPremio.Size = New System.Drawing.Size(4209, 1724)
+        Me.TabGranPremio.Size = New System.Drawing.Size(4209, 1996)
         Me.TabGranPremio.TabIndex = 4
         Me.TabGranPremio.Text = "Grandes Premios"
         '
@@ -970,7 +978,7 @@ Partial Class IU_VentanaPrincipal
         Me.ListBoxGranPremio.Margin = New System.Windows.Forms.Padding(4)
         Me.ListBoxGranPremio.Name = "ListBoxGranPremio"
         Me.ListBoxGranPremio.ScrollAlwaysVisible = True
-        Me.ListBoxGranPremio.Size = New System.Drawing.Size(499, 244)
+        Me.ListBoxGranPremio.Size = New System.Drawing.Size(252, 244)
         Me.ListBoxGranPremio.TabIndex = 16
         '
         'TabPageConfi
@@ -1356,11 +1364,53 @@ Partial Class IU_VentanaPrincipal
         Me.ImageList1.Images.SetKeyName(2, "ajustes.png")
         Me.ImageList1.Images.SetKeyName(3, "f1.png")
         '
+        'ListBoxEdición
+        '
+        Me.ListBoxEdición.BackColor = System.Drawing.SystemColors.InactiveCaption
+        Me.ListBoxEdición.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!)
+        Me.ListBoxEdición.ForeColor = System.Drawing.SystemColors.InactiveCaptionText
+        Me.ListBoxEdición.FormattingEnabled = True
+        Me.ListBoxEdición.ItemHeight = 20
+        Me.ListBoxEdición.Location = New System.Drawing.Point(315, 39)
+        Me.ListBoxEdición.Name = "ListBoxEdición"
+        Me.ListBoxEdición.ScrollAlwaysVisible = True
+        Me.ListBoxEdición.Size = New System.Drawing.Size(221, 244)
+        Me.ListBoxEdición.TabIndex = 21
+        '
+        'Button10
+        '
+        Me.Button10.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.Button10.Location = New System.Drawing.Point(37, 300)
+        Me.Button10.Name = "Button10"
+        Me.Button10.Size = New System.Drawing.Size(251, 31)
+        Me.Button10.TabIndex = 22
+        Me.Button10.Text = "Añadir Gran Premio"
+        Me.Button10.UseVisualStyleBackColor = True
+        '
+        'Button11
+        '
+        Me.Button11.Location = New System.Drawing.Point(1978, 908)
+        Me.Button11.Name = "Button11"
+        Me.Button11.Size = New System.Drawing.Size(251, 35)
+        Me.Button11.TabIndex = 23
+        Me.Button11.Text = "Button11"
+        Me.Button11.UseVisualStyleBackColor = True
+        '
+        'Button12
+        '
+        Me.Button12.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.Button12.Location = New System.Drawing.Point(315, 300)
+        Me.Button12.Name = "Button12"
+        Me.Button12.Size = New System.Drawing.Size(221, 31)
+        Me.Button12.TabIndex = 24
+        Me.Button12.Text = "Añadir Edición"
+        Me.Button12.UseVisualStyleBackColor = True
+        '
         'IU_VentanaPrincipal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1470, 375)
+        Me.ClientSize = New System.Drawing.Size(1470, 647)
         Me.Controls.Add(Me.TabControl1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(4)
@@ -1481,4 +1531,8 @@ Partial Class IU_VentanaPrincipal
     Friend WithEvents Label9 As Label
     Friend WithEvents Label10 As Label
     Friend WithEvents LabelNombreGranPremio As Label
+    Friend WithEvents ListBoxEdición As ListBox
+    Friend WithEvents Button12 As Button
+    Friend WithEvents Button11 As Button
+    Friend WithEvents Button10 As Button
 End Class

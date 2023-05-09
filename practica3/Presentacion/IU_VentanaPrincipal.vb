@@ -173,6 +173,8 @@
         ' Habilitar el botón nuevamente
         Button12.Enabled = False
         DataGridView1.ReadOnly = True
+        DataGridView1.AllowUserToAddRows = False
+
 
     End Sub
 

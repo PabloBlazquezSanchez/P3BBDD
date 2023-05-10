@@ -22,6 +22,10 @@ Public Class Piloto
         Me.PilotDAO.Leer(Me)
     End Sub
 
+    Public Function DevolverNombrePiloto(ByVal id As Integer) As String
+        Return Me.PilotDAO.DevolverNombrePiloto(id)
+    End Function
+
     Public Function InsertarPiloto() As Integer
         Return Me.PilotDAO.Insertar(Me)
     End Function

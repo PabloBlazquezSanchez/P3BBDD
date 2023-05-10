@@ -2,7 +2,8 @@
     Private estadoCircuito As Integer
     Private circuito As Circuito
     Private estadoPiloto As Integer
-    Private piloto As Piloto
+    'Private piloto As Piloto
+    Private piloto As New Piloto()
 
     Function comprobarNombrePropio(ByVal Nombre As String) As Boolean
         Dim valido As Boolean
@@ -148,22 +149,43 @@
 
     Private Sub Button12_Click(sender As Object, e As EventArgs) Handles Button12.Click
         ' Declaración e inicialización de los arrays
-        Dim puntos() As Integer = {10, 20, 30, 40, 50}
-        Dim dorsales() As Integer = {1, 2, 3, 4, 5}
+        Dim puntos() As Integer = {25, 18, 15, 12, 10, 8, 6, 4, 2, 1}
+        Dim dorsales() As Integer
+        ' Obtención de los dorsales
+        Dim InscripcionMd As New InscripcionMundial()
+        dorsales = InscripcionMd.ObtenerDorsalesInscripcion(2023)
 
         ' Agrega las columnas al control DataGridView
         DataGridView1.Columns.Add("Dorsal", "Dorsal")
         DataGridView1.Columns.Add("Puntos", "Puntos")
+        DataGridView1.Columns.Add("Piloto", "Piloto")
 
         ' Asignación de los dorsales aleatorios al control DataGridView
         Dim dorsalesDisponibles As New List(Of Integer)(dorsales)
         Dim rnd As New Random()
-        For i As Integer = 0 To puntos.Length - 1
-            Dim j As Integer = rnd.Next(0, dorsalesDisponibles.Count)
-            Dim dorsal As Integer = dorsalesDisponibles(j)
-            DataGridView1.Rows.Add(dorsal, puntos(i))
+        Dim j As Integer
+        Dim dorsal As Integer
+        Dim nombre As String
+
+        Dim VMR As Integer = rnd.Next(0, UBound(dorsales))
+
+        If (VMR + 1 <= 10) Then
+            puntos(VMR) = puntos(VMR) + 1
+        End If
+
+        For i As Integer = 0 To dorsales.Length - 1
+            j = rnd.Next(0, dorsalesDisponibles.Count)
+            dorsal = dorsalesDisponibles(j)
+            nombre = piloto.DevolverNombrePiloto(dorsal)
+            If (i < puntos.Length) Then
+                DataGridView1.Rows.Add(dorsal, puntos(i), nombre)
+            Else
+                DataGridView1.Rows.Add(dorsal, 0, nombre) 'Y si haces un ToString tras objeto piloto?
+            End If
             dorsalesDisponibles.RemoveAt(j)
         Next i
+
+        DataGridView1.Rows.Add(DataGridView1.Rows(VMR).Cells(0).Value, "VMR", DataGridView1.Rows(VMR).Cells(2).Value)
 
         ' Configuración de las propiedades del DataGridView
         DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill ' Ajusta el ancho de las columnas automáticamente

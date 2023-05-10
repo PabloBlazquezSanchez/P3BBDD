@@ -24,6 +24,17 @@ Public Class PilotoDAO
         Next
     End Sub
 
+    Public Function DevolverNombrePiloto(ByVal id As Integer) As String
+        Dim col As Collection
+        Dim iter As Collection
+        Dim cadena As String
+        col = AgenteBD.ObtenerAgente.Leer("SELECT NOMBRE FROM PILOTO WHERE idPILOTO='" & id & "';")
+        For Each iter In col
+            cadena = CStr(iter(1))
+        Next
+        Return cadena
+    End Function
+
     Public Function Insertar(ByVal p As Piloto) As String
         Return AgenteBD.ObtenerAgente.Modificar("INSERT INTO PILOTO VALUES ('" & p.idPILOTO & "', '" & p.Nombre & "', '" & p.Fecha_Nac & "', '" & p.Pais & "');")
     End Function

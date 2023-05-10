@@ -147,7 +147,7 @@
     End Sub
 
 
-    Private Sub Button12_Click(sender As Object, e As EventArgs) Handles Button12.Click
+    Private Sub Button12_Click(sender As Object, e As EventArgs) Handles ButtonAnadirEdicion.Click
         ' Declaración e inicialización de los arrays
         Dim puntos() As Integer = {25, 18, 15, 12, 10, 8, 6, 4, 2, 1}
         Dim dorsales() As Integer
@@ -156,9 +156,9 @@
         dorsales = InscripcionMd.ObtenerDorsalesInscripcion(2023)
 
         ' Agrega las columnas al control DataGridView
-        DataGridView1.Columns.Add("Dorsal", "Dorsal")
-        DataGridView1.Columns.Add("Puntos", "Puntos")
-        DataGridView1.Columns.Add("Piloto", "Piloto")
+        DataGridViewEdicion.Columns.Add("Dorsal", "Dorsal")
+        DataGridViewEdicion.Columns.Add("Puntos", "Puntos")
+        DataGridViewEdicion.Columns.Add("Piloto", "Piloto")
 
         ' Asignación de los dorsales aleatorios al control DataGridView
         Dim dorsalesDisponibles As New List(Of Integer)(dorsales)
@@ -178,27 +178,31 @@
             dorsal = dorsalesDisponibles(j)
             nombre = piloto.DevolverNombrePiloto(dorsal)
             If (i < puntos.Length) Then
-                DataGridView1.Rows.Add(dorsal, puntos(i), nombre)
+                DataGridViewEdicion.Rows.Add(dorsal, puntos(i), nombre)
             Else
-                DataGridView1.Rows.Add(dorsal, 0, nombre) 'Y si haces un ToString tras objeto piloto?
+                DataGridViewEdicion.Rows.Add(dorsal, 0, nombre) 'Y si haces un ToString tras objeto piloto?
             End If
             dorsalesDisponibles.RemoveAt(j)
         Next i
         DataGridView2.Columns.Add("Dorsal", "Dorsal")
         DataGridView2.Columns.Add("Puntos", "Puntos")
-        DataGridView2.Rows.Add(DataGridView1.Rows(VMR).Cells(0).Value, DataGridView1.Rows(VMR).Cells(2).Value)
+        DataGridViewEdicion.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewEdicion.ColumnHeadersDefaultCellStyle.Font = New Font(DataGridViewEdicion.Font, FontStyle.Bold)
+        DataGridView2.Rows.Add(DataGridViewEdicion.Rows(VMR).Cells(0).Value, DataGridViewEdicion.Rows(VMR).Cells(2).Value)
 
         ' Configuración de las propiedades del DataGridView
-        DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill ' Ajusta el ancho de las columnas automáticamente
+        DataGridViewEdicion.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill ' Ajusta el ancho de las columnas automáticamente
         DataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
         ' Habilitar el botón nuevamente
-        Button12.Enabled = False
+        ButtonAnadirEdicion.Enabled = False
 
-        DataGridView1.ReadOnly = True
-        DataGridView1.RowHeadersVisible = False
+        DataGridViewEdicion.ReadOnly = True
+        DataGridViewEdicion.RowHeadersVisible = False
 
         DataGridView2.ReadOnly = True
         DataGridView2.RowHeadersVisible = False
+        DataGridView2.ScrollBars = False
+
 
     End Sub
 End Class

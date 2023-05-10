@@ -27,6 +27,7 @@ Partial Class IU_VentanaPrincipal
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPageCircuitos = New System.Windows.Forms.TabPage()
         Me.GBEditarAñadirCircuito = New System.Windows.Forms.GroupBox()
@@ -71,10 +72,10 @@ Partial Class IU_VentanaPrincipal
         Me.BtEliminarPer = New System.Windows.Forms.Button()
         Me.ListBoxPilotos = New System.Windows.Forms.ListBox()
         Me.TabGranPremio = New System.Windows.Forms.TabPage()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.DataGridView2 = New System.Windows.Forms.DataGridView()
-        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.Button12 = New System.Windows.Forms.Button()
+        Me.DataGridViewEdicion = New System.Windows.Forms.DataGridView()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.ButtonAnadirEdicion = New System.Windows.Forms.Button()
         Me.Button11 = New System.Windows.Forms.Button()
         Me.Button10 = New System.Windows.Forms.Button()
         Me.ListBoxEdición = New System.Windows.Forms.ListBox()
@@ -130,9 +131,9 @@ Partial Class IU_VentanaPrincipal
         Me.GBBotonesEdicionPiloto.SuspendLayout()
         Me.GBOpcionesPer.SuspendLayout()
         Me.TabGranPremio.SuspendLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DataGridViewEdicion, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox5.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
@@ -751,9 +752,9 @@ Partial Class IU_VentanaPrincipal
         Me.TabGranPremio.BackColor = System.Drawing.SystemColors.Control
         Me.TabGranPremio.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TabGranPremio.Controls.Add(Me.DataGridView2)
-        Me.TabGranPremio.Controls.Add(Me.DataGridView1)
+        Me.TabGranPremio.Controls.Add(Me.DataGridViewEdicion)
         Me.TabGranPremio.Controls.Add(Me.PictureBox1)
-        Me.TabGranPremio.Controls.Add(Me.Button12)
+        Me.TabGranPremio.Controls.Add(Me.ButtonAnadirEdicion)
         Me.TabGranPremio.Controls.Add(Me.Button11)
         Me.TabGranPremio.Controls.Add(Me.Button10)
         Me.TabGranPremio.Controls.Add(Me.ListBoxEdición)
@@ -771,6 +772,63 @@ Partial Class IU_VentanaPrincipal
         Me.TabGranPremio.TabIndex = 4
         Me.TabGranPremio.Text = "Grandes Premios"
         '
+        'DataGridView2
+        '
+        Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DataGridView2.DefaultCellStyle = DataGridViewCellStyle1
+        Me.DataGridView2.Location = New System.Drawing.Point(956, 379)
+        Me.DataGridView2.Name = "DataGridView2"
+        Me.DataGridView2.RowHeadersWidth = 51
+        Me.DataGridView2.RowTemplate.Height = 24
+        Me.DataGridView2.Size = New System.Drawing.Size(417, 55)
+        Me.DataGridView2.TabIndex = 25
+        '
+        'DataGridViewEdicion
+        '
+        Me.DataGridViewEdicion.AllowUserToAddRows = False
+        Me.DataGridViewEdicion.AllowUserToDeleteRows = False
+        Me.DataGridViewEdicion.AllowUserToResizeColumns = False
+        Me.DataGridViewEdicion.AllowUserToResizeRows = False
+        Me.DataGridViewEdicion.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridViewEdicion.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        Me.DataGridViewEdicion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DataGridViewEdicion.DefaultCellStyle = DataGridViewCellStyle3
+        Me.DataGridViewEdicion.Location = New System.Drawing.Point(37, 379)
+        Me.DataGridViewEdicion.Name = "DataGridViewEdicion"
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridViewEdicion.RowHeadersDefaultCellStyle = DataGridViewCellStyle4
+        Me.DataGridViewEdicion.RowHeadersWidth = 51
+        Me.DataGridViewEdicion.RowTemplate.Height = 24
+        Me.DataGridViewEdicion.Size = New System.Drawing.Size(783, 176)
+        Me.DataGridViewEdicion.TabIndex = 20
+        '
         'PictureBox1
         '
         Me.PictureBox1.Image = Global.Practica3.My.Resources.Resources.VMR
@@ -781,64 +839,15 @@ Partial Class IU_VentanaPrincipal
         Me.PictureBox1.TabIndex = 26
         Me.PictureBox1.TabStop = False
         '
-        'DataGridView2
+        'ButtonAnadirEdicion
         '
-        Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView2.Location = New System.Drawing.Point(956, 379)
-        Me.DataGridView2.Name = "DataGridView2"
-        Me.DataGridView2.RowHeadersWidth = 51
-        Me.DataGridView2.RowTemplate.Height = 24
-        Me.DataGridView2.Size = New System.Drawing.Size(417, 55)
-        Me.DataGridView2.TabIndex = 25
-        '
-        'DataGridView1
-        '
-        Me.DataGridView1.AllowUserToAddRows = False
-        Me.DataGridView1.AllowUserToDeleteRows = False
-        Me.DataGridView1.AllowUserToResizeColumns = False
-        Me.DataGridView1.AllowUserToResizeRows = False
-        Me.DataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
-        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlLightLight
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DataGridView1.DefaultCellStyle = DataGridViewCellStyle2
-        Me.DataGridView1.Location = New System.Drawing.Point(37, 379)
-        Me.DataGridView1.Name = "DataGridView1"
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridView1.RowHeadersDefaultCellStyle = DataGridViewCellStyle3
-        Me.DataGridView1.RowHeadersWidth = 51
-        Me.DataGridView1.RowTemplate.Height = 24
-        Me.DataGridView1.Size = New System.Drawing.Size(783, 176)
-        Me.DataGridView1.TabIndex = 20
-        '
-        'Button12
-        '
-        Me.Button12.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.Button12.Location = New System.Drawing.Point(315, 300)
-        Me.Button12.Name = "Button12"
-        Me.Button12.Size = New System.Drawing.Size(221, 31)
-        Me.Button12.TabIndex = 24
-        Me.Button12.Text = "Añadir Edición"
-        Me.Button12.UseVisualStyleBackColor = True
+        Me.ButtonAnadirEdicion.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.ButtonAnadirEdicion.Location = New System.Drawing.Point(315, 300)
+        Me.ButtonAnadirEdicion.Name = "ButtonAnadirEdicion"
+        Me.ButtonAnadirEdicion.Size = New System.Drawing.Size(221, 31)
+        Me.ButtonAnadirEdicion.TabIndex = 24
+        Me.ButtonAnadirEdicion.Text = "Añadir Edición"
+        Me.ButtonAnadirEdicion.UseVisualStyleBackColor = True
         '
         'Button11
         '
@@ -1499,9 +1508,9 @@ Partial Class IU_VentanaPrincipal
         Me.GBBotonesEdicionPiloto.ResumeLayout(False)
         Me.GBOpcionesPer.ResumeLayout(False)
         Me.TabGranPremio.ResumeLayout(False)
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DataGridViewEdicion, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox5.ResumeLayout(False)
         Me.GroupBox5.PerformLayout()
         Me.GroupBox3.ResumeLayout(False)
@@ -1606,10 +1615,10 @@ Partial Class IU_VentanaPrincipal
     Friend WithEvents Label10 As Label
     Friend WithEvents LabelNombreGranPremio As Label
     Friend WithEvents ListBoxEdición As ListBox
-    Friend WithEvents Button12 As Button
+    Friend WithEvents ButtonAnadirEdicion As Button
     Friend WithEvents Button11 As Button
     Friend WithEvents Button10 As Button
-    Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents DataGridViewEdicion As DataGridView
     Friend WithEvents DataGridView2 As DataGridView
     Friend WithEvents PictureBox1 As PictureBox
 End Class

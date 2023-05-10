@@ -147,13 +147,13 @@
     End Sub
 
 
-    Private Sub Button12_Click(sender As Object, e As EventArgs) Handles ButtonAnadirEdicion.Click
+    Private Sub AnadirEdicion_Click(sender As Object, e As EventArgs) Handles ButtonAnadirEdicion.Click
         ' Declaración e inicialización de los arrays
         Dim puntos() As Integer = {25, 18, 15, 12, 10, 8, 6, 4, 2, 1}
         Dim dorsales() As Integer
         ' Obtención de los dorsales
         Dim InscripcionMd As New InscripcionMundial()
-        dorsales = InscripcionMd.ObtenerDorsalesInscripcion(2023)
+        dorsales = InscripcionMd.ObtenerDorsalesInscripcion(2022)
 
         ' Agrega las columnas al control DataGridView
         DataGridViewEdicion.Columns.Add("Dorsal", "Dorsal")
@@ -203,6 +203,10 @@
         DataGridView2.RowHeadersVisible = False
         DataGridView2.ScrollBars = False
 
+
+    End Sub
+
+    Private Sub ListBoxPaises_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBoxPaises.SelectedIndexChanged
 
     End Sub
 End Class

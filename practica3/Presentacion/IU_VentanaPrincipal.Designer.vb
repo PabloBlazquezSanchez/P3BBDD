@@ -71,6 +71,7 @@ Partial Class IU_VentanaPrincipal
         Me.BtEliminarPer = New System.Windows.Forms.Button()
         Me.ListBoxPilotos = New System.Windows.Forms.ListBox()
         Me.TabGranPremio = New System.Windows.Forms.TabPage()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.DataGridView2 = New System.Windows.Forms.DataGridView()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.Button12 = New System.Windows.Forms.Button()
@@ -119,7 +120,6 @@ Partial Class IU_VentanaPrincipal
         Me.ListBoxPaises = New System.Windows.Forms.ListBox()
         Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.ToolTipAñadir = New System.Windows.Forms.ToolTip(Me.components)
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.TabControl1.SuspendLayout()
         Me.TabPageCircuitos.SuspendLayout()
         Me.GBEditarAñadirCircuito.SuspendLayout()
@@ -130,6 +130,7 @@ Partial Class IU_VentanaPrincipal
         Me.GBBotonesEdicionPiloto.SuspendLayout()
         Me.GBOpcionesPer.SuspendLayout()
         Me.TabGranPremio.SuspendLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox5.SuspendLayout()
@@ -140,7 +141,6 @@ Partial Class IU_VentanaPrincipal
         Me.GBEditarRoles.SuspendLayout()
         Me.GroupBoxPaises.SuspendLayout()
         Me.GBEditarAñadirPais.SuspendLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TabControl1
@@ -750,9 +750,9 @@ Partial Class IU_VentanaPrincipal
         '
         Me.TabGranPremio.BackColor = System.Drawing.SystemColors.Control
         Me.TabGranPremio.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TabGranPremio.Controls.Add(Me.PictureBox1)
         Me.TabGranPremio.Controls.Add(Me.DataGridView2)
         Me.TabGranPremio.Controls.Add(Me.DataGridView1)
+        Me.TabGranPremio.Controls.Add(Me.PictureBox1)
         Me.TabGranPremio.Controls.Add(Me.Button12)
         Me.TabGranPremio.Controls.Add(Me.Button11)
         Me.TabGranPremio.Controls.Add(Me.Button10)
@@ -770,6 +770,16 @@ Partial Class IU_VentanaPrincipal
         Me.TabGranPremio.Size = New System.Drawing.Size(4209, 1996)
         Me.TabGranPremio.TabIndex = 4
         Me.TabGranPremio.Text = "Grandes Premios"
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.Image = Global.Practica3.My.Resources.Resources.VMR
+        Me.PictureBox1.Location = New System.Drawing.Point(876, 379)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(74, 55)
+        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PictureBox1.TabIndex = 26
+        Me.PictureBox1.TabStop = False
         '
         'DataGridView2
         '
@@ -1467,16 +1477,6 @@ Partial Class IU_VentanaPrincipal
         Me.ImageList1.Images.SetKeyName(2, "ajustes.png")
         Me.ImageList1.Images.SetKeyName(3, "f1.png")
         '
-        'PictureBox1
-        '
-        Me.PictureBox1.Image = Global.Practica3.My.Resources.Resources.VMR
-        Me.PictureBox1.Location = New System.Drawing.Point(876, 379)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(74, 55)
-        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.PictureBox1.TabIndex = 26
-        Me.PictureBox1.TabStop = False
-        '
         'IU_VentanaPrincipal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -1499,6 +1499,7 @@ Partial Class IU_VentanaPrincipal
         Me.GBBotonesEdicionPiloto.ResumeLayout(False)
         Me.GBOpcionesPer.ResumeLayout(False)
         Me.TabGranPremio.ResumeLayout(False)
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox5.ResumeLayout(False)
@@ -1512,7 +1513,6 @@ Partial Class IU_VentanaPrincipal
         Me.GroupBoxPaises.ResumeLayout(False)
         Me.GBEditarAñadirPais.ResumeLayout(False)
         Me.GBEditarAñadirPais.PerformLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

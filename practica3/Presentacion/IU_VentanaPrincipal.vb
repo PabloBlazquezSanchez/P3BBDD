@@ -184,18 +184,21 @@
             End If
             dorsalesDisponibles.RemoveAt(j)
         Next i
-
-        DataGridView1.Rows.Add(DataGridView1.Rows(VMR).Cells(0).Value, "VMR", DataGridView1.Rows(VMR).Cells(2).Value)
+        DataGridView2.Columns.Add("Dorsal", "Dorsal")
+        DataGridView2.Columns.Add("Puntos", "Puntos")
+        DataGridView2.Rows.Add(DataGridView1.Rows(VMR).Cells(0).Value, DataGridView1.Rows(VMR).Cells(2).Value)
 
         ' Configuración de las propiedades del DataGridView
         DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill ' Ajusta el ancho de las columnas automáticamente
-
+        DataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
         ' Habilitar el botón nuevamente
         Button12.Enabled = False
+
         DataGridView1.ReadOnly = True
         DataGridView1.RowHeadersVisible = False
 
+        DataGridView2.ReadOnly = True
+        DataGridView2.RowHeadersVisible = False
 
     End Sub
-
 End Class

@@ -22,5 +22,10 @@ Practica 3
   búsquedas de recursos mediante esta clase de recurso fuertemente tipado.
 </summary>
 </member>
+<member name="P:Practica3.My.Resources.Resources.VMR">
+<summary>
+  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+</summary>
+</member>
 </members>
 </doc>

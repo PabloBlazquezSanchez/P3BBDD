@@ -143,6 +143,7 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="f1.ico" />
+    <None Include="Resources\VMR.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

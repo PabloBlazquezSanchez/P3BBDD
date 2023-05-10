@@ -87,9 +87,6 @@ Partial Class IU_VentanaPrincipal
         Me.Label10 = New System.Windows.Forms.Label()
         Me.LabelNombreGranPremio = New System.Windows.Forms.Label()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
-        Me.Button5 = New System.Windows.Forms.Button()
-        Me.Button8 = New System.Windows.Forms.Button()
-        Me.Button9 = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button3 = New System.Windows.Forms.Button()
@@ -754,9 +751,7 @@ Partial Class IU_VentanaPrincipal
         Me.TabGranPremio.Controls.Add(Me.DataGridView2)
         Me.TabGranPremio.Controls.Add(Me.DataGridViewEdicion)
         Me.TabGranPremio.Controls.Add(Me.PictureBox1)
-        Me.TabGranPremio.Controls.Add(Me.ButtonAnadirEdicion)
         Me.TabGranPremio.Controls.Add(Me.Button11)
-        Me.TabGranPremio.Controls.Add(Me.Button10)
         Me.TabGranPremio.Controls.Add(Me.ListBoxEdición)
         Me.TabGranPremio.Controls.Add(Me.GroupBox5)
         Me.TabGranPremio.Controls.Add(Me.GroupBox3)
@@ -783,7 +778,7 @@ Partial Class IU_VentanaPrincipal
         DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.DataGridView2.DefaultCellStyle = DataGridViewCellStyle1
-        Me.DataGridView2.Location = New System.Drawing.Point(956, 379)
+        Me.DataGridView2.Location = New System.Drawing.Point(956, 335)
         Me.DataGridView2.Name = "DataGridView2"
         Me.DataGridView2.RowHeadersWidth = 51
         Me.DataGridView2.RowTemplate.Height = 24
@@ -814,7 +809,7 @@ Partial Class IU_VentanaPrincipal
         DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.DataGridViewEdicion.DefaultCellStyle = DataGridViewCellStyle3
-        Me.DataGridViewEdicion.Location = New System.Drawing.Point(37, 379)
+        Me.DataGridViewEdicion.Location = New System.Drawing.Point(37, 335)
         Me.DataGridViewEdicion.Name = "DataGridViewEdicion"
         DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control
@@ -832,7 +827,7 @@ Partial Class IU_VentanaPrincipal
         'PictureBox1
         '
         Me.PictureBox1.Image = Global.Practica3.My.Resources.Resources.VMR
-        Me.PictureBox1.Location = New System.Drawing.Point(876, 379)
+        Me.PictureBox1.Location = New System.Drawing.Point(876, 335)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(74, 55)
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
@@ -842,7 +837,7 @@ Partial Class IU_VentanaPrincipal
         'ButtonAnadirEdicion
         '
         Me.ButtonAnadirEdicion.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.ButtonAnadirEdicion.Location = New System.Drawing.Point(315, 300)
+        Me.ButtonAnadirEdicion.Location = New System.Drawing.Point(20, 85)
         Me.ButtonAnadirEdicion.Name = "ButtonAnadirEdicion"
         Me.ButtonAnadirEdicion.Size = New System.Drawing.Size(221, 31)
         Me.ButtonAnadirEdicion.TabIndex = 24
@@ -861,9 +856,9 @@ Partial Class IU_VentanaPrincipal
         'Button10
         '
         Me.Button10.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.Button10.Location = New System.Drawing.Point(37, 300)
+        Me.Button10.Location = New System.Drawing.Point(20, 43)
         Me.Button10.Name = "Button10"
-        Me.Button10.Size = New System.Drawing.Size(251, 31)
+        Me.Button10.Size = New System.Drawing.Size(221, 31)
         Me.Button10.TabIndex = 22
         Me.Button10.Text = "Añadir Gran Premio"
         Me.Button10.UseVisualStyleBackColor = True
@@ -968,65 +963,17 @@ Partial Class IU_VentanaPrincipal
         '
         'GroupBox3
         '
-        Me.GroupBox3.Controls.Add(Me.Button5)
-        Me.GroupBox3.Controls.Add(Me.Button8)
-        Me.GroupBox3.Controls.Add(Me.Button9)
+        Me.GroupBox3.Controls.Add(Me.ButtonAnadirEdicion)
+        Me.GroupBox3.Controls.Add(Me.Button10)
         Me.GroupBox3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox3.Location = New System.Drawing.Point(569, 39)
         Me.GroupBox3.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox3.Name = "GroupBox3"
         Me.GroupBox3.Padding = New System.Windows.Forms.Padding(4)
-        Me.GroupBox3.Size = New System.Drawing.Size(248, 91)
+        Me.GroupBox3.Size = New System.Drawing.Size(248, 146)
         Me.GroupBox3.TabIndex = 17
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Opciones"
-        '
-        'Button5
-        '
-        Me.Button5.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button5.FlatAppearance.BorderSize = 0
-        Me.Button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button5.Image = CType(resources.GetObject("Button5.Image"), System.Drawing.Image)
-        Me.Button5.Location = New System.Drawing.Point(21, 30)
-        Me.Button5.Margin = New System.Windows.Forms.Padding(4)
-        Me.Button5.Name = "Button5"
-        Me.Button5.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.Button5.Size = New System.Drawing.Size(64, 47)
-        Me.Button5.TabIndex = 6
-        Me.Button5.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Button5.UseVisualStyleBackColor = True
-        '
-        'Button8
-        '
-        Me.Button8.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button8.Enabled = False
-        Me.Button8.FlatAppearance.BorderSize = 0
-        Me.Button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button8.Image = CType(resources.GetObject("Button8.Image"), System.Drawing.Image)
-        Me.Button8.Location = New System.Drawing.Point(93, 30)
-        Me.Button8.Margin = New System.Windows.Forms.Padding(4)
-        Me.Button8.Name = "Button8"
-        Me.Button8.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.Button8.Size = New System.Drawing.Size(64, 47)
-        Me.Button8.TabIndex = 7
-        Me.Button8.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Button8.UseVisualStyleBackColor = True
-        '
-        'Button9
-        '
-        Me.Button9.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button9.Enabled = False
-        Me.Button9.FlatAppearance.BorderSize = 0
-        Me.Button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button9.Image = CType(resources.GetObject("Button9.Image"), System.Drawing.Image)
-        Me.Button9.Location = New System.Drawing.Point(165, 30)
-        Me.Button9.Margin = New System.Windows.Forms.Padding(4)
-        Me.Button9.Name = "Button9"
-        Me.Button9.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.Button9.Size = New System.Drawing.Size(64, 47)
-        Me.Button9.TabIndex = 8
-        Me.Button9.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Button9.UseVisualStyleBackColor = True
         '
         'GroupBox1
         '
@@ -1035,7 +982,7 @@ Partial Class IU_VentanaPrincipal
         Me.GroupBox1.Controls.Add(Me.Button4)
         Me.GroupBox1.Enabled = False
         Me.GroupBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox1.Location = New System.Drawing.Point(569, 151)
+        Me.GroupBox1.Location = New System.Drawing.Point(569, 193)
         Me.GroupBox1.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Padding = New System.Windows.Forms.Padding(4)
@@ -1572,9 +1519,6 @@ Partial Class IU_VentanaPrincipal
     Friend WithEvents Button3 As Button
     Friend WithEvents Button4 As Button
     Friend WithEvents GroupBox3 As GroupBox
-    Friend WithEvents Button5 As Button
-    Friend WithEvents Button8 As Button
-    Friend WithEvents Button9 As Button
     Friend WithEvents TabPageCircuitos As TabPage
     Friend WithEvents GBEditarAñadirCircuito As GroupBox
     Friend WithEvents LabelIDCircuito As Label

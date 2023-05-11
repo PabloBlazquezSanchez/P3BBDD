@@ -275,6 +275,42 @@ Public Class IU_VentanaPrincipal
         LimpiarTextoFormularioGeneral(GBEditarAñadirPais)
     End Sub
 
+    Function CrearIDPais(country As String) As String
+        ' Convertir el nombre del país a mayúsculas
+        Dim upperCountry As String = country.ToUpper()
+        Dim ids As New List(Of String)
+
+        ' Leer todos los países desde la base de datos y almacenar sus IDs en la lista
+        Dim myPais As New Pais()
+        myPais.LeerTodosPaises()
+
+        For Each paiss As Pais In myPais.PaisDAO.LeerTodas
+            ids.Add(paiss.idPAIS)
+        Next
+
+        ' Generar ID de tres letras a partir de las tres primeras de la variable country
+        Dim id As String
+        Dim index As Integer = 0
+
+        Do
+            id = upperCountry.Substring(index, 3)
+            index += 1
+
+            ' Si el ID generado es igual a alguno del array, se generará un ID distinto utilizando la siguiente letra de country
+            If ids.Contains(id) Then
+                If index + 2 >= upperCountry.Length Then
+                    Console.WriteLine("No se puede generar un ID único con las letras disponibles en el nombre del país.")
+
+                End If
+            Else
+                Exit Do
+            End If
+        Loop
+
+        Return id
+    End Function
+
+
     Private Sub BtGuardarPais_Click(sender As Object, e As EventArgs) Handles BtGuardarPais.Click
         If TextBoxDescPais.Text = "" Then
             MsgBox("Introduzca un nombre para el pais", vbExclamation)
@@ -286,7 +322,8 @@ Public Class IU_VentanaPrincipal
             Dim pais As Pais
             descPais = TextBoxDescPais.Text().Trim()
             descPais = descPais.Substring(0, 1).ToUpper + descPais.Substring(1, descPais.Length - 1).ToLower
-            pais = New Pais(descPais)
+            pais = New Pais(CrearIDPais(descPais))
+            pais.Nombre = descPais
 
             If Me.estadoPais = 0 Then 'Añadir un pais'
                 pais.InsertarPais()

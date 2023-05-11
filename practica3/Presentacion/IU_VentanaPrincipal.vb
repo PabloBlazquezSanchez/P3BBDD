@@ -49,7 +49,7 @@ Public Class IU_VentanaPrincipal
                 c.ResetText()
 
             ElseIf (TypeOf (c) Is DateTimePicker) Then
-                CType(c, DateTimePicker).Value = Nothing
+                CType(c, DateTimePicker).Value = DateTimeNacimiento.MaxDate
             End If
         Next
     End Sub
@@ -106,7 +106,7 @@ Public Class IU_VentanaPrincipal
         Dim camposValidos As Boolean
         camposValidos = True
 
-        If TextBoxNombrePiloto.Text = "" Or TextBoxIDPiloto.Text = "" Or DateTimeNacimiento2.Value = DateTime.MinValue Then
+        If TextBoxNombrePiloto.Text = "" Or TextBoxIDPiloto.Text = "" Or DateTimeNacimiento.Value = DateTime.MinValue Then
             camposValidos = False
             MsgBox("Es necesario que rellene todos los campos en Datos Personales", vbExclamation)
 
@@ -143,7 +143,7 @@ Public Class IU_VentanaPrincipal
         estadoPiloto = 1
         ModoEditarAñadirPil(True)
         TextBoxNombrePiloto.Text = piloto.Nombre
-        DateTimeNacimiento2.Value = piloto.Fecha_Nac
+        DateTimeNacimiento.Value = piloto.Fecha_Nac
         TextBoxIDPiloto.Text = piloto.idPILOTO
         CBPaisPiloto.Text = piloto.Pais
     End Sub

@@ -24,10 +24,10 @@ Partial Class IU_VentanaPrincipal
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(IU_VentanaPrincipal))
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPageCircuitos = New System.Windows.Forms.TabPage()
         Me.GBEditarAñadirCircuito = New System.Windows.Forms.GroupBox()
@@ -55,7 +55,7 @@ Partial Class IU_VentanaPrincipal
         Me.TabPagePilotos = New System.Windows.Forms.TabPage()
         Me.GBDatosPersonales = New System.Windows.Forms.GroupBox()
         Me.TextBoxIDPiloto = New System.Windows.Forms.TextBox()
-        Me.DateTimeNacimiento2 = New System.Windows.Forms.DateTimePicker()
+        Me.DateTimeNacimiento = New System.Windows.Forms.DateTimePicker()
         Me.CBPaisPiloto = New System.Windows.Forms.ComboBox()
         Me.TextBoxNombrePiloto = New System.Windows.Forms.TextBox()
         Me.LabelPaisPiloto = New System.Windows.Forms.Label()
@@ -93,7 +93,7 @@ Partial Class IU_VentanaPrincipal
         Me.Button4 = New System.Windows.Forms.Button()
         Me.ListBoxGranPremio = New System.Windows.Forms.ListBox()
         Me.TabPageConfi = New System.Windows.Forms.TabPage()
-        Me.GroupBoxRoles = New System.Windows.Forms.GroupBox()
+        Me.GroupBoxInformes = New System.Windows.Forms.GroupBox()
         Me.GBEditarRoles = New System.Windows.Forms.GroupBox()
         Me.BtLimpiarRoles = New System.Windows.Forms.Button()
         Me.Label7 = New System.Windows.Forms.Label()
@@ -134,7 +134,7 @@ Partial Class IU_VentanaPrincipal
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.TabPageConfi.SuspendLayout()
-        Me.GroupBoxRoles.SuspendLayout()
+        Me.GroupBoxInformes.SuspendLayout()
         Me.GBEditarRoles.SuspendLayout()
         Me.GroupBoxPaises.SuspendLayout()
         Me.GBEditarAñadirPais.SuspendLayout()
@@ -497,7 +497,7 @@ Partial Class IU_VentanaPrincipal
         'GBDatosPersonales
         '
         Me.GBDatosPersonales.Controls.Add(Me.TextBoxIDPiloto)
-        Me.GBDatosPersonales.Controls.Add(Me.DateTimeNacimiento2)
+        Me.GBDatosPersonales.Controls.Add(Me.DateTimeNacimiento)
         Me.GBDatosPersonales.Controls.Add(Me.CBPaisPiloto)
         Me.GBDatosPersonales.Controls.Add(Me.TextBoxNombrePiloto)
         Me.GBDatosPersonales.Controls.Add(Me.LabelPaisPiloto)
@@ -527,18 +527,18 @@ Partial Class IU_VentanaPrincipal
         Me.TextBoxIDPiloto.Size = New System.Drawing.Size(269, 23)
         Me.TextBoxIDPiloto.TabIndex = 17
         '
-        'DateTimeNacimiento2
+        'DateTimeNacimiento
         '
-        Me.DateTimeNacimiento2.CustomFormat = "dd/MMM/yyyy"
-        Me.DateTimeNacimiento2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DateTimeNacimiento2.Location = New System.Drawing.Point(176, 78)
-        Me.DateTimeNacimiento2.Margin = New System.Windows.Forms.Padding(4)
-        Me.DateTimeNacimiento2.MaxDate = New Date(2010, 1, 1, 0, 0, 0, 0)
-        Me.DateTimeNacimiento2.MinDate = New Date(1900, 1, 1, 0, 0, 0, 0)
-        Me.DateTimeNacimiento2.Name = "DateTimeNacimiento2"
-        Me.DateTimeNacimiento2.Size = New System.Drawing.Size(268, 23)
-        Me.DateTimeNacimiento2.TabIndex = 16
-        Me.DateTimeNacimiento2.Value = New Date(2010, 1, 1, 0, 0, 0, 0)
+        Me.DateTimeNacimiento.CustomFormat = "dd/MMM/yyyy"
+        Me.DateTimeNacimiento.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DateTimeNacimiento.Location = New System.Drawing.Point(176, 78)
+        Me.DateTimeNacimiento.Margin = New System.Windows.Forms.Padding(4)
+        Me.DateTimeNacimiento.MaxDate = New Date(2010, 1, 1, 0, 0, 0, 0)
+        Me.DateTimeNacimiento.MinDate = New Date(1900, 1, 1, 0, 0, 0, 0)
+        Me.DateTimeNacimiento.Name = "DateTimeNacimiento"
+        Me.DateTimeNacimiento.Size = New System.Drawing.Size(268, 23)
+        Me.DateTimeNacimiento.TabIndex = 16
+        Me.DateTimeNacimiento.Value = New Date(2010, 1, 1, 0, 0, 0, 0)
         '
         'CBPaisPiloto
         '
@@ -769,14 +769,14 @@ Partial Class IU_VentanaPrincipal
         'DataGridView2
         '
         Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlLightLight
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DataGridView2.DefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle5.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlLightLight
+        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DataGridView2.DefaultCellStyle = DataGridViewCellStyle5
         Me.DataGridView2.Location = New System.Drawing.Point(956, 335)
         Me.DataGridView2.Name = "DataGridView2"
         Me.DataGridView2.RowHeadersWidth = 51
@@ -791,33 +791,33 @@ Partial Class IU_VentanaPrincipal
         Me.DataGridViewEdicion.AllowUserToResizeColumns = False
         Me.DataGridViewEdicion.AllowUserToResizeRows = False
         Me.DataGridViewEdicion.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridViewEdicion.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle6.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridViewEdicion.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle6
         Me.DataGridViewEdicion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlLightLight
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DataGridViewEdicion.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle7.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlLightLight
+        DataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DataGridViewEdicion.DefaultCellStyle = DataGridViewCellStyle7
         Me.DataGridViewEdicion.Location = New System.Drawing.Point(37, 335)
         Me.DataGridViewEdicion.Name = "DataGridViewEdicion"
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridViewEdicion.RowHeadersDefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle8.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridViewEdicion.RowHeadersDefaultCellStyle = DataGridViewCellStyle8
         Me.DataGridViewEdicion.RowHeadersWidth = 51
         Me.DataGridViewEdicion.RowTemplate.Height = 24
         Me.DataGridViewEdicion.Size = New System.Drawing.Size(783, 176)
@@ -1052,7 +1052,7 @@ Partial Class IU_VentanaPrincipal
         'TabPageConfi
         '
         Me.TabPageConfi.BackColor = System.Drawing.SystemColors.Control
-        Me.TabPageConfi.Controls.Add(Me.GroupBoxRoles)
+        Me.TabPageConfi.Controls.Add(Me.GroupBoxInformes)
         Me.TabPageConfi.Controls.Add(Me.GroupBoxPaises)
         Me.TabPageConfi.ImageIndex = 2
         Me.TabPageConfi.Location = New System.Drawing.Point(4, 31)
@@ -1062,23 +1062,23 @@ Partial Class IU_VentanaPrincipal
         Me.TabPageConfi.TabIndex = 2
         Me.TabPageConfi.Text = "Configuración"
         '
-        'GroupBoxRoles
+        'GroupBoxInformes
         '
-        Me.GroupBoxRoles.Controls.Add(Me.GBEditarRoles)
-        Me.GroupBoxRoles.Controls.Add(Me.BtEditarConf)
-        Me.GroupBoxRoles.Controls.Add(Me.BtAñadirRol)
-        Me.GroupBoxRoles.Controls.Add(Me.BtBorrarRol)
-        Me.GroupBoxRoles.Controls.Add(Me.ListBoxRoles)
-        Me.GroupBoxRoles.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBoxRoles.ForeColor = System.Drawing.SystemColors.MenuHighlight
-        Me.GroupBoxRoles.Location = New System.Drawing.Point(849, 23)
-        Me.GroupBoxRoles.Margin = New System.Windows.Forms.Padding(4)
-        Me.GroupBoxRoles.Name = "GroupBoxRoles"
-        Me.GroupBoxRoles.Padding = New System.Windows.Forms.Padding(4)
-        Me.GroupBoxRoles.Size = New System.Drawing.Size(753, 623)
-        Me.GroupBoxRoles.TabIndex = 28
-        Me.GroupBoxRoles.TabStop = False
-        Me.GroupBoxRoles.Text = "ROLES"
+        Me.GroupBoxInformes.Controls.Add(Me.GBEditarRoles)
+        Me.GroupBoxInformes.Controls.Add(Me.BtEditarConf)
+        Me.GroupBoxInformes.Controls.Add(Me.BtAñadirRol)
+        Me.GroupBoxInformes.Controls.Add(Me.BtBorrarRol)
+        Me.GroupBoxInformes.Controls.Add(Me.ListBoxRoles)
+        Me.GroupBoxInformes.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupBoxInformes.ForeColor = System.Drawing.SystemColors.MenuHighlight
+        Me.GroupBoxInformes.Location = New System.Drawing.Point(855, 23)
+        Me.GroupBoxInformes.Margin = New System.Windows.Forms.Padding(4)
+        Me.GroupBoxInformes.Name = "GroupBoxInformes"
+        Me.GroupBoxInformes.Padding = New System.Windows.Forms.Padding(4)
+        Me.GroupBoxInformes.Size = New System.Drawing.Size(753, 623)
+        Me.GroupBoxInformes.TabIndex = 28
+        Me.GroupBoxInformes.TabStop = False
+        Me.GroupBoxInformes.Text = "ROLES"
         '
         'GBEditarRoles
         '
@@ -1443,7 +1443,7 @@ Partial Class IU_VentanaPrincipal
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox1.ResumeLayout(False)
         Me.TabPageConfi.ResumeLayout(False)
-        Me.GroupBoxRoles.ResumeLayout(False)
+        Me.GroupBoxInformes.ResumeLayout(False)
         Me.GBEditarRoles.ResumeLayout(False)
         Me.GBEditarRoles.PerformLayout()
         Me.GroupBoxPaises.ResumeLayout(False)
@@ -1464,7 +1464,7 @@ Partial Class IU_VentanaPrincipal
     Friend WithEvents BtBorrarPais As Button
     Friend WithEvents ListBoxPaises As ListBox
     Friend WithEvents TextBoxDescPais As TextBox
-    Friend WithEvents GroupBoxRoles As GroupBox
+    Friend WithEvents GroupBoxInformes As GroupBox
     Friend WithEvents BtEditarConf As Button
     Friend WithEvents BtAñadirRol As Button
     Friend WithEvents BtBorrarRol As Button
@@ -1522,7 +1522,7 @@ Partial Class IU_VentanaPrincipal
     Friend WithEvents ListBoxCircuitos As ListBox
     Friend WithEvents GBDatosPersonales As GroupBox
     Friend WithEvents TextBoxIDPiloto As TextBox
-    Friend WithEvents DateTimeNacimiento2 As DateTimePicker
+    Friend WithEvents DateTimeNacimiento As DateTimePicker
     Friend WithEvents CBPaisPiloto As ComboBox
     Friend WithEvents TextBoxNombrePiloto As TextBox
     Friend WithEvents LabelPaisPiloto As Label

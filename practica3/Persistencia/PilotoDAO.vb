@@ -12,6 +12,8 @@ Public Class PilotoDAO
         For Each aux In col
             p = New Piloto(CInt(aux(1).ToString))
             p.Nombre = aux(2).ToString
+            p.Fecha_Nac = aux(3)
+            p.Pais = aux(4).ToString
             Me.Pilotos.Add(p)
         Next
         Return Pilotos
@@ -23,7 +25,10 @@ Public Class PilotoDAO
         Dim col As Collection : Dim aux As Collection
         col = AgenteBD.ObtenerAgente.Leer("SELECT * FROM PILOTO WHERE idPILOTO='" & p.idPILOTO & "';")
         For Each aux In col
+            p.idPILOTO = CInt(aux(1).ToString)
             p.Nombre = aux(2).ToString
+            p.Fecha_Nac = aux(3)
+            p.Pais = aux(4).ToString
         Next
     End Sub
 

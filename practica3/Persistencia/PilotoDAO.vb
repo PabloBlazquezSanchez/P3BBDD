@@ -5,7 +5,7 @@ Public Class PilotoDAO
         Me.Pilotos = New Collection
     End Sub
 
-    Public Sub LeerTodas()
+    Public Function LeerTodas() As Collection
         Dim p As Piloto
         Dim col, aux As Collection
         col = AgenteBD.ObtenerAgente().Leer("SELECT * FROM PILOTO ORDER BY idPILOTO")
@@ -14,7 +14,10 @@ Public Class PilotoDAO
             p.Nombre = aux(2).ToString
             Me.Pilotos.Add(p)
         Next
-    End Sub
+        Return Pilotos
+    End Function
+
+
 
     Public Sub Leer(ByRef p As Piloto)
         Dim col As Collection : Dim aux As Collection

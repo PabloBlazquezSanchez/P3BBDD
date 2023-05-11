@@ -67,9 +67,9 @@ Partial Class IU_VentanaPrincipal
         Me.BtLimpiarPiloto = New System.Windows.Forms.Button()
         Me.BtGuardarPiloto = New System.Windows.Forms.Button()
         Me.GBOpcionesPer = New System.Windows.Forms.GroupBox()
-        Me.BtAñadirPer = New System.Windows.Forms.Button()
-        Me.BtEditarPer = New System.Windows.Forms.Button()
-        Me.BtEliminarPer = New System.Windows.Forms.Button()
+        Me.BtAñadirPil = New System.Windows.Forms.Button()
+        Me.BtEditarPil = New System.Windows.Forms.Button()
+        Me.BtEliminarPil = New System.Windows.Forms.Button()
         Me.ListBoxPilotos = New System.Windows.Forms.ListBox()
         Me.TabGranPremio = New System.Windows.Forms.TabPage()
         Me.DataGridView2 = New System.Windows.Forms.DataGridView()
@@ -669,9 +669,9 @@ Partial Class IU_VentanaPrincipal
         '
         'GBOpcionesPer
         '
-        Me.GBOpcionesPer.Controls.Add(Me.BtAñadirPer)
-        Me.GBOpcionesPer.Controls.Add(Me.BtEditarPer)
-        Me.GBOpcionesPer.Controls.Add(Me.BtEliminarPer)
+        Me.GBOpcionesPer.Controls.Add(Me.BtAñadirPil)
+        Me.GBOpcionesPer.Controls.Add(Me.BtEditarPil)
+        Me.GBOpcionesPer.Controls.Add(Me.BtEliminarPil)
         Me.GBOpcionesPer.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GBOpcionesPer.Location = New System.Drawing.Point(605, 48)
         Me.GBOpcionesPer.Margin = New System.Windows.Forms.Padding(4)
@@ -682,52 +682,52 @@ Partial Class IU_VentanaPrincipal
         Me.GBOpcionesPer.TabStop = False
         Me.GBOpcionesPer.Text = "Opciones"
         '
-        'BtAñadirPer
+        'BtAñadirPil
         '
-        Me.BtAñadirPer.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.BtAñadirPer.FlatAppearance.BorderSize = 0
-        Me.BtAñadirPer.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtAñadirPer.Image = CType(resources.GetObject("BtAñadirPer.Image"), System.Drawing.Image)
-        Me.BtAñadirPer.Location = New System.Drawing.Point(21, 30)
-        Me.BtAñadirPer.Margin = New System.Windows.Forms.Padding(4)
-        Me.BtAñadirPer.Name = "BtAñadirPer"
-        Me.BtAñadirPer.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.BtAñadirPer.Size = New System.Drawing.Size(64, 47)
-        Me.BtAñadirPer.TabIndex = 6
-        Me.BtAñadirPer.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.BtAñadirPer.UseVisualStyleBackColor = True
+        Me.BtAñadirPil.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.BtAñadirPil.FlatAppearance.BorderSize = 0
+        Me.BtAñadirPil.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtAñadirPil.Image = CType(resources.GetObject("BtAñadirPil.Image"), System.Drawing.Image)
+        Me.BtAñadirPil.Location = New System.Drawing.Point(21, 30)
+        Me.BtAñadirPil.Margin = New System.Windows.Forms.Padding(4)
+        Me.BtAñadirPil.Name = "BtAñadirPil"
+        Me.BtAñadirPil.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.BtAñadirPil.Size = New System.Drawing.Size(64, 47)
+        Me.BtAñadirPil.TabIndex = 6
+        Me.BtAñadirPil.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.BtAñadirPil.UseVisualStyleBackColor = True
         '
-        'BtEditarPer
+        'BtEditarPil
         '
-        Me.BtEditarPer.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.BtEditarPer.Enabled = False
-        Me.BtEditarPer.FlatAppearance.BorderSize = 0
-        Me.BtEditarPer.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtEditarPer.Image = CType(resources.GetObject("BtEditarPer.Image"), System.Drawing.Image)
-        Me.BtEditarPer.Location = New System.Drawing.Point(93, 30)
-        Me.BtEditarPer.Margin = New System.Windows.Forms.Padding(4)
-        Me.BtEditarPer.Name = "BtEditarPer"
-        Me.BtEditarPer.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.BtEditarPer.Size = New System.Drawing.Size(64, 47)
-        Me.BtEditarPer.TabIndex = 7
-        Me.BtEditarPer.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.BtEditarPer.UseVisualStyleBackColor = True
+        Me.BtEditarPil.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.BtEditarPil.Enabled = False
+        Me.BtEditarPil.FlatAppearance.BorderSize = 0
+        Me.BtEditarPil.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtEditarPil.Image = CType(resources.GetObject("BtEditarPil.Image"), System.Drawing.Image)
+        Me.BtEditarPil.Location = New System.Drawing.Point(93, 30)
+        Me.BtEditarPil.Margin = New System.Windows.Forms.Padding(4)
+        Me.BtEditarPil.Name = "BtEditarPil"
+        Me.BtEditarPil.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.BtEditarPil.Size = New System.Drawing.Size(64, 47)
+        Me.BtEditarPil.TabIndex = 7
+        Me.BtEditarPil.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.BtEditarPil.UseVisualStyleBackColor = True
         '
-        'BtEliminarPer
+        'BtEliminarPil
         '
-        Me.BtEliminarPer.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.BtEliminarPer.Enabled = False
-        Me.BtEliminarPer.FlatAppearance.BorderSize = 0
-        Me.BtEliminarPer.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtEliminarPer.Image = CType(resources.GetObject("BtEliminarPer.Image"), System.Drawing.Image)
-        Me.BtEliminarPer.Location = New System.Drawing.Point(165, 30)
-        Me.BtEliminarPer.Margin = New System.Windows.Forms.Padding(4)
-        Me.BtEliminarPer.Name = "BtEliminarPer"
-        Me.BtEliminarPer.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.BtEliminarPer.Size = New System.Drawing.Size(64, 47)
-        Me.BtEliminarPer.TabIndex = 8
-        Me.BtEliminarPer.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.BtEliminarPer.UseVisualStyleBackColor = True
+        Me.BtEliminarPil.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.BtEliminarPil.Enabled = False
+        Me.BtEliminarPil.FlatAppearance.BorderSize = 0
+        Me.BtEliminarPil.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtEliminarPil.Image = CType(resources.GetObject("BtEliminarPil.Image"), System.Drawing.Image)
+        Me.BtEliminarPil.Location = New System.Drawing.Point(165, 30)
+        Me.BtEliminarPil.Margin = New System.Windows.Forms.Padding(4)
+        Me.BtEliminarPil.Name = "BtEliminarPil"
+        Me.BtEliminarPil.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.BtEliminarPil.Size = New System.Drawing.Size(64, 47)
+        Me.BtEliminarPil.TabIndex = 8
+        Me.BtEliminarPil.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.BtEliminarPil.UseVisualStyleBackColor = True
         '
         'ListBoxPilotos
         '
@@ -1455,9 +1455,9 @@ Partial Class IU_VentanaPrincipal
 
     Friend WithEvents TabControl1 As TabControl
     Friend WithEvents TabPagePilotos As TabPage
-    Friend WithEvents BtAñadirPer As Button
-    Friend WithEvents BtEliminarPer As Button
-    Friend WithEvents BtEditarPer As Button
+    Friend WithEvents BtAñadirPil As Button
+    Friend WithEvents BtEliminarPil As Button
+    Friend WithEvents BtEditarPil As Button
     Friend WithEvents TabPageConfi As TabPage
     Friend WithEvents GroupBoxPaises As GroupBox
     Friend WithEvents BtAñadirPais As Button

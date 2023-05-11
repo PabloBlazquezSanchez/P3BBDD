@@ -3,38 +3,38 @@ Public Class Piloto
     Public Property Nombre As String
     Public Property Fecha_Nac As Date
     Public Property Pais As String
-    Public ReadOnly Property PilotDAO As PilotoDAO
+    Public ReadOnly Property PilotoDAO As PilotoDAO
 
     Public Sub New()
-        Me.PilotDAO = New PilotoDAO
+        Me.PilotoDAO = New PilotoDAO
     End Sub
 
     Public Sub New(id As String)
-        Me.PilotDAO = New PilotoDAO
+        Me.PilotoDAO = New PilotoDAO
         Me.idPILOTO = id
     End Sub
 
     Public Sub LeerTodosPiloto()
-        Me.PilotDAO.LeerTodas()
+        Me.PilotoDAO.LeerTodas()
     End Sub
 
     Public Sub LeerPiloto()
-        Me.PilotDAO.Leer(Me)
+        Me.PilotoDAO.Leer(Me)
     End Sub
 
     Public Function DevolverNombrePiloto(ByVal id As Integer) As String
-        Return Me.PilotDAO.DevolverNombrePiloto(id)
+        Return Me.PilotoDAO.DevolverNombrePiloto(id)
     End Function
 
     Public Function InsertarPiloto() As Integer
-        Return Me.PilotDAO.Insertar(Me)
+        Return Me.PilotoDAO.Insertar(Me)
     End Function
 
     Public Function ActualizarPiloto() As Integer
-        Return Me.PilotDAO.Actualizar(Me)
+        Return Me.PilotoDAO.Actualizar(Me)
     End Function
 
     Public Function BorrarPiloto() As Integer
-        Return Me.PilotDAO.Borrar(Me)
+        Return Me.PilotoDAO.Borrar(Me)
     End Function
 End Class

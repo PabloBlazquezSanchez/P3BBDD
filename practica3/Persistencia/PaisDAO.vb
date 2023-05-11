@@ -6,16 +6,18 @@ Public Class PaisDAO
         Me.Paises = New Collection
     End Sub
 
-    Public Sub LeerTodas()
+    Public Function LeerTodas() As Collection
+
         Dim p As Pais
         Dim col, aux As Collection
         col = AgenteBD.ObtenerAgente().Leer("SELECT * FROM PAIS ORDER BY idPAIS")
         For Each aux In col
-            p = New Pais(CInt(aux(1).ToString))
+            p = New Pais(aux(1).ToString)
             p.Nombre = aux(2).ToString
             Me.Paises.Add(p)
         Next
-    End Sub
+        Return Paises
+    End Function
 
     Public Sub Leer(ByRef p As Pais)
         Dim col As Collection : Dim aux As Collection

@@ -19,7 +19,6 @@ Public Class Pais
     Public Sub LeerPais()
         Me.PaisDAO.Leer(Me)
     End Sub
-
     Public Function InsertarPais() As String
         Return Me.PaisDAO.Insertar(Me)
     End Function

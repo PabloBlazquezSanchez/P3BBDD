@@ -1,9 +1,25 @@
-﻿Public Class IU_VentanaPrincipal
+﻿Imports MySql.Web
+
+Public Class IU_VentanaPrincipal
     Private estadoCircuito As Integer
     Private circuito As Circuito
     Private estadoPiloto As Integer
+    Private pais As Pais
     'Private piloto As Piloto
     Private piloto As New Piloto()
+
+    Private Sub Form2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Dim myPais As New Pais()
+        myPais = New Pais()
+        myPais.LeerTodosPaises()
+
+        For Each pais As Pais In myPais.PaisDAO.LeerTodas
+
+            ListBoxPaises.Items.Add(pais.idPAIS & " - " & pais.Nombre)
+        Next
+
+
+    End Sub
 
     Function comprobarNombrePropio(ByVal Nombre As String) As Boolean
         Dim valido As Boolean
@@ -120,8 +136,8 @@
         estadoPiloto = 1
         ModoEditarAñadirPil(True)
         TextBoxNombrePiloto.Text = piloto.Nombre
-        DateTimeNacimiento2.Value = Piloto.Fecha_Nac
-        TextBoxIDPiloto.Text = Piloto.idPILOTO
+        DateTimeNacimiento2.Value = piloto.Fecha_Nac
+        TextBoxIDPiloto.Text = piloto.idPILOTO
         CBPaisPiloto.Text = Piloto.Pais
     End Sub
 
@@ -208,5 +224,33 @@
 
     Private Sub ListBoxPaises_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBoxPaises.SelectedIndexChanged
 
+        If ListBoxPaises.SelectedItem IsNot Nothing Then
+            BtBorrarPais.Enabled = True
+            BtAñadirPais.Enabled = True
+            BtEditarPais.Enabled = True
+            Dim split As String() = ListBoxPaises.SelectedItem.ToString().Split(New [Char]() {" "c})
+            Dim id As String
+            id = split(0)
+
+            Dim pais As Pais
+            pais = New Pais
+            pais.idPAIS = id
+            pais.LeerPais()
+
+
+            Me.pais = pais
+            Me.pais = pais
+        Else
+            BtBorrarPais.Enabled = False
+            BtEditarPais.Enabled = False
+        End If
+    End Sub
+    Private Sub BtBorrarPais_Click(sender As Object, e As EventArgs) Handles BtBorrarPais.Click
+        Dim borrar As Integer
+        borrar = MsgBox("¿Esta seguro de que desea eliminar el pais seleccionado? Se borrará de todas los circuitos que lo contengan", +vbYesNo + vbDefaultButton2, "Eliminar Persona.")
+        If (borrar = vbYes) Then
+            Me.pais.BorrarPais()
+            ListBoxPaises.Items.RemoveAt(ListBoxPaises.SelectedIndex)
+        End If
     End Sub
 End Class

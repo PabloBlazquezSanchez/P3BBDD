@@ -13,13 +13,11 @@ Public Class IU_VentanaPrincipal
     Private Sub Form2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim myPais As New Pais()
         myPais = New Pais()
-        myPais.LeerTodosPaises()
         ListBoxPaises.Items.Clear()
         For Each pais As Pais In myPais.PaisDAO.LeerTodas
             ListBoxPaises.Items.Add(pais.idPAIS & " - " & pais.Nombre)
+
         Next
-
-
 
     End Sub
 

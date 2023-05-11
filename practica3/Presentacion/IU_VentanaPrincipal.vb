@@ -255,8 +255,15 @@ Public Class IU_VentanaPrincipal
         Dim borrar As Integer
         borrar = MsgBox("¿Estás seguro de que desea eliminar el pais seleccionado? Se borrará de todas los datos que lo contengan", +vbYesNo + vbDefaultButton2, "Eliminar Persona.")
         If (borrar = vbYes) Then
-            Me.pais.BorrarPais()
-            ListBoxPaises.Items.RemoveAt(ListBoxPaises.SelectedIndex)
+
+            Try
+                    Me.pais.BorrarPais()
+                    ListBoxPaises.Items.RemoveAt(ListBoxPaises.SelectedIndex)
+                Catch ex As Exception
+                ' Manejar la excepción aquí
+                MsgBox("No se pudo borrar país al estar vinculado con otros datos ")
+            End Try
+
         End If
     End Sub
 
@@ -316,8 +323,6 @@ Public Class IU_VentanaPrincipal
             MsgBox("Nombre no válido. Solo puede contener letras y espacios.", vbExclamation)
         ElseIf TextBoxDescPais.Text.Length < 3 Then
             MsgBox("Nombre no válido. Escribe otro de mayor longitud.", vbExclamation)
-
-
         Else
             Dim descPais As String
             Dim pais As Pais

@@ -236,18 +236,14 @@ Public Class IU_VentanaPrincipal
 
         If ListBoxPaises.SelectedItem IsNot Nothing Then
             BtBorrarPais.Enabled = True
-
             BtEditarPais.Enabled = True
             Dim split As String() = ListBoxPaises.SelectedItem.ToString().Split(New [Char]() {" "c})
             Dim id As String
             id = split(0)
-
             Dim pais As Pais
             pais = New Pais
             pais.idPAIS = id
             pais.LeerPais()
-
-
             Me.pais = pais
             Me.paisEdi = pais
         Else
@@ -269,6 +265,8 @@ Public Class IU_VentanaPrincipal
         GBEditarAñadirPais.Enabled = True
         TextBoxDescPais.Enabled = True
         BtAñadirPais.Enabled = False
+        ListBoxPaises.Enabled = False
+
     End Sub
 
     Private Sub BtLimpiarPais_Click(sender As Object, e As EventArgs) Handles BtLimpiarPais.Click
@@ -299,8 +297,8 @@ Public Class IU_VentanaPrincipal
             ' Si el ID generado es igual a alguno del array, se generará un ID distinto utilizando la siguiente letra de country
             If ids.Contains(id) Then
                 If index + 2 >= upperCountry.Length Then
-                    Console.WriteLine("No se puede generar un ID único con las letras disponibles en el nombre del país.")
-
+                    MsgBox("No se puede generar un ID único con las letras disponibles en el nombre del país.")
+                    Return ""
                 End If
             Else
                 Exit Do
@@ -314,15 +312,24 @@ Public Class IU_VentanaPrincipal
     Private Sub BtGuardarPais_Click(sender As Object, e As EventArgs) Handles BtGuardarPais.Click
         If TextBoxDescPais.Text = "" Then
             MsgBox("Introduzca un nombre para el pais", vbExclamation)
-        ElseIf Not (comprobarNombrePropio(TextBoxDescRol.Text)) Then
+        ElseIf Not (comprobarNombrePropio(TextBoxDescPais.Text)) Then
             MsgBox("Nombre no válido. Solo puede contener letras y espacios.", vbExclamation)
+        ElseIf TextBoxDescPais.Text.Length < 3 Then
+            MsgBox("Nombre no válido. Escribe otro de mayor longitud.", vbExclamation)
+
 
         Else
             Dim descPais As String
             Dim pais As Pais
             descPais = TextBoxDescPais.Text().Trim()
             descPais = descPais.Substring(0, 1).ToUpper + descPais.Substring(1, descPais.Length - 1).ToLower
-            pais = New Pais(CrearIDPais(descPais))
+            Dim idPais As String
+            idPais = CrearIDPais(descPais)
+            If idPais = "" Then
+                Return
+            End If
+
+            pais = New Pais(idPais)
             pais.Nombre = descPais
 
             If Me.estadoPais = 0 Then 'Añadir un pais'

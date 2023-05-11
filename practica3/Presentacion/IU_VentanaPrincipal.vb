@@ -14,7 +14,7 @@ Public Class IU_VentanaPrincipal
         Dim myPais As New Pais()
         myPais = New Pais()
         myPais.LeerTodosPaises()
-
+        ListBoxPaises.Items.Clear()
         For Each pais As Pais In myPais.PaisDAO.LeerTodas
             ListBoxPaises.Items.Add(pais.idPAIS & " - " & pais.Nombre)
         Next

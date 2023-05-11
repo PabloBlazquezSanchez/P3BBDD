@@ -132,12 +132,9 @@ Public Class IU_VentanaPrincipal
         ListBoxPilotos.Enabled = Not mode
         GBDatosPersonales.Enabled = mode
         GBBotonesEdicionPiloto.Enabled = mode
-        LimpiarFormEditarPil()
     End Sub
 
-    Private Sub LimpiarFormEditarPil()
-        LimpiarTextoFormularioGeneral(GBDatosPersonales)
-    End Sub
+
 
     Private Sub BtEditarPer_Click(sender As Object, e As EventArgs) Handles BtEditarPil.Click
         estadoPiloto = 1
@@ -436,6 +433,10 @@ Public Class IU_VentanaPrincipal
     End Sub
 
     Private Sub BtLimpiarPiloto_Click(sender As Object, e As EventArgs) Handles BtLimpiarPiloto.Click
+        LimpiarTextoFormularioGeneral(GBDatosPersonales)
+    End Sub
+
+    Private Sub CBPaisPiloto_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CBPaisPiloto.SelectedIndexChanged
 
     End Sub
 End Class

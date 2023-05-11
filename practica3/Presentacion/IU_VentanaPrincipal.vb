@@ -4,8 +4,9 @@ Public Class IU_VentanaPrincipal
     Private estadoCircuito As Integer
     Private circuito As Circuito
     Private estadoPiloto As Integer
+    Private estadoPais As Integer
+
     Private pais As Pais
-    'Private piloto As Piloto
     Private piloto As New Piloto()
 
     Private Sub Form2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -226,7 +227,7 @@ Public Class IU_VentanaPrincipal
 
         If ListBoxPaises.SelectedItem IsNot Nothing Then
             BtBorrarPais.Enabled = True
-            BtAñadirPais.Enabled = True
+
             BtEditarPais.Enabled = True
             Dim split As String() = ListBoxPaises.SelectedItem.ToString().Split(New [Char]() {" "c})
             Dim id As String
@@ -247,10 +248,25 @@ Public Class IU_VentanaPrincipal
     End Sub
     Private Sub BtBorrarPais_Click(sender As Object, e As EventArgs) Handles BtBorrarPais.Click
         Dim borrar As Integer
-        borrar = MsgBox("¿Esta seguro de que desea eliminar el pais seleccionado? Se borrará de todas los datos que lo contengan", +vbYesNo + vbDefaultButton2, "Eliminar Persona.")
+        borrar = MsgBox("¿Estás seguro de que desea eliminar el pais seleccionado? Se borrará de todas los datos que lo contengan", +vbYesNo + vbDefaultButton2, "Eliminar Persona.")
         If (borrar = vbYes) Then
             Me.pais.BorrarPais()
             ListBoxPaises.Items.RemoveAt(ListBoxPaises.SelectedIndex)
         End If
+    End Sub
+
+    Private Sub BtAñadirPais_Click(sender As Object, e As EventArgs) Handles BtAñadirPais.Click
+        Me.estadoPais = 0
+        GBEditarAñadirPais.Enabled = True
+        TextBoxDescPais.Enabled = True
+        BtAñadirPais.Enabled = False
+    End Sub
+
+    Private Sub BtLimpiarPais_Click(sender As Object, e As EventArgs) Handles BtLimpiarPais.Click
+        LimpiarTextoFormularioGeneral(GBEditarAñadirPais)
+    End Sub
+
+    Private Sub BtGuardarPais_Click(sender As Object, e As EventArgs) Handles BtGuardarPais.Click
+
     End Sub
 End Class

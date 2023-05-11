@@ -247,7 +247,7 @@ Public Class IU_VentanaPrincipal
     End Sub
     Private Sub BtBorrarPais_Click(sender As Object, e As EventArgs) Handles BtBorrarPais.Click
         Dim borrar As Integer
-        borrar = MsgBox("¿Esta seguro de que desea eliminar el pais seleccionado? Se borrará de todas los circuitos que lo contengan", +vbYesNo + vbDefaultButton2, "Eliminar Persona.")
+        borrar = MsgBox("¿Esta seguro de que desea eliminar el pais seleccionado? Se borrará de todas los datos que lo contengan", +vbYesNo + vbDefaultButton2, "Eliminar Persona.")
         If (borrar = vbYes) Then
             Me.pais.BorrarPais()
             ListBoxPaises.Items.RemoveAt(ListBoxPaises.SelectedIndex)

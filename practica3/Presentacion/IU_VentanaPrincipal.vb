@@ -178,6 +178,14 @@ Public Class IU_VentanaPrincipal
         DataGridViewEdicion.Columns.Add("Puntos", "Puntos")
         DataGridViewEdicion.Columns.Add("Piloto", "Piloto")
 
+        ' Establecer el color de texto negro y alinear el texto en el centro de las celdas
+        DataGridViewEdicion.DefaultCellStyle.ForeColor = Color.Black
+        DataGridViewEdicion.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+
+        ' También puedes hacer lo mismo para el otro DataGridView
+        DataGridView2.DefaultCellStyle.ForeColor = Color.Black
+        DataGridView2.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+
         ' Asignación de los dorsales aleatorios al control DataGridView
         Dim dorsalesDisponibles As New List(Of Integer)(dorsales)
         Dim rnd As New Random()
@@ -335,4 +343,7 @@ Public Class IU_VentanaPrincipal
         ListBoxPaises.Enabled = True
     End Sub
 
+    Private Sub DataGridViewEdicion_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridViewEdicion.CellContentClick
+
+    End Sub
 End Class

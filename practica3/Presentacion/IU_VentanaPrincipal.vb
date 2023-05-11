@@ -5,6 +5,7 @@ Public Class IU_VentanaPrincipal
     Private circuito As Circuito
     Private estadoPiloto As Integer
     Private estadoPais As Integer
+    Private paisEdi As Pais
 
     Private pais As Pais
     Private piloto As New Piloto()
@@ -15,9 +16,9 @@ Public Class IU_VentanaPrincipal
         myPais.LeerTodosPaises()
 
         For Each pais As Pais In myPais.PaisDAO.LeerTodas
-
             ListBoxPaises.Items.Add(pais.idPAIS & " - " & pais.Nombre)
         Next
+
 
 
     End Sub
@@ -240,7 +241,7 @@ Public Class IU_VentanaPrincipal
 
 
             Me.pais = pais
-            Me.pais = pais
+            Me.paisEdi = pais
         Else
             BtBorrarPais.Enabled = False
             BtEditarPais.Enabled = False
@@ -267,6 +268,71 @@ Public Class IU_VentanaPrincipal
     End Sub
 
     Private Sub BtGuardarPais_Click(sender As Object, e As EventArgs) Handles BtGuardarPais.Click
+        If TextBoxDescPais.Text = "" Then
+            MsgBox("Introduzca un nombre para el pais", vbExclamation)
+        ElseIf Not (comprobarNombrePropio(TextBoxDescRol.Text)) Then
+            MsgBox("Nombre no válido. Solo puede contener letras y espacios.", vbExclamation)
+
+        Else
+            Dim descPais As String
+            Dim pais As Pais
+            descPais = TextBoxDescPais.Text().Trim()
+            descPais = descPais.Substring(0, 1).ToUpper + descPais.Substring(1, descPais.Length - 1).ToLower
+            pais = New Pais(descPais)
+
+            If Me.estadoPais = 0 Then 'Añadir un pais'
+                pais.InsertarPais()
+                pais.LeerPais()
+                ListBoxPaises.Items.Add(pais.idPAIS & " - " & pais.Nombre)
+
+            ElseIf Me.estadoPais = 1 Then 'Editar un pais ya existente'
+                Dim indice As Integer
+                Try
+                    Dim actualizar As Integer
+                    Me.paisEdi.Nombre = descPais
+                    actualizar = paisEdi.ActualizarPais
+                    If (actualizar <> 1) Then
+                        MessageBox.Show("Error. No se pudo modificar")
+                        BtCancelarPais.PerformClick()
+                    Else
+                        MessageBox.Show("Pais modificado con éxito")
+                        indice = ListBoxPaises.SelectedIndex
+                        ListBoxPaises.Items.RemoveAt(indice)
+                        ListBoxPaises.Items.Insert(indice, Me.paisEdi.idPAIS & " - " & Me.paisEdi.Nombre)
+                        BtCancelarPais.PerformClick()
+
+                    End If
+                Catch
+
+                End Try
+            End If
+
+            GBEditarAñadirPais.Enabled = False
+            BtAñadirPais.Enabled = True
+            TextBoxDescPais.Text = ""
+        End If
 
     End Sub
+
+    Private Sub BtEditarPais_Click(sender As Object, e As EventArgs) Handles BtEditarPais.Click
+        TextBoxDescPais.Text = pais.Nombre
+        GBEditarAñadirPais.Enabled = True
+        BtAñadirPais.Enabled = False
+        BtBorrarPais.Enabled = False
+        BtEditarPais.Enabled = False
+        ListBoxPaises.Enabled = False
+        Me.estadoPais = 1
+
+    End Sub
+
+
+    Private Sub BtCancelarPais_Click(sender As Object, e As EventArgs) Handles BtCancelarPais.Click
+        Me.estadoPais = -1
+        BtAñadirPais.Enabled = True
+        BtBorrarPais.Enabled = True
+        BtEditarPais.Enabled = True
+        GBEditarAñadirPais.Enabled = False
+        ListBoxPaises.Enabled = True
+    End Sub
+
 End Class

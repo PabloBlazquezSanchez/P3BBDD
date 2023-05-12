@@ -5,7 +5,7 @@
         Me.Circuitos = New Collection
     End Sub
 
-    Public Sub LeerTodas()
+    Public Function LeerTodas() As Collection
         Dim c As Circuito
         Dim col, aux As Collection
         col = AgenteBD.ObtenerAgente().Leer("SELECT * FROM CIRCUITO ORDER BY idCIRCUITO")
@@ -18,12 +18,14 @@
             c.Curva = aux(6)
             Me.Circuitos.Add(c)
         Next
-    End Sub
+        Return Circuitos
+    End Function
 
     Public Sub Leer(ByRef c As Circuito)
         Dim col As Collection : Dim aux As Collection
-        col = AgenteBD.ObtenerAgente().Leer("SELECT * FROM CIRCUITO WHERE idCIRCUITO='" & c.IdCircuito & "';")
+        col = AgenteBD.ObtenerAgente.Leer("SELECT * FROM CIRCUITO WHERE idCIRCUITO='" & c.IdCircuito & "';")
         For Each aux In col
+            c.IdCircuito = CInt(aux(1).ToString)
             c.Nombre = aux(2).ToString
             c.Ciudad = aux(3).ToString
             c.Pais = aux(4).ToString

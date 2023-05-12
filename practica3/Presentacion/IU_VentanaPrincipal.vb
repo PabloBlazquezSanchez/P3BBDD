@@ -19,10 +19,15 @@ Public Class IU_VentanaPrincipal
 
         Next
 
-
         Dim myPiloto As New Piloto()
         For Each piloto As Piloto In myPiloto.PilotoDAO.LeerTodas
             ListBoxPilotos.Items.Add(piloto.idPILOTO & " - " & piloto.Nombre)
+
+        Next
+
+        Dim myCircuito As New Circuito()
+        For Each circuito As Circuito In myCircuito.CircuDAO.LeerTodas
+            ListBoxCircuitos.Items.Add(circuito.IdCircuito & " - " & circuito.Nombre)
 
         Next
 
@@ -467,10 +472,10 @@ Public Class IU_VentanaPrincipal
     End Sub
 
     Private Sub ListBoxCircuitos_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBoxCircuitos.SelectedIndexChanged
-        'Lista, sacar de paises
+        'Lista, sacar de pilotos
         If ListBoxCircuitos.SelectedItem IsNot Nothing Then
             BtElimCir.Enabled = True
-            BtElimCir.Enabled = True
+            BtEditCir.Enabled = True
             Dim split As String() = ListBoxCircuitos.SelectedItem.ToString().Split(New [Char]() {" "c})
             Dim id As String
             id = split(0)
@@ -478,10 +483,10 @@ Public Class IU_VentanaPrincipal
             circuito.IdCircuito = id
             circuito.LeerCircuito()
             Me.circuito = circuito
-            Me.circuitoEdi = circuito
+            Me.circuitoEdi = circuitoEdi
         Else
-            BtElimCir.Enabled = False
-            BtElimCir.Enabled = False
+            BtEliminarPil.Enabled = False
+            BtEditarPil.Enabled = False
         End If
     End Sub
 

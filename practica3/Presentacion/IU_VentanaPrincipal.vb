@@ -117,7 +117,10 @@ Public Class IU_VentanaPrincipal
         TextBoxCurvasCircuito.Text = c.Curva
         TextBoxLongitudCircuito.Text = c.Longitud
         TextBoxIDCircuito.Text = c.IdCircuito
-        CBPaisCircuito.SelectedText = c.Pais
+
+        Dim myPais As New Pais(c.Pais)
+        myPais.LeerPais()
+        CBPaisCircuito.SelectedText = myPais.Nombre
     End Sub
 
     Private Sub BtElditCir_Click(sender As Object, e As EventArgs) Handles BtEditCir.Click
@@ -181,7 +184,9 @@ Public Class IU_VentanaPrincipal
         TextBoxNombrePiloto.Text = p.Nombre
         DateTimeNacimiento.Value = p.Fecha_Nac
         TextBoxIDPiloto.Text = p.idPILOTO
-        CBPaisPiloto.Text = p.Pais
+        Dim myPais As New Pais(p.Pais)
+        myPais.LeerPais()
+        CBPaisPiloto.Text = myPais.Nombre
     End Sub
 
 
@@ -497,8 +502,13 @@ Public Class IU_VentanaPrincipal
         LimpiarTextoFormularioGeneral(GBDatosPersonales)
     End Sub
 
-    Private Sub CBPaisPiloto_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CBPaisPiloto.SelectedIndexChanged
+    Private Sub CBPaisPiloto_Click(sender As Object, e As EventArgs) Handles CBPaisPiloto.Click
+        Dim myPais As New Pais()
+        CBPaisCircuito.Items.Clear()
+        For Each pais As Pais In myPais.PaisDAO.LeerTodas
+            CBPaisCircuito.Items.Add(pais.Nombre)
 
+        Next
     End Sub
 
     Private Sub BtElimCir_Click(sender As Object, e As EventArgs) Handles BtElimCir.Click
@@ -542,6 +552,16 @@ Public Class IU_VentanaPrincipal
         GBOpcionesPer.Enabled = True
         GBBotonesEdicionPiloto.Enabled = False
         ListBoxPilotos.Enabled = True
+    End Sub
+
+    Private Sub CBPaisCircuito_Click(sender As Object, e As EventArgs) Handles CBPaisCircuito.Click
+        Dim myPais As New Pais()
+        CBPaisCircuito.Items.Clear()
+
+        For Each pais As Pais In myPais.PaisDAO.LeerTodas
+            CBPaisCircuito.Items.Add(pais.Nombre)
+
+        Next
     End Sub
 
 

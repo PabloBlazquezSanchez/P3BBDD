@@ -112,11 +112,9 @@ Public Class IU_VentanaPrincipal
 
 
     Private Sub BtAñadirCir_Click(sender As Object, e As EventArgs) Handles BtAñadirCir.Click
-        GBEditarAñadirCircuito.Enabled = True
-        CBPaisCircuito.Enabled = True
         Me.estadoCircuito = 0
-        BtAñadirPais.Enabled = False
-        BtAñadirCir.Enabled = False
+        ModoEditarAñadirCir(True)
+        LimpiarFormEditaCir()
         ListBoxCircuitos.Enabled = False
     End Sub
 
@@ -206,12 +204,7 @@ Public Class IU_VentanaPrincipal
 
         ListBoxParticipaciones.Items.Clear()
         TextBoxNombre1.Text = piloto.Nombre
-
-
         ListBoxParticipaciones.Items.Clear()
-
-
-
 
 
     End Sub

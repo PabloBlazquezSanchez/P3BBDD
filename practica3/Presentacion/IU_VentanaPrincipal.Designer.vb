@@ -1363,7 +1363,7 @@ Partial Class IU_VentanaPrincipal
         Me.BtAñadirPais.ForeColor = System.Drawing.SystemColors.InactiveCaptionText
         Me.BtAñadirPais.Image = CType(resources.GetObject("BtAñadirPais.Image"), System.Drawing.Image)
         Me.BtAñadirPais.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.BtAñadirPais.Location = New System.Drawing.Point(619, 44)
+        Me.BtAñadirPais.Location = New System.Drawing.Point(371, 44)
         Me.BtAñadirPais.Margin = New System.Windows.Forms.Padding(4)
         Me.BtAñadirPais.Name = "BtAñadirPais"
         Me.BtAñadirPais.RightToLeft = System.Windows.Forms.RightToLeft.No
@@ -1382,11 +1382,11 @@ Partial Class IU_VentanaPrincipal
         Me.BtBorrarPais.ForeColor = System.Drawing.SystemColors.InactiveCaptionText
         Me.BtBorrarPais.Image = CType(resources.GetObject("BtBorrarPais.Image"), System.Drawing.Image)
         Me.BtBorrarPais.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.BtBorrarPais.Location = New System.Drawing.Point(371, 44)
+        Me.BtBorrarPais.Location = New System.Drawing.Point(619, 44)
         Me.BtBorrarPais.Margin = New System.Windows.Forms.Padding(4)
         Me.BtBorrarPais.Name = "BtBorrarPais"
         Me.BtBorrarPais.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.BtBorrarPais.Size = New System.Drawing.Size(105, 31)
+        Me.BtBorrarPais.Size = New System.Drawing.Size(96, 31)
         Me.BtBorrarPais.TabIndex = 22
         Me.BtBorrarPais.Text = "Borrar "
         Me.BtBorrarPais.TextAlign = System.Drawing.ContentAlignment.MiddleLeft

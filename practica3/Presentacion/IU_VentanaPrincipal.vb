@@ -7,6 +7,7 @@ Public Class IU_VentanaPrincipal
     Private estadoPais As Integer
     Private paisEdi As Pais
     Private pilotoEdi As Piloto
+    Private circuitoEdi As Circuito
 
     Private pais As Pais
     Private piloto As New Piloto()
@@ -146,12 +147,17 @@ Public Class IU_VentanaPrincipal
     End Sub
 
     Private Sub BtAñadirCir_Click(sender As Object, e As EventArgs) Handles BtAñadirCir.Click
+        CBPaisCircuito.Enabled = True
         TextBoxNombreCircuito.Enabled = True
         TextBoxCiudadCircuito.Enabled = True
-        CBPaisCircuito.Enabled = True
         TextBoxCurvasCircuito.Enabled = True
         TextBoxLongitudCircuito.Enabled = True
         TextBoxIDCircuito.Enabled = True
+        'ESTO ES LO NUEVO
+        Me.estadoCircuito = 0
+        BtAñadirPais.Enabled = False
+        BtAñadirCir.Enabled = False
+        ListBoxCircuitos.Enabled = False
     End Sub
 
     Private Sub BtAñadirPer_Click(sender As Object, e As EventArgs) Handles BtAñadirPil.Click
@@ -168,14 +174,8 @@ Public Class IU_VentanaPrincipal
 
 
     Private Sub AnadirEdicion_Click(sender As Object, e As EventArgs) Handles ButtonAnadirEdicion.Click
-        ' Declaración e inicialización de los arrays
-        Dim puntos() As Integer = {25, 18, 15, 12, 10, 8, 6, 4, 2, 1}
-        Dim dorsales() As Integer
-        ' Obtención de los dorsales
-        Dim InscripcionMd As New InscripcionMundial()
-        dorsales = InscripcionMd.ObtenerDorsalesInscripcion(2022)
-
         ' Agrega las columnas al control DataGridView
+        DataGridViewEdicion.Columns.Add("Posición", "Posición")
         DataGridViewEdicion.Columns.Add("Dorsal", "Dorsal")
         DataGridViewEdicion.Columns.Add("Puntos", "Puntos")
         DataGridViewEdicion.Columns.Add("Piloto", "Piloto")
@@ -188,6 +188,14 @@ Public Class IU_VentanaPrincipal
         DataGridView2.DefaultCellStyle.ForeColor = Color.Black
         DataGridView2.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
 
+        ' Declaración e inicialización de los arrays
+        Dim puntos() As Integer = {25, 18, 15, 12, 10, 8, 6, 4, 2, 1}
+        Dim dorsales() As Integer
+        ' Obtención de los dorsales
+        Dim InscripcionMd As New InscripcionMundial()
+        dorsales = InscripcionMd.ObtenerDorsalesInscripcion(2023)
+        Dim nCorredores As Integer = UBound(dorsales)
+
         ' Asignación de los dorsales aleatorios al control DataGridView
         Dim dorsalesDisponibles As New List(Of Integer)(dorsales)
         Dim rnd As New Random()
@@ -195,7 +203,7 @@ Public Class IU_VentanaPrincipal
         Dim dorsal As Integer
         Dim nombre As String
 
-        Dim VMR As Integer = rnd.Next(0, UBound(dorsales))
+        Dim VMR As Integer = rnd.Next(0, nCorredores)
 
         If (VMR + 1 <= 10) Then
             puntos(VMR) = puntos(VMR) + 1
@@ -206,9 +214,9 @@ Public Class IU_VentanaPrincipal
             dorsal = dorsalesDisponibles(j)
             nombre = piloto.DevolverNombrePiloto(dorsal)
             If (i < puntos.Length) Then
-                DataGridViewEdicion.Rows.Add(dorsal, puntos(i), nombre)
+                DataGridViewEdicion.Rows.Add(i + 1, dorsal, puntos(i), nombre)
             Else
-                DataGridViewEdicion.Rows.Add(dorsal, 0, nombre) 'Y si haces un ToString tras objeto piloto?
+                DataGridViewEdicion.Rows.Add(i + 1, dorsal, 0, nombre) 'Y si haces un ToString tras objeto piloto?
             End If
             dorsalesDisponibles.RemoveAt(j)
         Next i
@@ -216,7 +224,7 @@ Public Class IU_VentanaPrincipal
         DataGridView2.Columns.Add("Puntos", "Puntos")
         DataGridViewEdicion.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
         DataGridViewEdicion.ColumnHeadersDefaultCellStyle.Font = New Font(DataGridViewEdicion.Font, FontStyle.Bold)
-        DataGridView2.Rows.Add(DataGridViewEdicion.Rows(VMR).Cells(0).Value, DataGridViewEdicion.Rows(VMR).Cells(2).Value)
+        DataGridView2.Rows.Add(DataGridViewEdicion.Rows(VMR).Cells(1).Value, DataGridViewEdicion.Rows(VMR).Cells(3).Value)
 
         ' Configuración de las propiedades del DataGridView
         DataGridViewEdicion.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill ' Ajusta el ancho de las columnas automáticamente
@@ -368,6 +376,9 @@ Public Class IU_VentanaPrincipal
 
             GBEditarAñadirPais.Enabled = False
             BtAñadirPais.Enabled = True
+            BtAñadirPais.Enabled = True
+            BtBorrarPais.Enabled = True
+            ListBoxPaises.Enabled = True
             TextBoxDescPais.Text = ""
         End If
 
@@ -438,5 +449,39 @@ Public Class IU_VentanaPrincipal
 
     Private Sub CBPaisPiloto_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CBPaisPiloto.SelectedIndexChanged
 
+    End Sub
+
+    Private Sub BtElimCir_Click(sender As Object, e As EventArgs) Handles BtElimCir.Click
+        'Pillar de paises
+        Dim borrar As Integer
+        borrar = MsgBox("¿Estás seguro de que desea eliminar el circuito seleccionado?", +vbYesNo + vbDefaultButton2, "Eliminar Circuito.")
+        If (borrar = vbYes) Then
+            Try
+                Me.circuito.BorrarCircuito()
+                ListBoxCircuitos.Items.RemoveAt(ListBoxCircuitos.SelectedIndex)
+            Catch ex As Exception
+                ' Manejar la excepción aquí
+                MsgBox("No se pudo borrar país al estar vinculado con otros datos.")
+            End Try
+        End If
+    End Sub
+
+    Private Sub ListBoxCircuitos_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBoxCircuitos.SelectedIndexChanged
+        'Lista, sacar de paises
+        If ListBoxCircuitos.SelectedItem IsNot Nothing Then
+            BtElimCir.Enabled = True
+            BtElimCir.Enabled = True
+            Dim split As String() = ListBoxCircuitos.SelectedItem.ToString().Split(New [Char]() {" "c})
+            Dim id As String
+            id = split(0)
+            Dim circuito As Circuito = New Circuito
+            circuito.IdCircuito = id
+            circuito.LeerCircuito()
+            Me.circuito = circuito
+            Me.circuitoEdi = circuito
+        Else
+            BtElimCir.Enabled = False
+            BtElimCir.Enabled = False
+        End If
     End Sub
 End Class

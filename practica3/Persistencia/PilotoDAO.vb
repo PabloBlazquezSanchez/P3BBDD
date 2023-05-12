@@ -35,7 +35,7 @@ Public Class PilotoDAO
     Public Function DevolverNombrePiloto(ByVal id As Integer) As String
         Dim col As Collection
         Dim iter As Collection
-        Dim cadena As String
+        Dim cadena As String = ""
         col = AgenteBD.ObtenerAgente.Leer("SELECT NOMBRE FROM PILOTO WHERE idPILOTO='" & id & "';")
         For Each iter In col
             cadena = CStr(iter(1))

@@ -253,8 +253,8 @@ Public Class IU_VentanaPrincipal
         borrar = MsgBox("¿Estás seguro de que desea eliminar el piloto seleccionado?", +vbYesNo + vbDefaultButton2, "Eliminar Persona.")
         If (borrar = vbYes) Then
             Try
-                Me.pais.BorrarPais()
-                ListBoxPaises.Items.RemoveAt(ListBoxPaises.SelectedIndex)
+                Me.piloto.BorrarPiloto()
+                ListBoxPilotos.Items.RemoveAt(ListBoxPaises.SelectedIndex)
             Catch ex As Exception
                 MsgBox("No se pudo borrar el piloto al estar vinculado con otros datos ")
             End Try
@@ -397,10 +397,10 @@ Public Class IU_VentanaPrincipal
         End If
     End Sub
 
-    Private Sub BtAñadirPais_Click(sender As Object, e As EventArgs) Handles BtAñadirPais.Click
+    Private Sub BtAñadirPil_Click(sender As Object, e As EventArgs) Handles BtAñadirPil.Click
         Me.estadoPais = 0
-        GBEditarAñadirPais.Enabled = True
-        TextBoxDescPais.Enabled = True
+        GBBotonesEdicionPiloto.Enabled = True
+        GBDatosPersonales.Enabled = True
         BtAñadirPais.Enabled = False
         BtEditarPais.Enabled = False
         BtBorrarPais.Enabled = False
@@ -554,16 +554,5 @@ Public Class IU_VentanaPrincipal
         If ListBoxPilotos.SelectedItem IsNot Nothing Then
             GBFichaPersona.Visible = CheckBoxInformePil.Checked
         End If
-
-
-
-        For Each parti In piloto.LeerClasificaciones()
-
-            Dim split As String() = parti.ToString().Split(New [Char]() {" "c})
-
-        Next
-
-
-
     End Sub
 End Class

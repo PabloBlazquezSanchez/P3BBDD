@@ -484,4 +484,15 @@ Public Class IU_VentanaPrincipal
             BtElimCir.Enabled = False
         End If
     End Sub
+
+    Private Sub BtCancelarPiloto_Click(sender As Object, e As EventArgs) Handles BtCancelarPiloto.Click
+        Me.estadoPiloto = -1
+
+        GBDatosPersonales.Enabled = False
+        GBOpcionesPer.Enabled = True
+        GBBotonesEdicionPiloto.Enabled = False
+        ListBoxPilotos.Enabled = True
+    End Sub
+
+
 End Class

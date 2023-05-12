@@ -76,31 +76,40 @@ Public Class IU_VentanaPrincipal
         Return camposValidos
     End Function
 
-    Private Sub ListBoxCircuitos_SelectedItemChanged(sender As Object, e As EventArgs) Handles ListBoxCircuitos.SelectedIndexChanged
-        Dim Separador() As String
-        Separador = Split(ListBoxCircuitos.SelectedItem, " - ")
-        Dim id As Integer
-        id = CInt(Separador(0))
-        Dim c As Circuito
-        ModoEditarAñadirCir(False)
-        If Not Me.ListBoxCircuitos.SelectedItem Is Nothing Then
-            c = New Circuito(id)
+
+    Private Sub ListBoxCircuitos_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBoxCircuitos.SelectedIndexChanged
+        'Lista, sacar de pilotos
+        LimpiarFormEditaCir()
+        If ListBoxCircuitos.SelectedItem IsNot Nothing Then
+            BtElimCir.Enabled = True
+            BtEditCir.Enabled = True
+            Dim split As String() = ListBoxCircuitos.SelectedItem.ToString().Split(New [Char]() {" "c})
+            Dim id As String
+            id = split(0)
+            Dim circuito As Circuito = New Circuito
             Try
-                c.LeerCircuito()
+                circuito.IdCircuito = id
+                circuito.LeerCircuito()
+                Me.circuito = circuito
+                Me.circuitoEdi = circuitoEdi
+                Dim myPais As New Pais(circuito.Pais)
+                myPais.LeerPais()
+                CBPaisCircuito.SelectedText = myPais.Nombre
+                TextBoxNombreCircuito.Text = circuito.Nombre
+                TextBoxCiudadCircuito.Text = circuito.Ciudad
+                TextBoxCurvasCircuito.Text = circuito.Curva
+                TextBoxLongitudCircuito.Text = circuito.Longitud
+                TextBoxIDCircuito.Text = circuito.IdCircuito
+
             Catch ex As Exception
                 MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             End Try
+        Else
+            BtEliminarPil.Enabled = False
+            BtEditarPil.Enabled = False
         End If
-        TextBoxNombreCircuito.Text = c.Nombre
-        TextBoxCiudadCircuito.Text = c.Ciudad
-        TextBoxCurvasCircuito.Text = c.Curva
-        TextBoxLongitudCircuito.Text = c.Longitud
-        TextBoxIDCircuito.Text = c.IdCircuito
-
-        Dim myPais As New Pais(c.Pais)
-        myPais.LeerPais()
-        CBPaisCircuito.SelectedText = myPais.Nombre
     End Sub
+
 
     Private Sub BtAñadirCir_Click(sender As Object, e As EventArgs) Handles BtAñadirCir.Click
         GBEditarAñadirCircuito.Enabled = True
@@ -119,12 +128,7 @@ Public Class IU_VentanaPrincipal
     Private Sub BtElditCir_Click(sender As Object, e As EventArgs) Handles BtEditCir.Click
         estadoCircuito = 1
         ModoEditarAñadirCir(True)
-        TextBoxNombreCircuito.Text = Me.circuito.Nombre
-        TextBoxCiudadCircuito.Text = Me.circuito.Ciudad
-        TextBoxCurvasCircuito.Text = Me.circuito.Curva
-        TextBoxLongitudCircuito.Text = Me.circuito.Longitud
-        TextBoxIDCircuito.Text = Me.circuito.IdCircuito
-        CBPaisCircuito.SelectedText = Me.circuito.Pais
+
     End Sub
 
     Private Sub BtElimCir_Click(sender As Object, e As EventArgs) Handles BtElimCir.Click
@@ -154,7 +158,6 @@ Public Class IU_VentanaPrincipal
         ListBoxCircuitos.Enabled = Not mode
         GBEditarAñadirCircuito.Enabled = mode
         GBBotonesEdicionCir.Enabled = mode
-        LimpiarFormEditaCir()
     End Sub
 
     Private Sub BtLimpiarCir_Click(sender As Object, e As EventArgs) Handles BtLimpiarCir.Click
@@ -166,6 +169,7 @@ Public Class IU_VentanaPrincipal
     End Sub
 
     Private Sub BtGuardarCir_Click(sender As Object, e As EventArgs) Handles BtGuardarCir.Click
+        LimpiarFormEditaCir()
 
     End Sub
 
@@ -194,6 +198,9 @@ Public Class IU_VentanaPrincipal
         myPais.LeerPais()
         CBPaisPiloto.Text = myPais.Nombre
     End Sub
+
+
+
 
     Private Function comprobarCamposPil() As Boolean
         Dim camposValidos As Boolean
@@ -519,24 +526,6 @@ Public Class IU_VentanaPrincipal
     '        OTROS MÉTODOS           '
     '--------------------------------'
 
-    Private Sub ListBoxCircuitos_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBoxCircuitos.SelectedIndexChanged
-        'Lista, sacar de pilotos
-        If ListBoxCircuitos.SelectedItem IsNot Nothing Then
-            BtElimCir.Enabled = True
-            BtEditCir.Enabled = True
-            Dim split As String() = ListBoxCircuitos.SelectedItem.ToString().Split(New [Char]() {" "c})
-            Dim id As String
-            id = split(0)
-            Dim circuito As Circuito = New Circuito
-            circuito.IdCircuito = id
-            circuito.LeerCircuito()
-            Me.circuito = circuito
-            Me.circuitoEdi = circuitoEdi
-        Else
-            BtEliminarPil.Enabled = False
-            BtEditarPil.Enabled = False
-        End If
-    End Sub
 
     Private Sub ListBoxPilotos_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBoxPilotos.SelectedIndexChanged
 

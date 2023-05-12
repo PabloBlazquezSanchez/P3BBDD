@@ -163,6 +163,27 @@ Public Class IU_VentanaPrincipal
         GBBotonesEdicionPiloto.Enabled = mode
     End Sub
 
+    Private Sub ListBoxPilotos_SelectedItemChanged() Handles ListBoxPilotos.SelectedIndexChanged
+        Dim Separador() As String
+        Separador = Split(ListBoxPilotos.SelectedItem, " - ")
+        Dim id As Integer
+        id = CInt(Separador(0))
+        Dim p As Piloto
+        ModoEditarAñadirPil(False)
+        If Not Me.ListBoxPilotos.SelectedItem Is Nothing Then
+            p = New Piloto(id)
+            Try
+                p.LeerPiloto()
+            Catch ex As Exception
+                MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            End Try
+        End If
+        TextBoxNombrePiloto.Text = p.Nombre
+        DateTimeNacimiento.Value = p.Fecha_Nac
+        TextBoxIDPiloto.Text = p.idPILOTO
+        CBPaisPiloto.Text = p.Pais
+    End Sub
+
 
 
     Private Sub BtEditarPer_Click(sender As Object, e As EventArgs) Handles BtEditarPil.Click

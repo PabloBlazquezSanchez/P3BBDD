@@ -29,6 +29,8 @@
             c.Nombre = aux(2).ToString
             c.Ciudad = aux(3).ToString
             c.Pais = aux(4).ToString
+            c.Longitud = aux(5).ToString
+            c.Curva = aux(6).ToString
         Next
     End Sub
 

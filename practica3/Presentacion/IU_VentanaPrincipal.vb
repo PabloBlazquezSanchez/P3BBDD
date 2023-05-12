@@ -97,6 +97,29 @@ Public Class IU_VentanaPrincipal
         LimpiarFormEditaCir()
     End Sub
 
+    Private Sub ListBoxCircuitos_SelectedItemChanged(sender As Object, e As EventArgs) Handles ListBoxCircuitos.SelectedIndexChanged
+        Dim Separador() As String
+        Separador = Split(ListBoxCircuitos.SelectedItem, " - ")
+        Dim id As Integer
+        id = CInt(Separador(0))
+        Dim c As Circuito
+        ModoEditarAñadirCir(False)
+        If Not Me.ListBoxCircuitos.SelectedItem Is Nothing Then
+            c = New Circuito(id)
+            Try
+                c.LeerCircuito()
+            Catch ex As Exception
+                MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            End Try
+        End If
+        TextBoxNombreCircuito.Text = c.Nombre
+        TextBoxCiudadCircuito.Text = c.Ciudad
+        TextBoxCurvasCircuito.Text = c.Curva
+        TextBoxLongitudCircuito.Text = c.Longitud
+        TextBoxIDCircuito.Text = c.IdCircuito
+        CBPaisCircuito.SelectedText = c.Pais
+    End Sub
+
     Private Sub BtElditCir_Click(sender As Object, e As EventArgs) Handles BtEditCir.Click
         estadoCircuito = 1
         ModoEditarAñadirCir(True)

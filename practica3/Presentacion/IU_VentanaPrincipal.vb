@@ -175,6 +175,7 @@ Public Class IU_VentanaPrincipal
         If ListBoxPilotos.SelectedItem IsNot Nothing Then
             BtEliminarPil.Enabled = True
             BtEditarPil.Enabled = True
+            CheckBoxInformePil.Enabled = True
             Dim split As String() = ListBoxPilotos.SelectedItem.ToString().Split(New [Char]() {" "c})
             Dim id As String
             id = split(0)
@@ -194,10 +195,25 @@ Public Class IU_VentanaPrincipal
             Dim myPais As New Pais(piloto.Pais)
             myPais.LeerPais()
             CBPaisPiloto.Text = myPais.Nombre
+            generarFichaPiloto(piloto)
         Else
             BtEliminarPil.Enabled = False
             BtEditarPil.Enabled = False
         End If
+    End Sub
+
+    Private Sub generarFichaPiloto(piloto As Piloto)
+
+        ListBoxParticipaciones.Items.Clear()
+        TextBoxNombre1.Text = piloto.Nombre
+
+
+        ListBoxParticipaciones.Items.Clear()
+
+
+
+
+
     End Sub
 
     Private Function comprobarCamposPil() As Boolean
@@ -535,4 +551,16 @@ Public Class IU_VentanaPrincipal
         Next
     End Sub
 
+    Private Sub GBFichaPelicula_Enter(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Private Sub CheckBoxInformePil_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxInformePil.CheckedChanged
+        If ListBoxPilotos.SelectedItem IsNot Nothing Then
+            GBFichaPersona.Visible = CheckBoxInformePil.Checked
+        End If
+
+
+
+    End Sub
 End Class

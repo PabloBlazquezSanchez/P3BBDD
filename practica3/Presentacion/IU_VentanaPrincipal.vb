@@ -402,6 +402,8 @@ Public Class IU_VentanaPrincipal
         GBEditarAñadirPais.Enabled = True
         TextBoxDescPais.Enabled = True
         BtAñadirPais.Enabled = False
+        BtEditarPais.Enabled = False
+        BtBorrarPais.Enabled = False
         ListBoxPaises.Enabled = False
 
     End Sub
@@ -447,6 +449,7 @@ Public Class IU_VentanaPrincipal
 
 
     Private Sub BtGuardarPais_Click(sender As Object, e As EventArgs) Handles BtGuardarPais.Click
+
         If TextBoxDescPais.Text = "" Then
             MsgBox("Introduzca un nombre para el pais", vbExclamation)
         ElseIf Not (comprobarNombrePropio(TextBoxDescPais.Text)) Then
@@ -551,6 +554,14 @@ Public Class IU_VentanaPrincipal
         If ListBoxPilotos.SelectedItem IsNot Nothing Then
             GBFichaPersona.Visible = CheckBoxInformePil.Checked
         End If
+
+
+
+        For Each parti In piloto.LeerClasificaciones()
+
+            Dim split As String() = parti.ToString().Split(New [Char]() {" "c})
+
+        Next
 
 
 

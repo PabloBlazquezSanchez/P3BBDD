@@ -105,7 +105,7 @@ Public Class IU_VentanaPrincipal
         TextBoxCurvasCircuito.Text = Me.circuito.Curva
         TextBoxLongitudCircuito.Text = Me.circuito.Longitud
         TextBoxIDCircuito.Text = Me.circuito.IdCircuito
-        CBPaisCircuito.SelectedIndex = Me.circuito.Pais
+        CBPaisCircuito.SelectedText = Me.circuito.Pais
     End Sub
 
     Private Function comprobarCamposPil() As Boolean
@@ -152,6 +152,7 @@ Public Class IU_VentanaPrincipal
     End Sub
 
     Private Sub BtAñadirCir_Click(sender As Object, e As EventArgs) Handles BtAñadirCir.Click
+        GBEditarAñadirCircuito.Enabled = True
         CBPaisCircuito.Enabled = True
         TextBoxNombreCircuito.Enabled = True
         TextBoxCiudadCircuito.Enabled = True

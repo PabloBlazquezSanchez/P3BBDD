@@ -114,11 +114,6 @@ Public Class IU_VentanaPrincipal
     Private Sub BtAñadirCir_Click(sender As Object, e As EventArgs) Handles BtAñadirCir.Click
         GBEditarAñadirCircuito.Enabled = True
         CBPaisCircuito.Enabled = True
-        TextBoxNombreCircuito.Enabled = True
-        TextBoxCiudadCircuito.Enabled = True
-        TextBoxCurvasCircuito.Enabled = True
-        TextBoxLongitudCircuito.Enabled = True
-        TextBoxIDCircuito.Enabled = True
         Me.estadoCircuito = 0
         BtAñadirPais.Enabled = False
         BtAñadirCir.Enabled = False
@@ -176,31 +171,34 @@ Public Class IU_VentanaPrincipal
     '--------------------------------'
     '      MÉTODOS PARA PILOTOS      '
     '--------------------------------'
-    Private Sub ListBoxPilotos_SelectedItemChanged() Handles ListBoxPilotos.SelectedIndexChanged
-        Dim Separador() As String
-        Separador = Split(ListBoxPilotos.SelectedItem, " - ")
-        Dim id As Integer
-        id = CInt(Separador(0))
-        Dim p As Piloto
-        ModoEditarAñadirPil(False)
-        If Not Me.ListBoxPilotos.SelectedItem Is Nothing Then
-            p = New Piloto(id)
+    Private Sub ListBoxPilotos_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBoxPilotos.SelectedIndexChanged
+        If ListBoxPilotos.SelectedItem IsNot Nothing Then
+            BtEliminarPil.Enabled = True
+            BtEditarPil.Enabled = True
+            Dim split As String() = ListBoxPilotos.SelectedItem.ToString().Split(New [Char]() {" "c})
+            Dim id As String
+            id = split(0)
+            Dim piloto As Piloto
+            piloto = New Piloto
+            piloto.idPILOTO = id
             Try
-                p.LeerPiloto()
+                piloto.LeerPiloto()
+                Me.piloto = piloto
+                Me.pilotoEdi = piloto
             Catch ex As Exception
                 MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             End Try
+            TextBoxNombrePiloto.Text = piloto.Nombre
+            DateTimeNacimiento.Value = piloto.Fecha_Nac
+            TextBoxIDPiloto.Text = piloto.idPILOTO
+            Dim myPais As New Pais(piloto.Pais)
+            myPais.LeerPais()
+            CBPaisPiloto.Text = myPais.Nombre
+        Else
+            BtEliminarPil.Enabled = False
+            BtEditarPil.Enabled = False
         End If
-        TextBoxNombrePiloto.Text = p.Nombre
-        DateTimeNacimiento.Value = p.Fecha_Nac
-        TextBoxIDPiloto.Text = p.idPILOTO
-        Dim myPais As New Pais(p.Pais)
-        myPais.LeerPais()
-        CBPaisPiloto.Text = myPais.Nombre
     End Sub
-
-
-
 
     Private Function comprobarCamposPil() As Boolean
         Dim camposValidos As Boolean
@@ -233,10 +231,6 @@ Public Class IU_VentanaPrincipal
     Private Sub BtEditarPer_Click(sender As Object, e As EventArgs) Handles BtEditarPil.Click
         estadoPiloto = 1
         ModoEditarAñadirPil(True)
-        TextBoxNombrePiloto.Text = piloto.Nombre
-        DateTimeNacimiento.Value = piloto.Fecha_Nac
-        TextBoxIDPiloto.Text = piloto.idPILOTO
-        CBPaisPiloto.Text = piloto.Pais
     End Sub
 
     Private Sub ModoEditarAñadirPil(mode As Boolean)
@@ -525,44 +519,19 @@ Public Class IU_VentanaPrincipal
     '--------------------------------'
     '        OTROS MÉTODOS           '
     '--------------------------------'
-
-
-    Private Sub ListBoxPilotos_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBoxPilotos.SelectedIndexChanged
-
-        If ListBoxPilotos.SelectedItem IsNot Nothing Then
-            BtEliminarPil.Enabled = True
-            BtEditarPil.Enabled = True
-            Dim split As String() = ListBoxPilotos.SelectedItem.ToString().Split(New [Char]() {" "c})
-            Dim id As String
-            id = split(0)
-            Dim piloto As Piloto
-            piloto = New Piloto
-            piloto.idPILOTO = id
-            piloto.LeerPiloto()
-            Me.piloto = piloto
-            Me.pilotoEdi = piloto
-        Else
-            BtEliminarPil.Enabled = False
-            BtEditarPil.Enabled = False
-        End If
-    End Sub
-
     Private Sub CBPaisPiloto_Click(sender As Object, e As EventArgs) Handles CBPaisPiloto.Click
         Dim myPais As New Pais()
-        CBPaisCircuito.Items.Clear()
+        CBPaisPiloto.Items.Clear()
         For Each pais As Pais In myPais.PaisDAO.LeerTodas
-            CBPaisCircuito.Items.Add(pais.Nombre)
+            CBPaisPiloto.Items.Add(pais.Nombre)
 
         Next
     End Sub
-
     Private Sub CBPaisCircuito_Click(sender As Object, e As EventArgs) Handles CBPaisCircuito.Click
         Dim myPais As New Pais()
         CBPaisCircuito.Items.Clear()
-
         For Each pais As Pais In myPais.PaisDAO.LeerTodas
             CBPaisCircuito.Items.Add(pais.Nombre)
-
         Next
     End Sub
 

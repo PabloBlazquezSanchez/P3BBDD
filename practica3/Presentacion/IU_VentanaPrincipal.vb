@@ -110,7 +110,6 @@ Public Class IU_VentanaPrincipal
         End If
     End Sub
 
-
     Private Sub BtAñadirCir_Click(sender As Object, e As EventArgs) Handles BtAñadirCir.Click
         Me.estadoCircuito = 0
         ModoEditarAñadirCir(True)

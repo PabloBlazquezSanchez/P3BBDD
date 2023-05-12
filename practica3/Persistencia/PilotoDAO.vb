@@ -20,7 +20,7 @@ Public Class PilotoDAO
     End Function
 
     Public Function LeerClasificaciones() As Collection
-        Return AgenteBD.ObtenerAgente.Leer("SELEC * FROM CLASIFICACION_CARRERA JOIN PILOTO ON PILOTO.idPILOTO=CLASIFICACION_CARRERA.PILOTO GROUP BY EDICION ORDER BY EDICION;")
+        Return AgenteBD.ObtenerAgente.Leer("SELECT * FROM CLASIFICACION_CARRERA JOIN PILOTO ON PILOTO.idPILOTO=CLASIFICACION_CARRERA.PILOTO GROUP BY EDICION ORDER BY EDICION;")
     End Function
 
     Public Sub Leer(ByRef p As Piloto)

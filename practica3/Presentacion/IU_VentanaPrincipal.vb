@@ -60,6 +60,10 @@ Public Class IU_VentanaPrincipal
         Next
     End Sub
 
+    '--------------------------------'
+    '    MÉTODOS PARA CIRCUITOS      '
+    '--------------------------------'
+
     Private Function comprobarCamposCircuito() As Boolean
         Dim camposValidos As Boolean
         camposValidos = True
@@ -71,31 +75,6 @@ Public Class IU_VentanaPrincipal
         End If
         Return camposValidos
     End Function
-
-    Private Sub BtLimpiarCir_Click(sender As Object, e As EventArgs) Handles BtLimpiarCir.Click
-        LimpiarFormEditaCir()
-    End Sub
-
-    Private Sub LimpiarFormEditaCir()
-        LimpiarTextoFormularioGeneral(GBEditarAñadirCircuito)
-    End Sub
-
-    Private Sub BtCancelarCir_Click(sender As Object, e As EventArgs) Handles BtCancelarCir.Click
-        Dim volver As Integer
-        volver = MsgBox("¿Estas seguro de que desea volver? Se perderán los cambios no guardados.", vbYesNo + vbDefaultButton2, "Cerrar modo edición.")
-        If (volver = vbYes) Then
-            estadoCircuito = -1
-            ModoEditarAñadirCir(False)
-        End If
-    End Sub
-
-    Private Sub ModoEditarAñadirCir(mode As Boolean)
-        GBBotonesOpcionesCir.Enabled = Not mode
-        ListBoxCircuitos.Enabled = Not mode
-        GBEditarAñadirCircuito.Enabled = mode
-        GBBotonesEdicionCir.Enabled = mode
-        LimpiarFormEditaCir()
-    End Sub
 
     Private Sub ListBoxCircuitos_SelectedItemChanged(sender As Object, e As EventArgs) Handles ListBoxCircuitos.SelectedIndexChanged
         Dim Separador() As String
@@ -123,6 +102,20 @@ Public Class IU_VentanaPrincipal
         CBPaisCircuito.SelectedText = myPais.Nombre
     End Sub
 
+    Private Sub BtAñadirCir_Click(sender As Object, e As EventArgs) Handles BtAñadirCir.Click
+        GBEditarAñadirCircuito.Enabled = True
+        CBPaisCircuito.Enabled = True
+        TextBoxNombreCircuito.Enabled = True
+        TextBoxCiudadCircuito.Enabled = True
+        TextBoxCurvasCircuito.Enabled = True
+        TextBoxLongitudCircuito.Enabled = True
+        TextBoxIDCircuito.Enabled = True
+        Me.estadoCircuito = 0
+        BtAñadirPais.Enabled = False
+        BtAñadirCir.Enabled = False
+        ListBoxCircuitos.Enabled = False
+    End Sub
+
     Private Sub BtElditCir_Click(sender As Object, e As EventArgs) Handles BtEditCir.Click
         estadoCircuito = 1
         ModoEditarAñadirCir(True)
@@ -132,6 +125,74 @@ Public Class IU_VentanaPrincipal
         TextBoxLongitudCircuito.Text = Me.circuito.Longitud
         TextBoxIDCircuito.Text = Me.circuito.IdCircuito
         CBPaisCircuito.SelectedText = Me.circuito.Pais
+    End Sub
+
+    Private Sub BtElimCir_Click(sender As Object, e As EventArgs) Handles BtElimCir.Click
+        Dim borrar As Integer
+        borrar = MsgBox("¿Estás seguro de que desea eliminar el circuito seleccionado?", +vbYesNo + vbDefaultButton2, "Eliminar Circuito.")
+        If (borrar = vbYes) Then
+            Try
+                Me.circuito.BorrarCircuito()
+                ListBoxCircuitos.Items.RemoveAt(ListBoxCircuitos.SelectedIndex)
+            Catch ex As Exception
+                ' Manejar la excepción aquí
+                MsgBox("No se pudo borrar país al estar vinculado con otros datos.")
+            End Try
+        End If
+    End Sub
+
+    Private Sub BtCancelarCir_Click(sender As Object, e As EventArgs) Handles BtCancelarCir.Click
+        Dim volver As Integer
+        volver = MsgBox("¿Estas seguro de que desea volver? Se perderán los cambios no guardados.", vbYesNo + vbDefaultButton2, "Cerrar modo edición.")
+        If (volver = vbYes) Then
+            estadoCircuito = -1
+            ModoEditarAñadirCir(False)
+        End If
+    End Sub
+    Private Sub ModoEditarAñadirCir(mode As Boolean)
+        GBBotonesOpcionesCir.Enabled = Not mode
+        ListBoxCircuitos.Enabled = Not mode
+        GBEditarAñadirCircuito.Enabled = mode
+        GBBotonesEdicionCir.Enabled = mode
+        LimpiarFormEditaCir()
+    End Sub
+
+    Private Sub BtLimpiarCir_Click(sender As Object, e As EventArgs) Handles BtLimpiarCir.Click
+        LimpiarFormEditaCir()
+    End Sub
+
+    Private Sub LimpiarFormEditaCir()
+        LimpiarTextoFormularioGeneral(GBEditarAñadirCircuito)
+    End Sub
+
+    Private Sub BtGuardarCir_Click(sender As Object, e As EventArgs) Handles BtGuardarCir.Click
+
+    End Sub
+
+    '--------------------------------'
+    '      MÉTODOS PARA PILOTOS      '
+    '--------------------------------'
+    Private Sub ListBoxPilotos_SelectedItemChanged() Handles ListBoxPilotos.SelectedIndexChanged
+        Dim Separador() As String
+        Separador = Split(ListBoxPilotos.SelectedItem, " - ")
+        Dim id As Integer
+        id = CInt(Separador(0))
+        Dim p As Piloto
+        ModoEditarAñadirPil(False)
+        If Not Me.ListBoxPilotos.SelectedItem Is Nothing Then
+            p = New Piloto(id)
+            Try
+                p.LeerPiloto()
+            Catch ex As Exception
+                MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            End Try
+        End If
+        TextBoxNombrePiloto.Text = p.Nombre
+        DateTimeNacimiento.Value = p.Fecha_Nac
+        TextBoxIDPiloto.Text = p.idPILOTO
+        Dim myPais As New Pais(p.Pais)
+        myPais.LeerPais()
+        CBPaisPiloto.Text = myPais.Nombre
     End Sub
 
     Private Function comprobarCamposPil() As Boolean
@@ -158,38 +219,9 @@ Public Class IU_VentanaPrincipal
         Return camposValidos
 
     End Function
+    Private Sub BtAñadirPer_Click(sender As Object, e As EventArgs) Handles BtAñadirPil.Click
 
-    Private Sub ModoEditarAñadirPil(mode As Boolean)
-        GBOpcionesPer.Enabled = Not mode
-        ListBoxPilotos.Enabled = Not mode
-        GBDatosPersonales.Enabled = mode
-        GBBotonesEdicionPiloto.Enabled = mode
     End Sub
-
-    Private Sub ListBoxPilotos_SelectedItemChanged() Handles ListBoxPilotos.SelectedIndexChanged
-        Dim Separador() As String
-        Separador = Split(ListBoxPilotos.SelectedItem, " - ")
-        Dim id As Integer
-        id = CInt(Separador(0))
-        Dim p As Piloto
-        ModoEditarAñadirPil(False)
-        If Not Me.ListBoxPilotos.SelectedItem Is Nothing Then
-            p = New Piloto(id)
-            Try
-                p.LeerPiloto()
-            Catch ex As Exception
-                MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-            End Try
-        End If
-        TextBoxNombrePiloto.Text = p.Nombre
-        DateTimeNacimiento.Value = p.Fecha_Nac
-        TextBoxIDPiloto.Text = p.idPILOTO
-        Dim myPais As New Pais(p.Pais)
-        myPais.LeerPais()
-        CBPaisPiloto.Text = myPais.Nombre
-    End Sub
-
-
 
     Private Sub BtEditarPer_Click(sender As Object, e As EventArgs) Handles BtEditarPil.Click
         estadoPiloto = 1
@@ -200,33 +232,49 @@ Public Class IU_VentanaPrincipal
         CBPaisPiloto.Text = piloto.Pais
     End Sub
 
-    Private Sub BtAñadirCir_Click(sender As Object, e As EventArgs) Handles BtAñadirCir.Click
-        GBEditarAñadirCircuito.Enabled = True
-        CBPaisCircuito.Enabled = True
-        TextBoxNombreCircuito.Enabled = True
-        TextBoxCiudadCircuito.Enabled = True
-        TextBoxCurvasCircuito.Enabled = True
-        TextBoxLongitudCircuito.Enabled = True
-        TextBoxIDCircuito.Enabled = True
-        'ESTO ES LO NUEVO
-        Me.estadoCircuito = 0
-        BtAñadirPais.Enabled = False
-        BtAñadirCir.Enabled = False
-        ListBoxCircuitos.Enabled = False
+    Private Sub ModoEditarAñadirPil(mode As Boolean)
+        GBOpcionesPer.Enabled = Not mode
+        ListBoxPilotos.Enabled = Not mode
+        GBDatosPersonales.Enabled = mode
+        GBBotonesEdicionPiloto.Enabled = mode
     End Sub
 
-    Private Sub BtAñadirPer_Click(sender As Object, e As EventArgs) Handles BtAñadirPil.Click
+    Private Sub BtEliminarPil_Click(sender As Object, e As EventArgs) Handles BtEliminarPil.Click
+        Dim borrar As Integer
+        borrar = MsgBox("¿Estás seguro de que desea eliminar el piloto seleccionado?", +vbYesNo + vbDefaultButton2, "Eliminar Persona.")
+        If (borrar = vbYes) Then
+            Try
+                Me.pais.BorrarPais()
+                ListBoxPaises.Items.RemoveAt(ListBoxPaises.SelectedIndex)
+            Catch ex As Exception
+                MsgBox("No se pudo borrar el piloto al estar vinculado con otros datos ")
+            End Try
+
+        End If
+    End Sub
+
+    Private Sub BtCancelarPiloto_Click(sender As Object, e As EventArgs) Handles BtCancelarPiloto.Click
+        Me.estadoPiloto = -1
+        GBDatosPersonales.Enabled = False
+        GBOpcionesPer.Enabled = True
+        GBBotonesEdicionPiloto.Enabled = False
+        ListBoxPilotos.Enabled = True
+    End Sub
+
+    Private Sub BtLimpiarPiloto_Click(sender As Object, e As EventArgs) Handles BtLimpiarPiloto.Click
+        LimpiarTextoFormularioGeneral(GBDatosPersonales)
+    End Sub
+
+    Private Sub BtGuardarPiloto_Click(sender As Object, e As EventArgs) Handles BtGuardarPiloto.Click
 
     End Sub
 
-    Private Sub BtGuardarCir_Click(sender As Object, e As EventArgs) Handles BtGuardarCir.Click
-
-    End Sub
-
+    '--------------------------------'
+    '        MÉTODOS PARA GP         '
+    '--------------------------------'
     Private Sub TabGranPremio_DoubleClick(sender As Object, e As EventArgs) Handles TabGranPremio.DoubleClick
 
     End Sub
-
 
     Private Sub AnadirEdicion_Click(sender As Object, e As EventArgs) Handles ButtonAnadirEdicion.Click
         ' Agrega las columnas al control DataGridView
@@ -294,8 +342,16 @@ Public Class IU_VentanaPrincipal
         DataGridView2.RowHeadersVisible = False
         DataGridView2.ScrollBars = False
 
+    End Sub
+
+    Private Sub DataGridViewEdicion_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridViewEdicion.CellContentClick
 
     End Sub
+
+    '--------------------------------'
+    '   MÉTODOS PARA CONFIGURACION   '
+    '   COMO PAISES INFORMES ETC     '
+    '--------------------------------'
 
     Private Sub ListBoxPaises_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBoxPaises.SelectedIndexChanged
 
@@ -450,7 +506,6 @@ Public Class IU_VentanaPrincipal
 
     End Sub
 
-
     Private Sub BtCancelarPais_Click(sender As Object, e As EventArgs) Handles BtCancelarPais.Click
         Me.estadoPais = -1
         BtAñadirPais.Enabled = True
@@ -460,21 +515,26 @@ Public Class IU_VentanaPrincipal
         ListBoxPaises.Enabled = True
     End Sub
 
-    Private Sub DataGridViewEdicion_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridViewEdicion.CellContentClick
+    '--------------------------------'
+    '        OTROS MÉTODOS           '
+    '--------------------------------'
 
-    End Sub
-
-    Private Sub BtEliminarPil_Click(sender As Object, e As EventArgs) Handles BtEliminarPil.Click
-        Dim borrar As Integer
-        borrar = MsgBox("¿Estás seguro de que desea eliminar el piloto seleccionado?", +vbYesNo + vbDefaultButton2, "Eliminar Persona.")
-        If (borrar = vbYes) Then
-            Try
-                Me.pais.BorrarPais()
-                ListBoxPaises.Items.RemoveAt(ListBoxPaises.SelectedIndex)
-            Catch ex As Exception
-                MsgBox("No se pudo borrar el piloto al estar vinculado con otros datos ")
-            End Try
-
+    Private Sub ListBoxCircuitos_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBoxCircuitos.SelectedIndexChanged
+        'Lista, sacar de pilotos
+        If ListBoxCircuitos.SelectedItem IsNot Nothing Then
+            BtElimCir.Enabled = True
+            BtEditCir.Enabled = True
+            Dim split As String() = ListBoxCircuitos.SelectedItem.ToString().Split(New [Char]() {" "c})
+            Dim id As String
+            id = split(0)
+            Dim circuito As Circuito = New Circuito
+            circuito.IdCircuito = id
+            circuito.LeerCircuito()
+            Me.circuito = circuito
+            Me.circuitoEdi = circuitoEdi
+        Else
+            BtEliminarPil.Enabled = False
+            BtEditarPil.Enabled = False
         End If
     End Sub
 
@@ -498,10 +558,6 @@ Public Class IU_VentanaPrincipal
         End If
     End Sub
 
-    Private Sub BtLimpiarPiloto_Click(sender As Object, e As EventArgs) Handles BtLimpiarPiloto.Click
-        LimpiarTextoFormularioGeneral(GBDatosPersonales)
-    End Sub
-
     Private Sub CBPaisPiloto_Click(sender As Object, e As EventArgs) Handles CBPaisPiloto.Click
         Dim myPais As New Pais()
         CBPaisCircuito.Items.Clear()
@@ -509,49 +565,6 @@ Public Class IU_VentanaPrincipal
             CBPaisCircuito.Items.Add(pais.Nombre)
 
         Next
-    End Sub
-
-    Private Sub BtElimCir_Click(sender As Object, e As EventArgs) Handles BtElimCir.Click
-        'Pillar de paises
-        Dim borrar As Integer
-        borrar = MsgBox("¿Estás seguro de que desea eliminar el circuito seleccionado?", +vbYesNo + vbDefaultButton2, "Eliminar Circuito.")
-        If (borrar = vbYes) Then
-            Try
-                Me.circuito.BorrarCircuito()
-                ListBoxCircuitos.Items.RemoveAt(ListBoxCircuitos.SelectedIndex)
-            Catch ex As Exception
-                ' Manejar la excepción aquí
-                MsgBox("No se pudo borrar país al estar vinculado con otros datos.")
-            End Try
-        End If
-    End Sub
-
-    Private Sub ListBoxCircuitos_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBoxCircuitos.SelectedIndexChanged
-        'Lista, sacar de pilotos
-        If ListBoxCircuitos.SelectedItem IsNot Nothing Then
-            BtElimCir.Enabled = True
-            BtEditCir.Enabled = True
-            Dim split As String() = ListBoxCircuitos.SelectedItem.ToString().Split(New [Char]() {" "c})
-            Dim id As String
-            id = split(0)
-            Dim circuito As Circuito = New Circuito
-            circuito.IdCircuito = id
-            circuito.LeerCircuito()
-            Me.circuito = circuito
-            Me.circuitoEdi = circuitoEdi
-        Else
-            BtEliminarPil.Enabled = False
-            BtEditarPil.Enabled = False
-        End If
-    End Sub
-
-    Private Sub BtCancelarPiloto_Click(sender As Object, e As EventArgs) Handles BtCancelarPiloto.Click
-        Me.estadoPiloto = -1
-
-        GBDatosPersonales.Enabled = False
-        GBOpcionesPer.Enabled = True
-        GBBotonesEdicionPiloto.Enabled = False
-        ListBoxPilotos.Enabled = True
     End Sub
 
     Private Sub CBPaisCircuito_Click(sender As Object, e As EventArgs) Handles CBPaisCircuito.Click
@@ -563,6 +576,5 @@ Public Class IU_VentanaPrincipal
 
         Next
     End Sub
-
 
 End Class

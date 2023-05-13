@@ -12,6 +12,11 @@ Public Class Pais
         Me.idPAIS = id
     End Sub
 
+    'NUEVO
+    Public Function GetAbreviacion(ByVal name As String) As String
+        Return Me.PaisDAO.GetAbreviacion(name)
+    End Function
+
     Public Sub LeerTodosPaises()
         Me.PaisDAO.LeerTodas()
     End Sub

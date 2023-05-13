@@ -67,11 +67,11 @@ Public Class IU_VentanaPrincipal
     Private Function comprobarCamposCircuito() As Boolean
         Dim camposValidos As Boolean
         camposValidos = True
-        If CBPaisCircuito.SelectedIndex = "-1" Or TextBoxCiudadCircuito.Text = "" Or TextBoxNombreCircuito.Text = "" Or TextBoxCurvasCircuito.Text = "" Or TextBoxIDCircuito.Text = "" Or TextBoxLongitudCircuito.Text = "" Then
+        If TextBoxNombreCircuito.Text = "" Or TextBoxCiudadCircuito.Text = "" Or CBPaisCircuito.SelectedItem Is Nothing Or TextBoxCurvasCircuito.Text = "" Or TextBoxLongitudCircuito.Text = "" Or TextBoxIDCircuito.Text = "" Then
             camposValidos = False
             MsgBox("Es necesario que rellene todos los campos en Datos del circuito", vbExclamation)
-            Return camposValidos
-            Exit Function
+            'Return camposValidos
+            'Exit Function
         End If
         Return camposValidos
     End Function
@@ -161,8 +161,44 @@ Public Class IU_VentanaPrincipal
     End Sub
 
     Private Sub BtGuardarCir_Click(sender As Object, e As EventArgs) Handles BtGuardarCir.Click
-        LimpiarFormEditaCir()
+        If (comprobarCamposCircuito() = True) Then
+            'Primero miro si el ID ya existe. Si es así, lo tiro para atrás.'
+            'Para ello, obtengo los ID en una lista. Si el ID está dentro de la lista, error.
+            Dim check As Boolean = True
+            Dim myTrack As New Circuito()
+            myTrack.LeerTodosCircuitos()
+            For Each iteradorCir As Circuito In myTrack.CircuDAO.LeerTodas
+                If iteradorCir.IdCircuito = TextBoxIDCircuito.Text() Then
+                    check = False
+                End If
+            Next
+            If Not check Then
+                MsgBox("ID de circuito ya existe.", vbExclamation)
+            Else
+                'Por lo demás, no tengo restricciones de repetición de grandes premios, así que me limito a insertarlo'
+                Dim circuitoInsercion As Circuito = New Circuito()
+                Dim paisCirc As Pais = New Pais()
+                Dim abr As String = paisCirc.GetAbreviacion(CBPaisCircuito.SelectedItem)
 
+                If abr = "" Then
+                    MsgBox("Error con el país entrante.", vbExclamation)
+                    Exit Sub
+                Else
+                    circuitoInsercion.Nombre = TextBoxNombreCircuito.Text.Trim()
+                    circuitoInsercion.Ciudad = TextBoxCiudadCircuito.Text.Trim()
+                    circuitoInsercion.Pais = abr
+                    circuitoInsercion.Longitud = CInt(TextBoxLongitudCircuito.Text)
+                    circuitoInsercion.Curva = CInt(TextBoxCurvasCircuito.Text)
+                    circuitoInsercion.IdCircuito = CInt(TextBoxIDCircuito.Text)
+
+                    If Me.estadoCircuito = 0 Then 'Añadir un pais'
+                        circuitoInsercion.InsertarCircuito()
+                        circuitoInsercion.LeerCircuito()
+                        ListBoxCircuitos.Items.Add(circuitoInsercion.IdCircuito & " - " & circuitoInsercion.Nombre)
+                    End If
+                End If
+            End If
+        End If
     End Sub
 
     '--------------------------------'

@@ -6,11 +6,23 @@ Public Class PaisDAO
         Me.Paises = New Collection
     End Sub
 
+    'NUEVO
+    Public Function GetAbreviacion(ByVal name As String) As String
+        Dim col As Collection
+        Dim iter As Collection
+        Dim cadena As String = ""
+        col = AgenteBD.ObtenerAgente.Leer("SELECT IDPAIS FROM PAIS WHERE NOMBRE ='" & name & "';")
+        For Each iter In col
+            cadena = CStr(iter(1))
+        Next
+        Return cadena
+    End Function
+
     Public Function LeerTodas() As Collection
 
         Dim p As Pais
         Dim col, aux As Collection
-        col = AgenteBD.ObtenerAgente().Leer("SELECT * FROM PAIS ORDER BY idPAIS")
+        col = AgenteBD.ObtenerAgente().Leer("SELECT * FROM PAIS ORDER BY idPAIS;") 'Faltaba ;
         For Each aux In col
             p = New Pais(aux(1).ToString)
             p.Nombre = aux(2).ToString

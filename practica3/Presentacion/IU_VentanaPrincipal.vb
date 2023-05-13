@@ -91,7 +91,7 @@ Public Class IU_VentanaPrincipal
                 circuito.IdCircuito = id
                 circuito.LeerCircuito()
                 Me.circuito = circuito
-                Me.circuitoEdi = circuitoEdi
+                Me.circuitoEdi = circuito 'Esto lo he tenido que cambiar
                 Dim myPais As New Pais(circuito.Pais)
                 myPais.LeerPais()
                 CBPaisCircuito.SelectedText = myPais.Nombre
@@ -132,7 +132,7 @@ Public Class IU_VentanaPrincipal
                 ListBoxCircuitos.Items.RemoveAt(ListBoxCircuitos.SelectedIndex)
             Catch ex As Exception
                 ' Manejar la excepción aquí
-                MsgBox("No se pudo borrar país al estar vinculado con otros datos.")
+                MsgBox("No se pudo borrar el circuito al estar vinculado con otros datos.")
             End Try
         End If
     End Sub
@@ -172,29 +172,58 @@ Public Class IU_VentanaPrincipal
                     check = False
                 End If
             Next
-            If Not check Then
+            If (Not check And Me.estadoCircuito = 0) Then 'Intento crear un circuito con un ID ya existente
                 MsgBox("ID de circuito ya existe.", vbExclamation)
             Else
                 'Por lo demás, no tengo restricciones de repetición de grandes premios, así que me limito a insertarlo'
                 Dim circuitoInsercion As Circuito = New Circuito()
                 Dim paisCirc As Pais = New Pais()
+                Dim nombreC As String = TextBoxNombreCircuito.Text.Trim()
+                Dim ciudadC As String = TextBoxCiudadCircuito.Text.Trim()
                 Dim abr As String = paisCirc.GetAbreviacion(CBPaisCircuito.SelectedItem)
+                Dim lon As Integer = CInt(TextBoxLongitudCircuito.Text)
+                Dim cur As Integer = CInt(TextBoxCurvasCircuito.Text)
+                Dim idC As Integer = CInt(TextBoxIDCircuito.Text)
 
                 If abr = "" Then
                     MsgBox("Error con el país entrante.", vbExclamation)
                     Exit Sub
                 Else
-                    circuitoInsercion.Nombre = TextBoxNombreCircuito.Text.Trim()
-                    circuitoInsercion.Ciudad = TextBoxCiudadCircuito.Text.Trim()
-                    circuitoInsercion.Pais = abr
-                    circuitoInsercion.Longitud = CInt(TextBoxLongitudCircuito.Text)
-                    circuitoInsercion.Curva = CInt(TextBoxCurvasCircuito.Text)
-                    circuitoInsercion.IdCircuito = CInt(TextBoxIDCircuito.Text)
-
                     If Me.estadoCircuito = 0 Then 'Añadir un pais'
+                        circuitoInsercion.Nombre = nombreC
+                        circuitoInsercion.Ciudad = ciudadC
+                        circuitoInsercion.Pais = abr
+                        circuitoInsercion.Longitud = lon
+                        circuitoInsercion.Curva = cur
+                        circuitoInsercion.IdCircuito = idC
                         circuitoInsercion.InsertarCircuito()
                         circuitoInsercion.LeerCircuito()
                         ListBoxCircuitos.Items.Add(circuitoInsercion.IdCircuito & " - " & circuitoInsercion.Nombre)
+                    ElseIf Me.estadoCircuito = 1 Then 'Editar un pais ya existente'
+                        Dim indice As Integer
+                        Try 'LOS CAMBIOS DE ATRIBUTO SEGURAMENTE SE PUEDAN OPTIMIZAR
+                            Dim actualizar As Integer
+                            Me.circuitoEdi.Nombre = nombreC
+                            Me.circuitoEdi.Ciudad = ciudadC
+                            Me.circuitoEdi.Pais = abr
+                            Me.circuitoEdi.Longitud = lon
+                            Me.circuitoEdi.Curva = cur
+                            Me.circuitoEdi.IdCircuito = idC
+                            actualizar = circuitoEdi.ActualizarCircuito
+                            If (actualizar <> 1) Then
+                                MessageBox.Show("Error. No se pudo modificar")
+                                BtCancelarCir.PerformClick()
+                            Else
+                                MessageBox.Show("Pais modificado con éxito")
+                                indice = ListBoxCircuitos.SelectedIndex
+                                ListBoxCircuitos.Items.RemoveAt(indice)
+                                ListBoxCircuitos.Items.Insert(indice, Me.circuitoEdi.IdCircuito & " - " & Me.circuitoEdi.Nombre)
+                                BtCancelarCir.PerformClick()
+
+                            End If
+                        Catch
+
+                        End Try
                     End If
                 End If
             End If

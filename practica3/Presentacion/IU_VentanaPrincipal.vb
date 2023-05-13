@@ -203,11 +203,11 @@ Public Class IU_VentanaPrincipal
                     ElseIf Me.estadoCircuito = 1 Then 'Editar un pais ya existente'
                         Dim indice As Integer
                         Try
-                            MessageBox.Show("Editando fila...")
+                            'MessageBox.Show("Editando fila...")
                             Dim actualizar As Integer
                             Me.circuitoEdi = circuitoInsercion
                             actualizar = circuitoEdi.ActualizarCircuito
-                            MessageBox.Show("Actualizando circuito...")
+                            'MessageBox.Show("Actualizando circuito...")
                             If (actualizar <> 1) Then
                                 MessageBox.Show("Error. No se pudo modificar")
                                 BtCancelarCir.PerformClick()

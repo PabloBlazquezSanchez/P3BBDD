@@ -419,9 +419,10 @@ Public Class IU_VentanaPrincipal
     Private Sub AnadirEdicion_Click(sender As Object, e As EventArgs) Handles ButtonAnadirEdicion.Click
         ' Agrega las columnas al control DataGridView
         DataGridViewEdicion.Columns.Add("Posición", "Posición")
-        DataGridViewEdicion.Columns.Add("Dorsal", "Dorsal")
-        DataGridViewEdicion.Columns.Add("Puntos", "Puntos")
         DataGridViewEdicion.Columns.Add("Piloto", "Piloto")
+        'DataGridViewEdicion.Columns.Add("Dorsal", "Dorsal")
+        DataGridViewEdicion.Columns.Add("Pais", "Pais")
+        DataGridViewEdicion.Columns.Add("Puntos", "Puntos")
 
         ' Establecer el color de texto negro y alinear el texto en el centro de las celdas
         DataGridViewEdicion.DefaultCellStyle.ForeColor = Color.Black
@@ -443,8 +444,10 @@ Public Class IU_VentanaPrincipal
         Dim dorsalesDisponibles As New List(Of Integer)(dorsales)
         Dim rnd As New Random()
         Dim j As Integer
+        Dim driver As Piloto = New Piloto()
         Dim dorsal As Integer
-        Dim nombre As String
+        Dim nombreCorredor As String
+        Dim paisCorredor As String
 
         Dim VMR As Integer = rnd.Next(0, nCorredores)
 
@@ -455,19 +458,23 @@ Public Class IU_VentanaPrincipal
         For i As Integer = 0 To dorsales.Length - 1
             j = rnd.Next(0, dorsalesDisponibles.Count)
             dorsal = dorsalesDisponibles(j)
-            nombre = piloto.DevolverNombrePiloto(dorsal)
+            driver.idPILOTO = dorsal
+            driver.LeerPiloto()
+            nombreCorredor = driver.Nombre 'piloto.DevolverNombrePiloto(dorsal)
+            paisCorredor = driver.Pais
             If (i < puntos.Length) Then
-                DataGridViewEdicion.Rows.Add(i + 1, dorsal, puntos(i), nombre)
+                DataGridViewEdicion.Rows.Add(i + 1, nombreCorredor, paisCorredor, puntos(i))
             Else
-                DataGridViewEdicion.Rows.Add(i + 1, dorsal, 0, nombre) 'Y si haces un ToString tras objeto piloto?
+                DataGridViewEdicion.Rows.Add(i + 1, nombreCorredor, paisCorredor, 0) 'Y si haces un ToString tras objeto piloto?
             End If
             dorsalesDisponibles.RemoveAt(j)
         Next i
-        DataGridView2.Columns.Add("Dorsal", "Dorsal")
-        DataGridView2.Columns.Add("Puntos", "Puntos")
+
+        DataGridView2.Columns.Add("Piloto", "Piloto")
+        DataGridView2.Columns.Add("Pais", "Pais")
         DataGridViewEdicion.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
         DataGridViewEdicion.ColumnHeadersDefaultCellStyle.Font = New Font(DataGridViewEdicion.Font, FontStyle.Bold)
-        DataGridView2.Rows.Add(DataGridViewEdicion.Rows(VMR).Cells(1).Value, DataGridViewEdicion.Rows(VMR).Cells(3).Value)
+        DataGridView2.Rows.Add(DataGridViewEdicion.Rows(VMR).Cells(1).Value, DataGridViewEdicion.Rows(VMR).Cells(2).Value)
 
         ' Configuración de las propiedades del DataGridView
         DataGridViewEdicion.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill ' Ajusta el ancho de las columnas automáticamente

@@ -17,6 +17,13 @@ Public Class Piloto
         Me.idPILOTO = id
     End Sub
 
+    Public Sub Piloto(Nombre As String, FechaNac As Date, PaisNac As String, id As Integer)
+        Me.Nombre = Nombre
+        Me.Fecha_Nac = FechaNac
+        Me.Pais = PaisNac
+        Me.idPILOTO = id
+    End Sub
+
     Public Sub LeerTodosPiloto()
         Me.PilotoDAO.LeerTodas()
     End Sub

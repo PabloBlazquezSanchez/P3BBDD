@@ -255,7 +255,20 @@ Public Class IU_VentanaPrincipal
             TextBoxIDPiloto.Text = piloto.idPILOTO
             Dim myPais As New Pais(piloto.Pais)
             myPais.LeerPais()
-            CBPaisPiloto.Text = myPais.Nombre
+            Dim textoBuscado As String = myPais.Nombre
+
+            CBPaisPiloto.Items.Clear()
+            For Each pais As Pais In myPais.PaisDAO.LeerTodas
+                CBPaisPiloto.Items.Add(pais.Nombre)
+            Next
+
+            For Each item As Object In CBPaisPiloto.Items
+                If item.ToString().Contains(textoBuscado) Then
+                    CBPaisPiloto.SelectedItem = item
+                    Exit For
+                End If
+            Next
+
             generarFichaPiloto(piloto)
         Else
             BtEliminarPil.Enabled = False
@@ -289,7 +302,7 @@ Public Class IU_VentanaPrincipal
             MsgBox("ID del piloto no válido. Sólo puede contener letras y espacios ", vbExclamation)
         End If
 
-        If String.IsNullOrEmpty(CBPaisPiloto.SelectedItem.ToString()) Then
+        If String.IsNullOrEmpty(CBPaisPiloto.Text) Then
             camposValidos = False
             MsgBox("Es necesario que seleccione un país de nacimiento", vbExclamation)
         End If
@@ -352,10 +365,10 @@ Public Class IU_VentanaPrincipal
 
             Dim pais As New Pais()
             pais.Nombre = CBPaisPiloto.SelectedItem
-            MessageBox.Show(CBPaisPiloto.SelectedItem)
+            'MessageBox.Show(CBPaisPiloto.SelectedItem)
 
             piloto.Pais = pais.GetAbreviacion(pais.Nombre)
-            MessageBox.Show(piloto.Pais)
+            'MessageBox.Show(piloto.Pais)
 
 
             If (Me.estadoPiloto = 0) Then
@@ -673,5 +686,6 @@ Public Class IU_VentanaPrincipal
             GBFichaPersona.Visible = CheckBoxInformePil.Checked
         End If
     End Sub
+
 
 End Class

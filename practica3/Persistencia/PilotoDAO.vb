@@ -46,11 +46,14 @@ Public Class PilotoDAO
     End Function
 
     Public Function Insertar(ByVal p As Piloto) As String
-        Return AgenteBD.ObtenerAgente.Modificar("INSERT INTO PILOTO VALUES ('" & p.idPILOTO & "', '" & p.Nombre & "', '" & p.Fecha_Nac & "', '" & p.Pais & "');")
+        Dim fechaNacimiento1 As Date = DateTime.ParseExact(p.Fecha_Nac.ToString("dd/MM/yyyy"), "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture)
+
+        Return AgenteBD.ObtenerAgente.Modificar("INSERT INTO PILOTO VALUES ('" & p.idPILOTO & "', '" & p.Nombre & "', '" & fechaNacimiento1.ToString("yyyy/MM/dd") & "', '" & p.Pais & "');")
     End Function
 
     Public Function Actualizar(ByVal p As Piloto) As String
-        Return AgenteBD.ObtenerAgente.Modificar("UPDATE PILOTO SET NOMBRE='" & p.Nombre & "', FECHA_NACIMIENTO='" & p.Fecha_Nac & "', PAIS='" & p.Pais & "' WHERE idPILOTO='" & p.idPILOTO & "';")
+        Dim fechaNacimiento1 As Date = DateTime.ParseExact(p.Fecha_Nac.ToString("dd/MM/yyyy"), "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture)
+        Return AgenteBD.ObtenerAgente.Modificar("UPDATE PILOTO SET NOMBRE='" & p.Nombre & "', FECHA_NACIMIENTO='" & fechaNacimiento1.ToString("yyyy/MM/dd") & "', PAIS='" & p.Pais & "' WHERE idPILOTO='" & p.idPILOTO & "';")
     End Function
 
     Public Function Borrar(ByVal p As Piloto) As String

@@ -11,11 +11,12 @@ Public Class PaisDAO
         Dim col As Collection
         Dim iter As Collection
         Dim cadena As String = ""
-        col = AgenteBD.ObtenerAgente.Leer("SELECT IDPAIS FROM PAIS WHERE NOMBRE ='" & name & "';")
+        col = AgenteBD.ObtenerAgente.Leer("SELECT IdPAIS FROM PAIS WHERE NOMBRE ='" & name & "';")
         For Each iter In col
             cadena = CStr(iter(1))
         Next
         Return cadena
+
     End Function
 
     Public Function LeerTodas() As Collection

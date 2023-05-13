@@ -1,4 +1,5 @@
-﻿Imports MySql.Web
+﻿Imports System.Globalization
+Imports MySql.Web
 
 Public Class IU_VentanaPrincipal
     Private estadoCircuito As Integer
@@ -189,27 +190,24 @@ Public Class IU_VentanaPrincipal
                     MsgBox("Error con el país entrante.", vbExclamation)
                     Exit Sub
                 Else
+                    circuitoInsercion.Nombre = nombreC
+                    circuitoInsercion.Ciudad = ciudadC
+                    circuitoInsercion.Pais = abr
+                    circuitoInsercion.Longitud = lon
+                    circuitoInsercion.Curva = cur
+                    circuitoInsercion.IdCircuito = idC
                     If Me.estadoCircuito = 0 Then 'Añadir un pais'
-                        circuitoInsercion.Nombre = nombreC
-                        circuitoInsercion.Ciudad = ciudadC
-                        circuitoInsercion.Pais = abr
-                        circuitoInsercion.Longitud = lon
-                        circuitoInsercion.Curva = cur
-                        circuitoInsercion.IdCircuito = idC
                         circuitoInsercion.InsertarCircuito()
                         circuitoInsercion.LeerCircuito()
                         ListBoxCircuitos.Items.Add(circuitoInsercion.IdCircuito & " - " & circuitoInsercion.Nombre)
                     ElseIf Me.estadoCircuito = 1 Then 'Editar un pais ya existente'
                         Dim indice As Integer
-                        Try 'LOS CAMBIOS DE ATRIBUTO SEGURAMENTE SE PUEDAN OPTIMIZAR
+                        Try
+                            MessageBox.Show("Editando fila...")
                             Dim actualizar As Integer
-                            Me.circuitoEdi.Nombre = nombreC
-                            Me.circuitoEdi.Ciudad = ciudadC
-                            Me.circuitoEdi.Pais = abr
-                            Me.circuitoEdi.Longitud = lon
-                            Me.circuitoEdi.Curva = cur
-                            Me.circuitoEdi.IdCircuito = idC
+                            Me.circuitoEdi = circuitoInsercion
                             actualizar = circuitoEdi.ActualizarCircuito
+                            MessageBox.Show("Actualizando circuito...")
                             If (actualizar <> 1) Then
                                 MessageBox.Show("Error. No se pudo modificar")
                                 BtCancelarCir.PerformClick()
@@ -244,6 +242,7 @@ Public Class IU_VentanaPrincipal
             Dim piloto As Piloto
             piloto = New Piloto
             piloto.idPILOTO = id
+
             Try
                 piloto.LeerPiloto()
                 Me.piloto = piloto
@@ -285,12 +284,12 @@ Public Class IU_VentanaPrincipal
             camposValidos = False
             MsgBox("Nombre y apellidos no válido. Sólo puede contener letras y espacios", vbExclamation)
 
-        ElseIf Not (comprobarNombrePropio(TextBoxIDPiloto.Text)) Then
+        ElseIf Not IsNumeric(TextBoxIDPiloto.Text) Then
             camposValidos = False
             MsgBox("ID del piloto no válido. Sólo puede contener letras y espacios ", vbExclamation)
         End If
 
-        If CBPaisPiloto.SelectedItem Is Nothing Then
+        If String.IsNullOrEmpty(CBPaisPiloto.SelectedItem.ToString()) Then
             camposValidos = False
             MsgBox("Es necesario que seleccione un país de nacimiento", vbExclamation)
         End If
@@ -298,7 +297,10 @@ Public Class IU_VentanaPrincipal
 
     End Function
     Private Sub BtAñadirPer_Click(sender As Object, e As EventArgs) Handles BtAñadirPil.Click
+        estadoPiloto = 0
+        ModoEditarAñadirPil(True)
 
+        BtLimpiarPiloto.PerformClick()
     End Sub
 
     Private Sub BtEditarPer_Click(sender As Object, e As EventArgs) Handles BtEditarPil.Click
@@ -319,7 +321,7 @@ Public Class IU_VentanaPrincipal
         If (borrar = vbYes) Then
             Try
                 Me.piloto.BorrarPiloto()
-                ListBoxPilotos.Items.RemoveAt(ListBoxPaises.SelectedIndex)
+                ListBoxPilotos.Items.RemoveAt(ListBoxPilotos.SelectedIndex)
             Catch ex As Exception
                 MsgBox("No se pudo borrar el piloto al estar vinculado con otros datos ")
             End Try
@@ -340,6 +342,57 @@ Public Class IU_VentanaPrincipal
     End Sub
 
     Private Sub BtGuardarPiloto_Click(sender As Object, e As EventArgs) Handles BtGuardarPiloto.Click
+
+        If comprobarCamposPil() Then
+            Dim piloto As New Piloto()
+
+            piloto.Nombre = TextBoxNombrePiloto.Text()
+            piloto.Fecha_Nac = DateTimeNacimiento.Value
+            piloto.idPILOTO = TextBoxIDPiloto.Text
+
+            Dim pais As New Pais()
+            pais.Nombre = CBPaisPiloto.SelectedItem
+            MessageBox.Show(CBPaisPiloto.SelectedItem)
+
+            piloto.Pais = pais.GetAbreviacion(pais.Nombre)
+            MessageBox.Show(piloto.Pais)
+
+
+            If (Me.estadoPiloto = 0) Then
+                Try
+                    piloto.InsertarPiloto()
+                    ListBoxPilotos.Items.Add(piloto.idPILOTO & " - " & piloto.Nombre)
+                    MessageBox.Show("Se ha añadido a la base de datos el piloto  " & piloto.Nombre)
+                    ModoEditarAñadirPil(False)
+                Catch ex As Exception
+                    MessageBox.Show(ex.Message, ex.Source)
+                End Try
+
+            End If
+
+            If (Me.estadoPiloto = 1) Then
+                Try
+                    Dim actualizar As Integer
+                    actualizar = piloto.ActualizarPiloto
+                    If (actualizar <> 1) Then
+                        MessageBox.Show("Error. No se pudo modificar")
+                    Else
+                        MessageBox.Show("Piloto modificada con éxito ")
+
+                    End If
+                    Dim indice As Integer
+                    indice = ListBoxPilotos.SelectedIndex
+                    ListBoxPilotos.Items.RemoveAt(indice)
+                    ListBoxPilotos.Items.Insert(indice, piloto.idPILOTO & " - " & piloto.Nombre)
+                Catch ex As Exception
+                    MessageBox.Show(ex.Message, ex.Source)
+                End Try
+            End If
+
+            ListBoxPilotos.SelectedItem = Nothing
+            ModoEditarAñadirPil(False)
+            'estadoCheckAñadir = -1'
+        End If
 
     End Sub
 
@@ -620,4 +673,5 @@ Public Class IU_VentanaPrincipal
             GBFichaPersona.Visible = CheckBoxInformePil.Checked
         End If
     End Sub
+
 End Class

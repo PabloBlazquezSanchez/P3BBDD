@@ -8,6 +8,7 @@ Public Class Piloto
     Public Sub New()
         Me.PilotoDAO = New PilotoDAO
     End Sub
+
     Public Function LeerClasificaciones() As Collection
         Return Me.PilotoDAO.LeerClasificaciones(Me.idPILOTO)
     End Function

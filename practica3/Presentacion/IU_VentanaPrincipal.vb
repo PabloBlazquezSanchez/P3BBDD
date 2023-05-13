@@ -189,26 +189,21 @@ Public Class IU_VentanaPrincipal
                     MsgBox("Error con el país entrante.", vbExclamation)
                     Exit Sub
                 Else
+                    circuitoInsercion.Nombre = nombreC
+                    circuitoInsercion.Ciudad = ciudadC
+                    circuitoInsercion.Pais = abr
+                    circuitoInsercion.Longitud = lon
+                    circuitoInsercion.Curva = cur
+                    circuitoInsercion.IdCircuito = idC
                     If Me.estadoCircuito = 0 Then 'Añadir un pais'
-                        circuitoInsercion.Nombre = nombreC
-                        circuitoInsercion.Ciudad = ciudadC
-                        circuitoInsercion.Pais = abr
-                        circuitoInsercion.Longitud = lon
-                        circuitoInsercion.Curva = cur
-                        circuitoInsercion.IdCircuito = idC
                         circuitoInsercion.InsertarCircuito()
                         circuitoInsercion.LeerCircuito()
                         ListBoxCircuitos.Items.Add(circuitoInsercion.IdCircuito & " - " & circuitoInsercion.Nombre)
                     ElseIf Me.estadoCircuito = 1 Then 'Editar un pais ya existente'
                         Dim indice As Integer
-                        Try 'LOS CAMBIOS DE ATRIBUTO SEGURAMENTE SE PUEDAN OPTIMIZAR
+                        Try
                             Dim actualizar As Integer
-                            Me.circuitoEdi.Nombre = nombreC
-                            Me.circuitoEdi.Ciudad = ciudadC
-                            Me.circuitoEdi.Pais = abr
-                            Me.circuitoEdi.Longitud = lon
-                            Me.circuitoEdi.Curva = cur
-                            Me.circuitoEdi.IdCircuito = idC
+                            Me.circuitoEdi = circuitoInsercion
                             actualizar = circuitoEdi.ActualizarCircuito
                             If (actualizar <> 1) Then
                                 MessageBox.Show("Error. No se pudo modificar")

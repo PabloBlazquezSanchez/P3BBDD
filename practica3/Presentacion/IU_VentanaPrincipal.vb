@@ -212,15 +212,15 @@ Public Class IU_VentanaPrincipal
                                 MessageBox.Show("Error. No se pudo modificar")
                                 BtCancelarCir.PerformClick()
                             Else
-                                MessageBox.Show("Pais modificado con éxito")
+                                MessageBox.Show("Circuito modificado con éxito")
                                 indice = ListBoxCircuitos.SelectedIndex
                                 ListBoxCircuitos.Items.RemoveAt(indice)
                                 ListBoxCircuitos.Items.Insert(indice, Me.circuitoEdi.IdCircuito & " - " & Me.circuitoEdi.Nombre)
                                 BtCancelarCir.PerformClick()
 
                             End If
-                        Catch
-
+                        Catch ex As Exception
+                            MessageBox.Show(ex.Message, ex.Source)
                         End Try
                     End If
                 End If

@@ -39,7 +39,7 @@
     End Function
 
     Public Function Actualizar(ByVal c As Circuito) As String
-        Return AgenteBD.ObtenerAgente().Modificar("UPDATE CIRCUITO SET NOMBRE='" & c.Nombre & "', CIUDAD='" & c.Ciudad & "', PAIS='" & c.Pais & "', LONGITUD='" & c.Longitud & "', CURVA='" & c.Curva & "' WHERE idCIRCUITO='" & c.IdCircuito & "';")
+        Return AgenteBD.ObtenerAgente().Modificar("UPDATE CIRCUITO SET NOMBRE='" & c.Nombre & "', CIUDAD='" & c.Ciudad & "', PAIS='" & c.Pais & "', LONGITUD='" & c.Longitud & "', CURVAS='" & c.Curva & "' WHERE idCIRCUITO='" & c.IdCircuito & "';")
     End Function
 
     Public Function Borrar(ByVal c As Circuito) As String

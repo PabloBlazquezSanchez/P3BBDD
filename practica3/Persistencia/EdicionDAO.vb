@@ -5,7 +5,19 @@
         Me.Ediciones = New Collection
     End Sub
 
-    Public Sub LeerTodas()
+    Public Function GetEdicionPiloto(ByVal name As String) As Collection
+        Dim col As Collection
+        Dim iter As Object
+        Dim resultado As New Collection
+        col = AgenteBD.ObtenerAgente.Leer("SELECT DISTINCT ANIO FROM EDICION WHERE PILOTO_VR ='" & name & "' ORDER BY ANIO DESC;")
+        For Each iter In col
+            resultado.Add(CStr(iter(1)))
+        Next
+        Return resultado
+    End Function
+
+
+    Public Function LeerTodas() As Collection
         Dim e As Edicion
         Dim col, aux As Collection
         col = AgenteBD.ObtenerAgente().Leer("SELECT * FROM EDICION ORDER BY idEDICION")
@@ -14,7 +26,8 @@
             e.NOMBRE = aux(2).ToString
             Me.Ediciones.Add(e)
         Next
-    End Sub
+        Return Ediciones
+    End Function
 
     Public Sub Leer(ByRef e As Edicion)
         Dim col As Collection : Dim aux As Collection

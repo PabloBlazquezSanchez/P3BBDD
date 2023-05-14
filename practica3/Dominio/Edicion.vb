@@ -12,6 +12,11 @@ Public Class Edicion
         Me.EdDAO = New EdicionDAO
     End Sub
 
+
+    Public Function GetEdicionPiloto(ByVal id As String) As Collection
+        Return Me.EdDAO.GetEdicionPiloto(id)
+    End Function
+
     Public Sub New(id As String)
         Me.EdDAO = New EdicionDAO
         Me.idEDICION = id

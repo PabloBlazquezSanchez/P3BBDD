@@ -233,9 +233,11 @@ Public Class IU_VentanaPrincipal
     '--------------------------------'
     Private Sub ListBoxPilotos_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBoxPilotos.SelectedIndexChanged
         If ListBoxPilotos.SelectedItem IsNot Nothing Then
+            ButtonSelectInformePil.Enabled = True
+            GroupBoxInformePil.Visible = False
+            GroupBoxInformePil2.Visible = False
             BtEliminarPil.Enabled = True
             BtEditarPil.Enabled = True
-            CheckBoxInformePil.Enabled = True
             Dim split As String() = ListBoxPilotos.SelectedItem.ToString().Split(New [Char]() {" "c})
             Dim id As String
             id = split(0)
@@ -280,10 +282,32 @@ Public Class IU_VentanaPrincipal
 
         ListBoxParticipaciones.Items.Clear()
         TextBoxNombre1.Text = piloto.Nombre
-        ListBoxParticipaciones.Items.Clear()
+        TextBoxPilInforme2.Text = piloto.Nombre
+
+
+
+
+        Dim myEdicion As Collection
+        Dim edi As New Edicion
+        myEdicion = edi.EdDAO.GetEdicionPiloto(piloto.idPILOTO)
+
+        Dim mensaje As String
+        mensaje = "Fechas de edición para el piloto " & piloto.Nombre & ":" & vbNewLine
+
+        Dim fecha As Object
+        For Each fecha In myEdicion
+            mensaje = mensaje & fecha & vbNewLine
+        Next
+
+        MessageBox.Show(mensaje)
+
+
+
 
 
     End Sub
+
+
 
     Private Function comprobarCamposPil() As Boolean
         Dim camposValidos As Boolean
@@ -412,9 +436,7 @@ Public Class IU_VentanaPrincipal
     '--------------------------------'
     '        MÉTODOS PARA GP         '
     '--------------------------------'
-    Private Sub TabGranPremio_DoubleClick(sender As Object, e As EventArgs) Handles TabGranPremio.DoubleClick
 
-    End Sub
 
     Private Sub AnadirEdicion_Click(sender As Object, e As EventArgs) Handles ButtonAnadirEdicion.Click
         ' Agrega las columnas al control DataGridView
@@ -491,9 +513,7 @@ Public Class IU_VentanaPrincipal
 
     End Sub
 
-    Private Sub DataGridViewEdicion_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridViewEdicion.CellContentClick
 
-    End Sub
 
     '--------------------------------'
     '   MÉTODOS PARA CONFIGURACION   '
@@ -684,15 +704,12 @@ Public Class IU_VentanaPrincipal
         Next
     End Sub
 
-    Private Sub GBFichaPelicula_Enter(sender As Object, e As EventArgs)
-
+    Private Sub Button8_Click(sender As Object, e As EventArgs) Handles ButtonSelectInformePil.Click
+        GroupBoxInformePil.Visible = True
+        GroupBoxInformePil2.Visible = True
     End Sub
 
-    Private Sub CheckBoxInformePil_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBoxInformePil.CheckedChanged
-        If ListBoxPilotos.SelectedItem IsNot Nothing Then
-            GBFichaPersona.Visible = CheckBoxInformePil.Checked
-        End If
+    Private Sub ButtonInformePil2_Click(sender As Object, e As EventArgs) Handles ButtonInformePil2.Click
+
     End Sub
-
-
 End Class

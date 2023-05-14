@@ -12,7 +12,9 @@ Public Class Edicion
         Me.EdDAO = New EdicionDAO
     End Sub
 
-
+    Public Function GetGPPiloto(ByVal id As String, ByVal fecha As String) As Collection
+        Return Me.EdDAO.GetGPPiloto(id, fecha)
+    End Function
     Public Function GetEdicionPiloto(ByVal id As String) As Collection
         Return Me.EdDAO.GetEdicionPiloto(id)
     End Function

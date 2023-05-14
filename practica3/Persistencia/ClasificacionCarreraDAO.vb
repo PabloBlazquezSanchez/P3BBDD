@@ -27,6 +27,17 @@
         Next
     End Sub
 
+    Public Function ResultadoPiloto(id As String, edicion As String) As String
+        Dim col As Collection : Dim aux As Collection
+        Dim c As New ClasificacionCarrera
+        col = AgenteBD.ObtenerAgente().Leer("SELECT EDICION FROM CLASIFICACION_CARRERA WHERE EDICION='" & edicion & "' AND PILOTO='" & id & "';")
+        For Each aux In col
+
+            c.POSICION = aux(3).ToString
+        Next
+        Return c.POSICION
+    End Function
+
     Public Function Insertar(ByVal c As ClasificacionCarrera) As String
         Return AgenteBD.ObtenerAgente().Modificar("INSERT INTO CLASIFICACION_CARRERA VALUES (" & c.EDICION & ", " & c.PILOTO.idPILOTO & ", " & c.POSICION & ");")
     End Function

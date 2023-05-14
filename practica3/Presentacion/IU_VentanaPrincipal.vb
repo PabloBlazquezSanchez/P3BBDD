@@ -271,7 +271,6 @@ Public Class IU_VentanaPrincipal
                 End If
             Next
 
-            generarFichaPiloto(piloto)
         Else
             BtEliminarPil.Enabled = False
             BtEditarPil.Enabled = False
@@ -284,27 +283,16 @@ Public Class IU_VentanaPrincipal
         TextBoxNombre1.Text = piloto.Nombre
         TextBoxPilInforme2.Text = piloto.Nombre
 
-
-
-
         Dim myEdicion As Collection
         Dim edi As New Edicion
         myEdicion = edi.EdDAO.GetEdicionPiloto(piloto.idPILOTO)
 
-        Dim mensaje As String
-        mensaje = "Fechas de edición para el piloto " & piloto.Nombre & ":" & vbNewLine
+        Dim fecha As String
+        ListBoxAñoInforme.Items.Clear()
 
-        Dim fecha As Object
         For Each fecha In myEdicion
-            mensaje = mensaje & fecha & vbNewLine
+            ListBoxAñoInforme.Items.Add(fecha)
         Next
-
-        MessageBox.Show(mensaje)
-
-
-
-
-
     End Sub
 
 
@@ -707,9 +695,37 @@ Public Class IU_VentanaPrincipal
     Private Sub Button8_Click(sender As Object, e As EventArgs) Handles ButtonSelectInformePil.Click
         GroupBoxInformePil.Visible = True
         GroupBoxInformePil2.Visible = True
+        generarFichaPiloto(piloto)
+
     End Sub
 
     Private Sub ButtonInformePil2_Click(sender As Object, e As EventArgs) Handles ButtonInformePil2.Click
 
+    End Sub
+
+    Private Sub ButtonInformePil_Click(sender As Object, e As EventArgs) Handles ButtonInformePil.Click
+
+        Dim myGP As Collection
+        Dim edi As New Edicion
+        MessageBox.Show(piloto.idPILOTO & " r" & ListBoxAñoInforme.Text)
+        If String.IsNullOrEmpty(ListBoxAñoInforme.Text) Then
+            MsgBox("Es necesario que seleccione un año", vbExclamation)
+        Else
+            myGP = edi.EdDAO.GetGPPiloto(piloto.idPILOTO, ListBoxAñoInforme.SelectedItem.ToString())
+            Dim mensaje As String
+            mensaje = ""
+            ListBoxAñoInforme.Items.Clear()
+
+
+            For Each edi In myGP
+                Dim GP As New GranPremio(edi.idGRAN_PREMIO)
+                Dim clas As New ClasificacionCarrera
+                GP.LeerGP()
+                mensaje = mensaje & GP.NOMBRE & " | Edición: " & edi.NOMBRE & " | Resultado: " & clas.ResultadoPiloto(piloto.idPILOTO, edi.idEDICION) & " | Vuelta rápida: " & vbNewLine
+            Next
+
+            MessageBox.Show(mensaje)
+
+        End If
     End Sub
 End Class

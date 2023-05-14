@@ -31,8 +31,6 @@ Public Class IU_VentanaPrincipal
             ListBoxCircuitos.Items.Add(circuito.IdCircuito & " - " & circuito.Nombre)
 
         Next
-
-
     End Sub
 
     Function comprobarNombrePropio(ByVal Nombre As String) As Boolean
@@ -79,7 +77,6 @@ Public Class IU_VentanaPrincipal
 
 
     Private Sub ListBoxCircuitos_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBoxCircuitos.SelectedIndexChanged
-        'Lista, sacar de pilotos
         LimpiarFormEditaCir()
         If ListBoxCircuitos.SelectedItem IsNot Nothing Then
             BtElimCir.Enabled = True
@@ -92,7 +89,7 @@ Public Class IU_VentanaPrincipal
                 circuito.IdCircuito = id
                 circuito.LeerCircuito()
                 Me.circuito = circuito
-                Me.circuitoEdi = circuito 'Esto lo he tenido que cambiar
+                Me.circuitoEdi = circuito
                 Dim myPais As New Pais(circuito.Pais)
                 myPais.LeerPais()
                 CBPaisCircuito.SelectedText = myPais.Nombre
@@ -126,26 +123,42 @@ Public Class IU_VentanaPrincipal
 
     Private Sub BtElimCir_Click(sender As Object, e As EventArgs) Handles BtElimCir.Click
         Dim borrar As Integer
-        borrar = MsgBox("¿Estás seguro de que desea eliminar el circuito seleccionado?", +vbYesNo + vbDefaultButton2, "Eliminar Circuito.")
+        borrar = MsgBox("¿Estás seguro de que desea eliminar el circuito seleccionado?", +vbYesNo + vbDefaultButton2 + vbQuestion, "Eliminar Circuito")
         If (borrar = vbYes) Then
             Try
                 Me.circuito.BorrarCircuito()
                 ListBoxCircuitos.Items.RemoveAt(ListBoxCircuitos.SelectedIndex)
             Catch ex As Exception
                 ' Manejar la excepción aquí
-                MsgBox("No se pudo borrar el circuito al estar vinculado con otros datos.")
+                MsgBox("No se pudo borrar el circuito al estar vinculado con otros datos.", vbExclamation)
             End Try
         End If
     End Sub
 
     Private Sub BtCancelarCir_Click(sender As Object, e As EventArgs) Handles BtCancelarCir.Click
         Dim volver As Integer
-        volver = MsgBox("¿Estas seguro de que desea volver? Se perderán los cambios no guardados.", vbYesNo + vbDefaultButton2, "Cerrar modo edición.")
+        volver = MsgBox("¿Estas seguro de que desea volver? Se perderán los cambios no guardados.", vbYesNo + vbDefaultButton2 + vbQuestion, "Cerrar modo edición.")
         If (volver = vbYes) Then
-            estadoCircuito = -1
-            ModoEditarAñadirCir(False)
+            DeshacerCamposCircuito()
         End If
     End Sub
+
+    Private Sub DeshacerCamposCircuito()
+        estadoCircuito = -1
+        'Undo
+        TextBoxNombreCircuito.Undo()
+        TextBoxNombreCircuito.ClearUndo()
+        TextBoxCiudadCircuito.Undo()
+        TextBoxCiudadCircuito.ClearUndo()
+        TextBoxLongitudCircuito.Undo()
+        TextBoxLongitudCircuito.ClearUndo()
+        TextBoxCurvasCircuito.Undo()
+        TextBoxCurvasCircuito.Undo()
+        TextBoxIDCircuito.Undo()
+        TextBoxIDCircuito.ClearUndo()
+        ModoEditarAñadirCir(False)
+    End Sub
+
     Private Sub ModoEditarAñadirCir(mode As Boolean)
         GBBotonesOpcionesCir.Enabled = Not mode
         ListBoxCircuitos.Enabled = Not mode
@@ -200,29 +213,29 @@ Public Class IU_VentanaPrincipal
                         circuitoInsercion.InsertarCircuito()
                         circuitoInsercion.LeerCircuito()
                         ListBoxCircuitos.Items.Add(circuitoInsercion.IdCircuito & " - " & circuitoInsercion.Nombre)
+                        MsgBox("Se ha añadido a la base de datos el circuito " & circuitoInsercion.Nombre & " correctamente.", vbInformation)
                     ElseIf Me.estadoCircuito = 1 Then 'Editar un pais ya existente'
                         Dim indice As Integer
                         Try
-                            'MessageBox.Show("Editando fila...")
                             Dim actualizar As Integer
                             Me.circuitoEdi = circuitoInsercion
                             actualizar = circuitoEdi.ActualizarCircuito
-                            'MessageBox.Show("Actualizando circuito...")
                             If (actualizar <> 1) Then
-                                MessageBox.Show("Error. No se pudo modificar")
-                                BtCancelarCir.PerformClick()
+                                MsgBox("Error. No se pudo modificar", vbCritical)
+                                'BtCancelarCir.PerformClick()
                             Else
-                                MessageBox.Show("Circuito modificado con éxito")
+                                MsgBox("Circuito modificado con éxito", vbInformation)
                                 indice = ListBoxCircuitos.SelectedIndex
                                 ListBoxCircuitos.Items.RemoveAt(indice)
                                 ListBoxCircuitos.Items.Insert(indice, Me.circuitoEdi.IdCircuito & " - " & Me.circuitoEdi.Nombre)
-                                BtCancelarCir.PerformClick()
-
+                                'BtCancelarCir.PerformClick()
                             End If
                         Catch ex As Exception
                             MessageBox.Show(ex.Message, ex.Source)
                         End Try
                     End If
+                    estadoCircuito = -1
+                    ModoEditarAñadirCir(False)
                 End If
             End If
         End If
@@ -231,6 +244,7 @@ Public Class IU_VentanaPrincipal
     '--------------------------------'
     '      MÉTODOS PARA PILOTOS      '
     '--------------------------------'
+
     Private Sub ListBoxPilotos_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBoxPilotos.SelectedIndexChanged
         If ListBoxPilotos.SelectedItem IsNot Nothing Then
             ButtonSelectInformePil.Enabled = True
@@ -270,7 +284,7 @@ Public Class IU_VentanaPrincipal
                     Exit For
                 End If
             Next
-
+            'generarFichaPiloto(piloto)
         Else
             BtEliminarPil.Enabled = False
             BtEditarPil.Enabled = False
@@ -295,8 +309,6 @@ Public Class IU_VentanaPrincipal
         Next
     End Sub
 
-
-
     Private Function comprobarCamposPil() As Boolean
         Dim camposValidos As Boolean
         camposValidos = True
@@ -319,12 +331,11 @@ Public Class IU_VentanaPrincipal
             MsgBox("Es necesario que seleccione un país de nacimiento", vbExclamation)
         End If
         Return camposValidos
-
     End Function
+
     Private Sub BtAñadirPer_Click(sender As Object, e As EventArgs) Handles BtAñadirPil.Click
         estadoPiloto = 0
         ModoEditarAñadirPil(True)
-
         BtLimpiarPiloto.PerformClick()
     End Sub
 
@@ -342,24 +353,34 @@ Public Class IU_VentanaPrincipal
 
     Private Sub BtEliminarPil_Click(sender As Object, e As EventArgs) Handles BtEliminarPil.Click
         Dim borrar As Integer
-        borrar = MsgBox("¿Estás seguro de que desea eliminar el piloto seleccionado?", +vbYesNo + vbDefaultButton2, "Eliminar Persona.")
+        borrar = MsgBox("¿Estás seguro de que desea eliminar el piloto seleccionado?", +vbYesNo + vbDefaultButton2 + vbQuestion, "Eliminar Persona.")
         If (borrar = vbYes) Then
             Try
                 Me.piloto.BorrarPiloto()
                 ListBoxPilotos.Items.RemoveAt(ListBoxPilotos.SelectedIndex)
             Catch ex As Exception
-                MsgBox("No se pudo borrar el piloto al estar vinculado con otros datos ")
+                MsgBox("No se pudo borrar el piloto al estar vinculado con otros datos.", vbExclamation)
             End Try
 
         End If
     End Sub
 
     Private Sub BtCancelarPiloto_Click(sender As Object, e As EventArgs) Handles BtCancelarPiloto.Click
-        Me.estadoPiloto = -1
-        GBDatosPersonales.Enabled = False
-        GBOpcionesPer.Enabled = True
-        GBBotonesEdicionPiloto.Enabled = False
-        ListBoxPilotos.Enabled = True
+        Dim volver As Integer
+        volver = MsgBox("¿Estas seguro de que desea volver? Se perderán los cambios no guardados.", vbYesNo + vbDefaultButton2 + vbQuestion, "Cerrar modo edición.")
+        If (volver = vbYes) Then
+            DeshacerCamposPiloto()
+        End If
+    End Sub
+
+    Private Sub DeshacerCamposPiloto()
+        estadoPiloto = -1
+        'Undo
+        TextBoxNombrePiloto.Undo()
+        TextBoxNombrePiloto.ClearUndo()
+        TextBoxIDPiloto.Undo()
+        TextBoxIDPiloto.ClearUndo()
+        ModoEditarAñadirPil(False)
     End Sub
 
     Private Sub BtLimpiarPiloto_Click(sender As Object, e As EventArgs) Handles BtLimpiarPiloto.Click
@@ -367,64 +388,64 @@ Public Class IU_VentanaPrincipal
     End Sub
 
     Private Sub BtGuardarPiloto_Click(sender As Object, e As EventArgs) Handles BtGuardarPiloto.Click
-
+        Dim indice As Integer
         If comprobarCamposPil() Then
-            Dim piloto As New Piloto()
-
-            piloto.Nombre = TextBoxNombrePiloto.Text()
-            piloto.Fecha_Nac = DateTimeNacimiento.Value
-            piloto.idPILOTO = TextBoxIDPiloto.Text
-
-            Dim pais As New Pais()
-            pais.Nombre = CBPaisPiloto.SelectedItem
-            'MessageBox.Show(CBPaisPiloto.SelectedItem)
-
-            piloto.Pais = pais.GetAbreviacion(pais.Nombre)
-            'MessageBox.Show(piloto.Pais)
-
-
-            If (Me.estadoPiloto = 0) Then
-                Try
-                    piloto.InsertarPiloto()
-                    ListBoxPilotos.Items.Add(piloto.idPILOTO & " - " & piloto.Nombre)
-                    MessageBox.Show("Se ha añadido a la base de datos el piloto  " & piloto.Nombre)
-                    ModoEditarAñadirPil(False)
-                Catch ex As Exception
-                    MessageBox.Show(ex.Message, ex.Source)
-                End Try
-
+            Dim check As Boolean = True
+            Dim myDriver As New Piloto()
+            myDriver.LeerTodosPiloto()
+            For Each iteradorPil As Piloto In myDriver.PilotoDAO.LeerTodas
+                If iteradorPil.idPILOTO = TextBoxIDPiloto.Text() Then
+                    check = False
+                End If
+            Next
+            If (Not check And Me.estadoPiloto = 0) Then 'Intento crear un circuito con un ID ya existente
+                MsgBox("ID de piloto ya existe.", vbExclamation)
+            Else
+                Dim piloto As New Piloto()
+                Dim pais As New Pais()
+                piloto.Nombre = TextBoxNombrePiloto.Text()
+                piloto.Fecha_Nac = DateTimeNacimiento.Value
+                piloto.idPILOTO = TextBoxIDPiloto.Text
+                pais.Nombre = CBPaisPiloto.SelectedItem
+                'MessageBox.Show(CBPaisPiloto.SelectedItem)
+                piloto.Pais = pais.GetAbreviacion(pais.Nombre)
+                'MessageBox.Show(piloto.Pais)
+                If (Me.estadoPiloto = 0) Then
+                    Try
+                        piloto.InsertarPiloto()
+                        ListBoxPilotos.Items.Add(piloto.idPILOTO & " - " & piloto.Nombre)
+                        MsgBox("Se ha añadido a la base de datos el piloto " & piloto.Nombre & " correctamente.", vbInformation)
+                        ModoEditarAñadirPil(False)
+                    Catch ex As Exception
+                        MessageBox.Show(ex.Message, ex.Source)
+                    End Try
+                ElseIf (Me.estadoPiloto = 1) Then
+                    Try
+                        Dim actualizar As Integer
+                        actualizar = piloto.ActualizarPiloto
+                        If (actualizar <> 1) Then
+                            MsgBox("Error. No se pudo modificar.", vbCritical)
+                        Else
+                            MsgBox("Piloto modificado con éxito.", vbInformation)
+                            indice = ListBoxPilotos.SelectedIndex
+                            ListBoxPilotos.Items.RemoveAt(indice)
+                            ListBoxPilotos.Items.Insert(indice, piloto.idPILOTO & " - " & piloto.Nombre)
+                        End If
+                        estadoCircuito = -1
+                        ModoEditarAñadirPil(False)
+                        'ListBoxPilotos.SelectedItem = Nothing
+                    Catch ex As Exception
+                        MessageBox.Show(ex.Message, ex.Source)
+                    End Try
+                    'estadoCheckAñadir = -1'
+                End If
             End If
-
-            If (Me.estadoPiloto = 1) Then
-                Try
-                    Dim actualizar As Integer
-                    actualizar = piloto.ActualizarPiloto
-                    If (actualizar <> 1) Then
-                        MessageBox.Show("Error. No se pudo modificar")
-                    Else
-                        MessageBox.Show("Piloto modificada con éxito ")
-
-                    End If
-                    Dim indice As Integer
-                    indice = ListBoxPilotos.SelectedIndex
-                    ListBoxPilotos.Items.RemoveAt(indice)
-                    ListBoxPilotos.Items.Insert(indice, piloto.idPILOTO & " - " & piloto.Nombre)
-                Catch ex As Exception
-                    MessageBox.Show(ex.Message, ex.Source)
-                End Try
-            End If
-
-            ListBoxPilotos.SelectedItem = Nothing
-            ModoEditarAñadirPil(False)
-            'estadoCheckAñadir = -1'
         End If
-
     End Sub
 
     '--------------------------------'
     '        MÉTODOS PARA GP         '
     '--------------------------------'
-
 
     Private Sub AnadirEdicion_Click(sender As Object, e As EventArgs) Handles ButtonAnadirEdicion.Click
         ' Agrega las columnas al control DataGridView
@@ -500,8 +521,6 @@ Public Class IU_VentanaPrincipal
         DataGridView2.ScrollBars = False
 
     End Sub
-
-
 
     '--------------------------------'
     '   MÉTODOS PARA CONFIGURACION   '

@@ -212,6 +212,7 @@ Public Class IU_VentanaPrincipal
             Next
             If (Not check And Me.estadoCircuito = 0) Then 'Intento crear un circuito con un ID ya existente
                 MsgBox("ID de circuito ya existe.", vbExclamation)
+                BtLimpiarCir.PerformClick()
             Else
                 Try
                     Dim circuitoInsercion As Circuito = New Circuito()
@@ -263,8 +264,10 @@ Public Class IU_VentanaPrincipal
                     End If
                 Catch ex As System.InvalidCastException
                     MessageBox.Show("Datos introducidos no válidos")
+                    BtLimpiarCir.PerformClick()
                 Catch ex As Exception
                     MessageBox.Show(ex.Message, ex.Source)
+                    BtLimpiarCir.PerformClick()
                 End Try
             End If
         End If
@@ -475,6 +478,7 @@ Public Class IU_VentanaPrincipal
                         ModoEditarAñadirPil(False)
                     Catch ex As Exception
                         MessageBox.Show(ex.Message, ex.Source)
+                        BtLimpiarPiloto.PerformClick()
                     End Try
                 ElseIf (Me.estadoPiloto = 1) Then
                     Try
@@ -493,6 +497,7 @@ Public Class IU_VentanaPrincipal
                         'ListBoxPilotos.SelectedItem = Nothing
                     Catch ex As Exception
                         MessageBox.Show(ex.Message, ex.Source)
+                        BtLimpiarPiloto.PerformClick()
                     End Try
                     'estadoCheckAñadir = -1'
                 End If
@@ -710,48 +715,57 @@ Public Class IU_VentanaPrincipal
             Dim check As Boolean = True
             Dim myGP As New GranPremio()
             myGP.LeerTodosGP()
-            For Each iterGP As GranPremio In myGP.GPDAO.LeerTodas()
-                If iterGP.idGRAN_PREMIO = TextBoxIDGranPremio.Text() Then
-                    check = False
+            Try
+                For Each iterGP As GranPremio In myGP.GPDAO.LeerTodas()
+                    If iterGP.idGRAN_PREMIO = TextBoxIDGranPremio.Text() Then
+                        check = False
+                    End If
+                Next
+                If (Not check And Me.estadoGP = 0) Then
+                    MsgBox("ID del Gran Premio ya existente.", vbExclamation)
+                Else
+                    Dim gp As New GranPremio()
+                    Dim pais As New Pais()
+                    gp.NOMBRE = TextBoxNombreGP.Text()
+                    gp.idGRAN_PREMIO = TextBoxIDGranPremio.Text()
+                    pais.Nombre = CBPaisGP.SelectedItem
+                    gp.PAIS = pais.GetAbreviacion(pais.Nombre)
+                    If (Me.estadoGP = 0) Then
+                        Try
+                            gp.InsertarGP()
+                            ListBoxGranPremio.Items.Add(gp.idGRAN_PREMIO & " - " & gp.NOMBRE)
+                            MsgBox("Se ha añadido a la base de datos el Gran Premio " & gp.NOMBRE & " correctamente.", vbInformation)
+                            ModoEditarAñadirGP(False)
+                        Catch ex As Exception
+                            MessageBox.Show(ex.Message, ex.Source)
+                        End Try
+                    ElseIf (Me.estadoGP = 1) Then
+                        Try
+                            Dim actualizar As Integer
+                            actualizar = gp.ActualizarGP()
+                            If (actualizar <> 1) Then
+                                MsgBox("Error. No se pudo modificar.", vbCritical)
+                            Else
+                                MsgBox("Gran Premio modificado con éxito.", vbInformation)
+                                indice = ListBoxGranPremio.SelectedIndex
+                                ListBoxGranPremio.Items.RemoveAt(indice)
+                                ListBoxGranPremio.Items.Insert(indice, gp.idGRAN_PREMIO & " - " & gp.NOMBRE)
+                            End If
+                            estadoGP = -1
+                            ModoEditarAñadirGP(False)
+                        Catch ex As Exception
+                            MessageBox.Show(ex.Message, ex.Source)
+                        End Try
+                    End If
                 End If
-            Next
-            If (Not check And Me.estadoGP = 0) Then
-                MsgBox("ID del Gran Premio ya existente.", vbExclamation)
-            Else
-                Dim gp As New GranPremio()
-                Dim pais As New Pais()
-                gp.NOMBRE = TextBoxNombreGP.Text()
-                gp.idGRAN_PREMIO = TextBoxIDGranPremio.Text()
-                pais.Nombre = CBPaisGP.SelectedItem
-                gp.PAIS = pais.GetAbreviacion(pais.Nombre)
-                If (Me.estadoGP = 0) Then
-                    Try
-                        gp.InsertarGP()
-                        ListBoxGranPremio.Items.Add(gp.idGRAN_PREMIO & " - " & gp.NOMBRE)
-                        MsgBox("Se ha añadido a la base de datos el Gran Premio " & gp.NOMBRE & " correctamente.", vbInformation)
-                        ModoEditarAñadirGP(False)
-                    Catch ex As Exception
-                        MessageBox.Show(ex.Message, ex.Source)
-                    End Try
-                ElseIf (Me.estadoGP = 1) Then
-                    Try
-                        Dim actualizar As Integer
-                        actualizar = gp.ActualizarGP()
-                        If (actualizar <> 1) Then
-                            MsgBox("Error. No se pudo modificar.", vbCritical)
-                        Else
-                            MsgBox("Gran Premio modificado con éxito.", vbInformation)
-                            indice = ListBoxGranPremio.SelectedIndex
-                            ListBoxGranPremio.Items.RemoveAt(indice)
-                            ListBoxGranPremio.Items.Insert(indice, gp.idGRAN_PREMIO & " - " & gp.NOMBRE)
-                        End If
-                        estadoGP = -1
-                        ModoEditarAñadirGP(False)
-                    Catch ex As Exception
-                        MessageBox.Show(ex.Message, ex.Source)
-                    End Try
-                End If
-            End If
+            Catch ex As System.InvalidCastException
+                MessageBox.Show("Datos introducidos no válidos")
+                BtLimpiarGP.PerformClick()
+            Catch ex As Exception
+                MessageBox.Show(ex.Message, ex.Source)
+                BtLimpiarGP.PerformClick()
+            End Try
+
         End If
     End Sub
 

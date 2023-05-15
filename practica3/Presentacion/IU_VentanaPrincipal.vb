@@ -105,6 +105,21 @@ Public Class IU_VentanaPrincipal
                 TextBoxLongitudCircuito.Text = circuito.Longitud
                 TextBoxIDCircuito.Text = circuito.IdCircuito
 
+
+                Dim textoBuscado As String = myPais.Nombre
+                CBPaisCircuito.Items.Clear()
+                For Each pais As Pais In myPais.PaisDAO.LeerTodas
+                    CBPaisCircuito.Items.Add(pais.Nombre)
+                Next
+
+                For Each item As Object In CBPaisCircuito.Items
+                    If item.ToString().Contains(textoBuscado) Then
+                        CBPaisCircuito.SelectedItem = item
+                        Exit For
+                    End If
+                Next
+
+
             Catch ex As Exception
                 MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             End Try
@@ -745,7 +760,7 @@ Public Class IU_VentanaPrincipal
         Next
     End Sub
 
-    Private Sub Button8_Click(sender As Object, e As EventArgs) Handles ButtonSelectInformePil.Click
+    Private Sub ButtonSelectInformePil_Click(sender As Object, e As EventArgs) Handles ButtonSelectInformePil.Click
         GroupBoxInformePil.Visible = True
         GroupBoxInformePil2.Visible = True
         generarFichaPiloto(piloto)

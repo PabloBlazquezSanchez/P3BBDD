@@ -24,10 +24,13 @@ Partial Class IU_VentanaPrincipal
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(IU_VentanaPrincipal))
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle22 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle23 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle24 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle25 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle26 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle27 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle28 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPageCircuitos = New System.Windows.Forms.TabPage()
         Me.GBEditarAñadirCircuito = New System.Windows.Forms.GroupBox()
@@ -107,16 +110,7 @@ Partial Class IU_VentanaPrincipal
         Me.ListBoxGranPremio = New System.Windows.Forms.ListBox()
         Me.TabPageConfi = New System.Windows.Forms.TabPage()
         Me.GroupBoxInformes = New System.Windows.Forms.GroupBox()
-        Me.GBEditarRoles = New System.Windows.Forms.GroupBox()
-        Me.BtLimpiarRoles = New System.Windows.Forms.Button()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.BtCancelarRoles = New System.Windows.Forms.Button()
-        Me.BtGuardarRoles = New System.Windows.Forms.Button()
-        Me.TextBoxDescRol = New System.Windows.Forms.TextBox()
-        Me.BtEditarConf = New System.Windows.Forms.Button()
-        Me.BtAñadirRol = New System.Windows.Forms.Button()
-        Me.BtBorrarRol = New System.Windows.Forms.Button()
-        Me.ListBoxRoles = New System.Windows.Forms.ListBox()
+        Me.ListBoxTemporadas = New System.Windows.Forms.ListBox()
         Me.GroupBoxPaises = New System.Windows.Forms.GroupBox()
         Me.GBEditarAñadirPais = New System.Windows.Forms.GroupBox()
         Me.BtCancelarPais = New System.Windows.Forms.Button()
@@ -130,6 +124,8 @@ Partial Class IU_VentanaPrincipal
         Me.ListBoxPaises = New System.Windows.Forms.ListBox()
         Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.ToolTipAñadir = New System.Windows.Forms.ToolTip(Me.components)
+        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
         Me.TabPageCircuitos.SuspendLayout()
         Me.GBEditarAñadirCircuito.SuspendLayout()
@@ -150,9 +146,9 @@ Partial Class IU_VentanaPrincipal
         Me.GBBotonesEdicionGP.SuspendLayout()
         Me.TabPageConfi.SuspendLayout()
         Me.GroupBoxInformes.SuspendLayout()
-        Me.GBEditarRoles.SuspendLayout()
         Me.GroupBoxPaises.SuspendLayout()
         Me.GBEditarAñadirPais.SuspendLayout()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TabControl1
@@ -171,7 +167,7 @@ Partial Class IU_VentanaPrincipal
         Me.TabControl1.Margin = New System.Windows.Forms.Padding(4)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(4217, 2031)
+        Me.TabControl1.Size = New System.Drawing.Size(4191, 2031)
         Me.TabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed
         Me.TabControl1.TabIndex = 1
         '
@@ -506,7 +502,7 @@ Partial Class IU_VentanaPrincipal
         Me.TabPagePilotos.Margin = New System.Windows.Forms.Padding(4)
         Me.TabPagePilotos.Name = "TabPagePilotos"
         Me.TabPagePilotos.Padding = New System.Windows.Forms.Padding(4)
-        Me.TabPagePilotos.Size = New System.Drawing.Size(4209, 1996)
+        Me.TabPagePilotos.Size = New System.Drawing.Size(4183, 1996)
         Me.TabPagePilotos.TabIndex = 1
         Me.TabPagePilotos.Text = "Pilotos"
         '
@@ -909,7 +905,7 @@ Partial Class IU_VentanaPrincipal
         Me.TabGranPremio.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.TabGranPremio.Name = "TabGranPremio"
         Me.TabGranPremio.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.TabGranPremio.Size = New System.Drawing.Size(4209, 1996)
+        Me.TabGranPremio.Size = New System.Drawing.Size(4183, 1996)
         Me.TabGranPremio.TabIndex = 4
         Me.TabGranPremio.Text = "Grandes Premios"
         '
@@ -920,11 +916,11 @@ Partial Class IU_VentanaPrincipal
         Me.GBOpcionesGP.Controls.Add(Me.BtEditarGP)
         Me.GBOpcionesGP.Controls.Add(Me.BtEliminarGP)
         Me.GBOpcionesGP.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GBOpcionesGP.Location = New System.Drawing.Point(699, 39)
+        Me.GBOpcionesGP.Location = New System.Drawing.Point(763, 39)
         Me.GBOpcionesGP.Margin = New System.Windows.Forms.Padding(4)
         Me.GBOpcionesGP.Name = "GBOpcionesGP"
         Me.GBOpcionesGP.Padding = New System.Windows.Forms.Padding(4)
-        Me.GBOpcionesGP.Size = New System.Drawing.Size(251, 138)
+        Me.GBOpcionesGP.Size = New System.Drawing.Size(251, 115)
         Me.GBOpcionesGP.TabIndex = 25
         Me.GBOpcionesGP.TabStop = False
         Me.GBOpcionesGP.Text = "Opciones"
@@ -932,7 +928,7 @@ Partial Class IU_VentanaPrincipal
         'ButtonAnadirEdicion
         '
         Me.ButtonAnadirEdicion.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.ButtonAnadirEdicion.Location = New System.Drawing.Point(21, 84)
+        Me.ButtonAnadirEdicion.Location = New System.Drawing.Point(16, 71)
         Me.ButtonAnadirEdicion.Name = "ButtonAnadirEdicion"
         Me.ButtonAnadirEdicion.Size = New System.Drawing.Size(223, 31)
         Me.ButtonAnadirEdicion.TabIndex = 24
@@ -946,7 +942,7 @@ Partial Class IU_VentanaPrincipal
         Me.BtAñadirGP.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtAñadirGP.ForeColor = System.Drawing.SystemColors.ControlText
         Me.BtAñadirGP.Image = CType(resources.GetObject("BtAñadirGP.Image"), System.Drawing.Image)
-        Me.BtAñadirGP.Location = New System.Drawing.Point(21, 30)
+        Me.BtAñadirGP.Location = New System.Drawing.Point(21, 17)
         Me.BtAñadirGP.Margin = New System.Windows.Forms.Padding(4)
         Me.BtAñadirGP.Name = "BtAñadirGP"
         Me.BtAñadirGP.RightToLeft = System.Windows.Forms.RightToLeft.No
@@ -963,7 +959,7 @@ Partial Class IU_VentanaPrincipal
         Me.BtEditarGP.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtEditarGP.ForeColor = System.Drawing.SystemColors.ControlText
         Me.BtEditarGP.Image = CType(resources.GetObject("BtEditarGP.Image"), System.Drawing.Image)
-        Me.BtEditarGP.Location = New System.Drawing.Point(93, 30)
+        Me.BtEditarGP.Location = New System.Drawing.Point(93, 17)
         Me.BtEditarGP.Margin = New System.Windows.Forms.Padding(4)
         Me.BtEditarGP.Name = "BtEditarGP"
         Me.BtEditarGP.RightToLeft = System.Windows.Forms.RightToLeft.No
@@ -980,7 +976,7 @@ Partial Class IU_VentanaPrincipal
         Me.BtEliminarGP.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtEliminarGP.ForeColor = System.Drawing.SystemColors.ControlText
         Me.BtEliminarGP.Image = CType(resources.GetObject("BtEliminarGP.Image"), System.Drawing.Image)
-        Me.BtEliminarGP.Location = New System.Drawing.Point(165, 30)
+        Me.BtEliminarGP.Location = New System.Drawing.Point(165, 17)
         Me.BtEliminarGP.Margin = New System.Windows.Forms.Padding(4)
         Me.BtEliminarGP.Name = "BtEliminarGP"
         Me.BtEliminarGP.RightToLeft = System.Windows.Forms.RightToLeft.No
@@ -992,14 +988,14 @@ Partial Class IU_VentanaPrincipal
         'DataGridView2
         '
         Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlLightLight
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DataGridView2.DefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle22.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle22.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle22.ForeColor = System.Drawing.SystemColors.ControlLightLight
+        DataGridViewCellStyle22.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DataGridView2.DefaultCellStyle = DataGridViewCellStyle22
         Me.DataGridView2.Location = New System.Drawing.Point(956, 335)
         Me.DataGridView2.Name = "DataGridView2"
         Me.DataGridView2.RowHeadersWidth = 51
@@ -1014,33 +1010,33 @@ Partial Class IU_VentanaPrincipal
         Me.DataGridViewEdicion.AllowUserToResizeColumns = False
         Me.DataGridViewEdicion.AllowUserToResizeRows = False
         Me.DataGridViewEdicion.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridViewEdicion.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle23.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle23.ForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle23.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridViewEdicion.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle23
         Me.DataGridViewEdicion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlLightLight
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DataGridViewEdicion.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle24.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle24.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle24.ForeColor = System.Drawing.SystemColors.ControlLightLight
+        DataGridViewCellStyle24.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DataGridViewEdicion.DefaultCellStyle = DataGridViewCellStyle24
         Me.DataGridViewEdicion.Location = New System.Drawing.Point(37, 335)
         Me.DataGridViewEdicion.Name = "DataGridViewEdicion"
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridViewEdicion.RowHeadersDefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle25.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle25.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle25.ForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle25.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle25.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle25.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridViewEdicion.RowHeadersDefaultCellStyle = DataGridViewCellStyle25
         Me.DataGridViewEdicion.RowHeadersWidth = 51
         Me.DataGridViewEdicion.RowTemplate.Height = 24
         Me.DataGridViewEdicion.Size = New System.Drawing.Size(783, 176)
@@ -1072,7 +1068,7 @@ Partial Class IU_VentanaPrincipal
         Me.ListBoxEdición.ForeColor = System.Drawing.SystemColors.InactiveCaptionText
         Me.ListBoxEdición.FormattingEnabled = True
         Me.ListBoxEdición.ItemHeight = 20
-        Me.ListBoxEdición.Location = New System.Drawing.Point(353, 39)
+        Me.ListBoxEdición.Location = New System.Drawing.Point(409, 39)
         Me.ListBoxEdición.Name = "ListBoxEdición"
         Me.ListBoxEdición.ScrollAlwaysVisible = True
         Me.ListBoxEdición.Size = New System.Drawing.Size(320, 244)
@@ -1089,11 +1085,11 @@ Partial Class IU_VentanaPrincipal
         Me.GBDatosGranPremio.Enabled = False
         Me.GBDatosGranPremio.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GBDatosGranPremio.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.GBDatosGranPremio.Location = New System.Drawing.Point(982, 39)
+        Me.GBDatosGranPremio.Location = New System.Drawing.Point(1046, 39)
         Me.GBDatosGranPremio.Margin = New System.Windows.Forms.Padding(4)
         Me.GBDatosGranPremio.Name = "GBDatosGranPremio"
         Me.GBDatosGranPremio.Padding = New System.Windows.Forms.Padding(4)
-        Me.GBDatosGranPremio.Size = New System.Drawing.Size(391, 183)
+        Me.GBDatosGranPremio.Size = New System.Drawing.Size(328, 244)
         Me.GBDatosGranPremio.TabIndex = 2
         Me.GBDatosGranPremio.TabStop = False
         Me.GBDatosGranPremio.Text = "Datos del Gran Premio"
@@ -1103,7 +1099,7 @@ Partial Class IU_VentanaPrincipal
         Me.TextBoxIDGranPremio.BackColor = System.Drawing.SystemColors.Control
         Me.TextBoxIDGranPremio.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBoxIDGranPremio.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxIDGranPremio.Location = New System.Drawing.Point(173, 127)
+        Me.TextBoxIDGranPremio.Location = New System.Drawing.Point(118, 153)
         Me.TextBoxIDGranPremio.Margin = New System.Windows.Forms.Padding(4)
         Me.TextBoxIDGranPremio.Name = "TextBoxIDGranPremio"
         Me.TextBoxIDGranPremio.Size = New System.Drawing.Size(192, 23)
@@ -1114,7 +1110,7 @@ Partial Class IU_VentanaPrincipal
         Me.CBPaisGP.BackColor = System.Drawing.SystemColors.Control
         Me.CBPaisGP.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CBPaisGP.FormattingEnabled = True
-        Me.CBPaisGP.Location = New System.Drawing.Point(173, 77)
+        Me.CBPaisGP.Location = New System.Drawing.Point(118, 103)
         Me.CBPaisGP.Margin = New System.Windows.Forms.Padding(4)
         Me.CBPaisGP.Name = "CBPaisGP"
         Me.CBPaisGP.Size = New System.Drawing.Size(192, 25)
@@ -1125,7 +1121,7 @@ Partial Class IU_VentanaPrincipal
         Me.TextBoxNombreGP.BackColor = System.Drawing.SystemColors.Control
         Me.TextBoxNombreGP.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBoxNombreGP.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxNombreGP.Location = New System.Drawing.Point(173, 30)
+        Me.TextBoxNombreGP.Location = New System.Drawing.Point(118, 56)
         Me.TextBoxNombreGP.Margin = New System.Windows.Forms.Padding(4)
         Me.TextBoxNombreGP.Name = "TextBoxNombreGP"
         Me.TextBoxNombreGP.Size = New System.Drawing.Size(192, 23)
@@ -1135,7 +1131,7 @@ Partial Class IU_VentanaPrincipal
         '
         Me.Label9.AutoSize = True
         Me.Label9.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.Location = New System.Drawing.Point(16, 85)
+        Me.Label9.Location = New System.Drawing.Point(23, 110)
         Me.Label9.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(35, 17)
@@ -1146,7 +1142,7 @@ Partial Class IU_VentanaPrincipal
         '
         Me.Label10.AutoSize = True
         Me.Label10.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label10.Location = New System.Drawing.Point(16, 129)
+        Me.Label10.Location = New System.Drawing.Point(23, 159)
         Me.Label10.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(21, 17)
@@ -1157,7 +1153,7 @@ Partial Class IU_VentanaPrincipal
         '
         Me.LabelNombreGranPremio.AutoSize = True
         Me.LabelNombreGranPremio.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelNombreGranPremio.Location = New System.Drawing.Point(16, 32)
+        Me.LabelNombreGranPremio.Location = New System.Drawing.Point(23, 56)
         Me.LabelNombreGranPremio.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.LabelNombreGranPremio.Name = "LabelNombreGranPremio"
         Me.LabelNombreGranPremio.Size = New System.Drawing.Size(58, 17)
@@ -1171,11 +1167,11 @@ Partial Class IU_VentanaPrincipal
         Me.GBBotonesEdicionGP.Controls.Add(Me.BtGuardarGP)
         Me.GBBotonesEdicionGP.Enabled = False
         Me.GBBotonesEdicionGP.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GBBotonesEdicionGP.Location = New System.Drawing.Point(699, 193)
+        Me.GBBotonesEdicionGP.Location = New System.Drawing.Point(763, 170)
         Me.GBBotonesEdicionGP.Margin = New System.Windows.Forms.Padding(4)
         Me.GBBotonesEdicionGP.Name = "GBBotonesEdicionGP"
         Me.GBBotonesEdicionGP.Padding = New System.Windows.Forms.Padding(4)
-        Me.GBBotonesEdicionGP.Size = New System.Drawing.Size(251, 102)
+        Me.GBBotonesEdicionGP.Size = New System.Drawing.Size(251, 77)
         Me.GBBotonesEdicionGP.TabIndex = 19
         Me.GBBotonesEdicionGP.TabStop = False
         Me.GBBotonesEdicionGP.Text = "Botones de edición"
@@ -1187,7 +1183,7 @@ Partial Class IU_VentanaPrincipal
         Me.BtCancelarGP.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtCancelarGP.ForeColor = System.Drawing.SystemColors.ControlText
         Me.BtCancelarGP.Image = CType(resources.GetObject("BtCancelarGP.Image"), System.Drawing.Image)
-        Me.BtCancelarGP.Location = New System.Drawing.Point(21, 30)
+        Me.BtCancelarGP.Location = New System.Drawing.Point(21, 22)
         Me.BtCancelarGP.Margin = New System.Windows.Forms.Padding(4)
         Me.BtCancelarGP.Name = "BtCancelarGP"
         Me.BtCancelarGP.RightToLeft = System.Windows.Forms.RightToLeft.No
@@ -1203,7 +1199,7 @@ Partial Class IU_VentanaPrincipal
         Me.BtLimpiarGP.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtLimpiarGP.ForeColor = System.Drawing.SystemColors.ControlText
         Me.BtLimpiarGP.Image = CType(resources.GetObject("BtLimpiarGP.Image"), System.Drawing.Image)
-        Me.BtLimpiarGP.Location = New System.Drawing.Point(93, 30)
+        Me.BtLimpiarGP.Location = New System.Drawing.Point(93, 22)
         Me.BtLimpiarGP.Margin = New System.Windows.Forms.Padding(4)
         Me.BtLimpiarGP.Name = "BtLimpiarGP"
         Me.BtLimpiarGP.RightToLeft = System.Windows.Forms.RightToLeft.No
@@ -1219,7 +1215,7 @@ Partial Class IU_VentanaPrincipal
         Me.BtGuardarGP.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.BtGuardarGP.ForeColor = System.Drawing.SystemColors.ControlText
         Me.BtGuardarGP.Image = CType(resources.GetObject("BtGuardarGP.Image"), System.Drawing.Image)
-        Me.BtGuardarGP.Location = New System.Drawing.Point(165, 30)
+        Me.BtGuardarGP.Location = New System.Drawing.Point(165, 22)
         Me.BtGuardarGP.Margin = New System.Windows.Forms.Padding(4)
         Me.BtGuardarGP.Name = "BtGuardarGP"
         Me.BtGuardarGP.RightToLeft = System.Windows.Forms.RightToLeft.No
@@ -1239,7 +1235,7 @@ Partial Class IU_VentanaPrincipal
         Me.ListBoxGranPremio.Margin = New System.Windows.Forms.Padding(4)
         Me.ListBoxGranPremio.Name = "ListBoxGranPremio"
         Me.ListBoxGranPremio.ScrollAlwaysVisible = True
-        Me.ListBoxGranPremio.Size = New System.Drawing.Size(283, 244)
+        Me.ListBoxGranPremio.Size = New System.Drawing.Size(342, 244)
         Me.ListBoxGranPremio.TabIndex = 16
         '
         'TabPageConfi
@@ -1251,180 +1247,37 @@ Partial Class IU_VentanaPrincipal
         Me.TabPageConfi.Location = New System.Drawing.Point(4, 31)
         Me.TabPageConfi.Margin = New System.Windows.Forms.Padding(4)
         Me.TabPageConfi.Name = "TabPageConfi"
-        Me.TabPageConfi.Size = New System.Drawing.Size(4209, 1996)
+        Me.TabPageConfi.Size = New System.Drawing.Size(4183, 1996)
         Me.TabPageConfi.TabIndex = 2
         Me.TabPageConfi.Text = "Configuración"
         '
         'GroupBoxInformes
         '
-        Me.GroupBoxInformes.Controls.Add(Me.GBEditarRoles)
-        Me.GroupBoxInformes.Controls.Add(Me.BtEditarConf)
-        Me.GroupBoxInformes.Controls.Add(Me.BtAñadirRol)
-        Me.GroupBoxInformes.Controls.Add(Me.BtBorrarRol)
-        Me.GroupBoxInformes.Controls.Add(Me.ListBoxRoles)
+        Me.GroupBoxInformes.Controls.Add(Me.Button1)
+        Me.GroupBoxInformes.Controls.Add(Me.DataGridView1)
+        Me.GroupBoxInformes.Controls.Add(Me.ListBoxTemporadas)
         Me.GroupBoxInformes.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBoxInformes.ForeColor = System.Drawing.SystemColors.MenuHighlight
-        Me.GroupBoxInformes.Location = New System.Drawing.Point(855, 23)
+        Me.GroupBoxInformes.Location = New System.Drawing.Point(73, 267)
         Me.GroupBoxInformes.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBoxInformes.Name = "GroupBoxInformes"
         Me.GroupBoxInformes.Padding = New System.Windows.Forms.Padding(4)
-        Me.GroupBoxInformes.Size = New System.Drawing.Size(753, 623)
+        Me.GroupBoxInformes.Size = New System.Drawing.Size(1252, 273)
         Me.GroupBoxInformes.TabIndex = 28
         Me.GroupBoxInformes.TabStop = False
-        Me.GroupBoxInformes.Text = "GENERACIÓN DE INFORMES"
+        Me.GroupBoxInformes.Text = "Informe de la clasificación del mundial"
         '
-        'GBEditarRoles
+        'ListBoxTemporadas
         '
-        Me.GBEditarRoles.Controls.Add(Me.BtLimpiarRoles)
-        Me.GBEditarRoles.Controls.Add(Me.Label7)
-        Me.GBEditarRoles.Controls.Add(Me.BtCancelarRoles)
-        Me.GBEditarRoles.Controls.Add(Me.BtGuardarRoles)
-        Me.GBEditarRoles.Controls.Add(Me.TextBoxDescRol)
-        Me.GBEditarRoles.Enabled = False
-        Me.GBEditarRoles.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GBEditarRoles.Location = New System.Drawing.Point(387, 209)
-        Me.GBEditarRoles.Margin = New System.Windows.Forms.Padding(4)
-        Me.GBEditarRoles.Name = "GBEditarRoles"
-        Me.GBEditarRoles.Padding = New System.Windows.Forms.Padding(4)
-        Me.GBEditarRoles.Size = New System.Drawing.Size(344, 288)
-        Me.GBEditarRoles.TabIndex = 31
-        Me.GBEditarRoles.TabStop = False
-        '
-        'BtLimpiarRoles
-        '
-        Me.BtLimpiarRoles.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.BtLimpiarRoles.FlatAppearance.BorderSize = 0
-        Me.BtLimpiarRoles.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtLimpiarRoles.Image = CType(resources.GetObject("BtLimpiarRoles.Image"), System.Drawing.Image)
-        Me.BtLimpiarRoles.Location = New System.Drawing.Point(196, 215)
-        Me.BtLimpiarRoles.Margin = New System.Windows.Forms.Padding(4)
-        Me.BtLimpiarRoles.Name = "BtLimpiarRoles"
-        Me.BtLimpiarRoles.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.BtLimpiarRoles.Size = New System.Drawing.Size(64, 47)
-        Me.BtLimpiarRoles.TabIndex = 33
-        Me.BtLimpiarRoles.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.BtLimpiarRoles.UseVisualStyleBackColor = True
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.ForeColor = System.Drawing.SystemColors.InactiveCaptionText
-        Me.Label7.Location = New System.Drawing.Point(8, 42)
-        Me.Label7.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(82, 17)
-        Me.Label7.TabIndex = 27
-        Me.Label7.Text = "Descripción"
-        '
-        'BtCancelarRoles
-        '
-        Me.BtCancelarRoles.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.BtCancelarRoles.FlatAppearance.BorderSize = 0
-        Me.BtCancelarRoles.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtCancelarRoles.Image = CType(resources.GetObject("BtCancelarRoles.Image"), System.Drawing.Image)
-        Me.BtCancelarRoles.Location = New System.Drawing.Point(123, 215)
-        Me.BtCancelarRoles.Margin = New System.Windows.Forms.Padding(4)
-        Me.BtCancelarRoles.Name = "BtCancelarRoles"
-        Me.BtCancelarRoles.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.BtCancelarRoles.Size = New System.Drawing.Size(64, 47)
-        Me.BtCancelarRoles.TabIndex = 32
-        Me.BtCancelarRoles.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.BtCancelarRoles.UseVisualStyleBackColor = True
-        '
-        'BtGuardarRoles
-        '
-        Me.BtGuardarRoles.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.BtGuardarRoles.FlatAppearance.BorderSize = 0
-        Me.BtGuardarRoles.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtGuardarRoles.Image = CType(resources.GetObject("BtGuardarRoles.Image"), System.Drawing.Image)
-        Me.BtGuardarRoles.Location = New System.Drawing.Point(268, 215)
-        Me.BtGuardarRoles.Margin = New System.Windows.Forms.Padding(4)
-        Me.BtGuardarRoles.Name = "BtGuardarRoles"
-        Me.BtGuardarRoles.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.BtGuardarRoles.Size = New System.Drawing.Size(64, 47)
-        Me.BtGuardarRoles.TabIndex = 31
-        Me.BtGuardarRoles.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.BtGuardarRoles.UseVisualStyleBackColor = True
-        '
-        'TextBoxDescRol
-        '
-        Me.TextBoxDescRol.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBoxDescRol.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxDescRol.Location = New System.Drawing.Point(101, 42)
-        Me.TextBoxDescRol.Margin = New System.Windows.Forms.Padding(4)
-        Me.TextBoxDescRol.Multiline = True
-        Me.TextBoxDescRol.Name = "TextBoxDescRol"
-        Me.TextBoxDescRol.Size = New System.Drawing.Size(233, 162)
-        Me.TextBoxDescRol.TabIndex = 24
-        '
-        'BtEditarConf
-        '
-        Me.BtEditarConf.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.BtEditarConf.Enabled = False
-        Me.BtEditarConf.FlatAppearance.BorderSize = 0
-        Me.BtEditarConf.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtEditarConf.ForeColor = System.Drawing.SystemColors.InactiveCaptionText
-        Me.BtEditarConf.Image = CType(resources.GetObject("BtEditarConf.Image"), System.Drawing.Image)
-        Me.BtEditarConf.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.BtEditarConf.Location = New System.Drawing.Point(509, 116)
-        Me.BtEditarConf.Margin = New System.Windows.Forms.Padding(4)
-        Me.BtEditarConf.Name = "BtEditarConf"
-        Me.BtEditarConf.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.BtEditarConf.Size = New System.Drawing.Size(96, 31)
-        Me.BtEditarConf.TabIndex = 26
-        Me.BtEditarConf.Text = "Editar"
-        Me.BtEditarConf.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.BtEditarConf.UseVisualStyleBackColor = True
-        '
-        'BtAñadirRol
-        '
-        Me.BtAñadirRol.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.BtAñadirRol.FlatAppearance.BorderSize = 0
-        Me.BtAñadirRol.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtAñadirRol.ForeColor = System.Drawing.SystemColors.InactiveCaptionText
-        Me.BtAñadirRol.Image = CType(resources.GetObject("BtAñadirRol.Image"), System.Drawing.Image)
-        Me.BtAñadirRol.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.BtAñadirRol.Location = New System.Drawing.Point(619, 116)
-        Me.BtAñadirRol.Margin = New System.Windows.Forms.Padding(4)
-        Me.BtAñadirRol.Name = "BtAñadirRol"
-        Me.BtAñadirRol.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.BtAñadirRol.Size = New System.Drawing.Size(96, 31)
-        Me.BtAñadirRol.TabIndex = 23
-        Me.BtAñadirRol.Text = "Añadir"
-        Me.BtAñadirRol.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.BtAñadirRol.UseVisualStyleBackColor = True
-        '
-        'BtBorrarRol
-        '
-        Me.BtBorrarRol.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.BtBorrarRol.Enabled = False
-        Me.BtBorrarRol.FlatAppearance.BorderSize = 0
-        Me.BtBorrarRol.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtBorrarRol.ForeColor = System.Drawing.SystemColors.InactiveCaptionText
-        Me.BtBorrarRol.Image = CType(resources.GetObject("BtBorrarRol.Image"), System.Drawing.Image)
-        Me.BtBorrarRol.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.BtBorrarRol.Location = New System.Drawing.Point(387, 116)
-        Me.BtBorrarRol.Margin = New System.Windows.Forms.Padding(4)
-        Me.BtBorrarRol.Name = "BtBorrarRol"
-        Me.BtBorrarRol.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.BtBorrarRol.Size = New System.Drawing.Size(105, 31)
-        Me.BtBorrarRol.TabIndex = 22
-        Me.BtBorrarRol.Text = "Borrar "
-        Me.BtBorrarRol.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.BtBorrarRol.UseVisualStyleBackColor = True
-        '
-        'ListBoxRoles
-        '
-        Me.ListBoxRoles.BackColor = System.Drawing.SystemColors.InactiveCaption
-        Me.ListBoxRoles.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ListBoxRoles.FormattingEnabled = True
-        Me.ListBoxRoles.ItemHeight = 20
-        Me.ListBoxRoles.Location = New System.Drawing.Point(20, 37)
-        Me.ListBoxRoles.Margin = New System.Windows.Forms.Padding(4)
-        Me.ListBoxRoles.Name = "ListBoxRoles"
-        Me.ListBoxRoles.Size = New System.Drawing.Size(319, 204)
-        Me.ListBoxRoles.TabIndex = 0
+        Me.ListBoxTemporadas.BackColor = System.Drawing.SystemColors.InactiveCaption
+        Me.ListBoxTemporadas.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ListBoxTemporadas.FormattingEnabled = True
+        Me.ListBoxTemporadas.ItemHeight = 20
+        Me.ListBoxTemporadas.Location = New System.Drawing.Point(20, 37)
+        Me.ListBoxTemporadas.Margin = New System.Windows.Forms.Padding(4)
+        Me.ListBoxTemporadas.Name = "ListBoxTemporadas"
+        Me.ListBoxTemporadas.Size = New System.Drawing.Size(189, 204)
+        Me.ListBoxTemporadas.TabIndex = 0
         '
         'GroupBoxPaises
         '
@@ -1439,7 +1292,7 @@ Partial Class IU_VentanaPrincipal
         Me.GroupBoxPaises.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBoxPaises.Name = "GroupBoxPaises"
         Me.GroupBoxPaises.Padding = New System.Windows.Forms.Padding(4)
-        Me.GroupBoxPaises.Size = New System.Drawing.Size(753, 280)
+        Me.GroupBoxPaises.Size = New System.Drawing.Size(1246, 193)
         Me.GroupBoxPaises.TabIndex = 0
         Me.GroupBoxPaises.TabStop = False
         Me.GroupBoxPaises.Text = "PAÍSES"
@@ -1453,7 +1306,7 @@ Partial Class IU_VentanaPrincipal
         Me.GBEditarAñadirPais.Controls.Add(Me.LabelPais)
         Me.GBEditarAñadirPais.Enabled = False
         Me.GBEditarAñadirPais.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GBEditarAñadirPais.Location = New System.Drawing.Point(371, 110)
+        Me.GBEditarAñadirPais.Location = New System.Drawing.Point(675, 37)
         Me.GBEditarAñadirPais.Margin = New System.Windows.Forms.Padding(4)
         Me.GBEditarAñadirPais.Name = "GBEditarAñadirPais"
         Me.GBEditarAñadirPais.Padding = New System.Windows.Forms.Padding(4)
@@ -1538,7 +1391,7 @@ Partial Class IU_VentanaPrincipal
         Me.BtEditarPais.ForeColor = System.Drawing.SystemColors.InactiveCaptionText
         Me.BtEditarPais.Image = CType(resources.GetObject("BtEditarPais.Image"), System.Drawing.Image)
         Me.BtEditarPais.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.BtEditarPais.Location = New System.Drawing.Point(497, 44)
+        Me.BtEditarPais.Location = New System.Drawing.Point(492, 83)
         Me.BtEditarPais.Margin = New System.Windows.Forms.Padding(4)
         Me.BtEditarPais.Name = "BtEditarPais"
         Me.BtEditarPais.RightToLeft = System.Windows.Forms.RightToLeft.No
@@ -1556,7 +1409,7 @@ Partial Class IU_VentanaPrincipal
         Me.BtAñadirPais.ForeColor = System.Drawing.SystemColors.InactiveCaptionText
         Me.BtAñadirPais.Image = CType(resources.GetObject("BtAñadirPais.Image"), System.Drawing.Image)
         Me.BtAñadirPais.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.BtAñadirPais.Location = New System.Drawing.Point(371, 44)
+        Me.BtAñadirPais.Location = New System.Drawing.Point(492, 40)
         Me.BtAñadirPais.Margin = New System.Windows.Forms.Padding(4)
         Me.BtAñadirPais.Name = "BtAñadirPais"
         Me.BtAñadirPais.RightToLeft = System.Windows.Forms.RightToLeft.No
@@ -1575,7 +1428,7 @@ Partial Class IU_VentanaPrincipal
         Me.BtBorrarPais.ForeColor = System.Drawing.SystemColors.InactiveCaptionText
         Me.BtBorrarPais.Image = CType(resources.GetObject("BtBorrarPais.Image"), System.Drawing.Image)
         Me.BtBorrarPais.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.BtBorrarPais.Location = New System.Drawing.Point(619, 44)
+        Me.BtBorrarPais.Location = New System.Drawing.Point(492, 128)
         Me.BtBorrarPais.Margin = New System.Windows.Forms.Padding(4)
         Me.BtBorrarPais.Name = "BtBorrarPais"
         Me.BtBorrarPais.RightToLeft = System.Windows.Forms.RightToLeft.No
@@ -1594,7 +1447,7 @@ Partial Class IU_VentanaPrincipal
         Me.ListBoxPaises.Location = New System.Drawing.Point(20, 37)
         Me.ListBoxPaises.Margin = New System.Windows.Forms.Padding(4)
         Me.ListBoxPaises.Name = "ListBoxPaises"
-        Me.ListBoxPaises.Size = New System.Drawing.Size(319, 204)
+        Me.ListBoxPaises.Size = New System.Drawing.Size(445, 124)
         Me.ListBoxPaises.TabIndex = 0
         '
         'ImageList1
@@ -1606,11 +1459,60 @@ Partial Class IU_VentanaPrincipal
         Me.ImageList1.Images.SetKeyName(2, "ajustes.png")
         Me.ImageList1.Images.SetKeyName(3, "f1.png")
         '
+        'DataGridView1
+        '
+        Me.DataGridView1.AllowUserToAddRows = False
+        Me.DataGridView1.AllowUserToDeleteRows = False
+        Me.DataGridView1.AllowUserToResizeColumns = False
+        Me.DataGridView1.AllowUserToResizeRows = False
+        Me.DataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
+        DataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle26.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle26.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle26.ForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle26.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle26.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle26.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridView1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle26
+        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        DataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle27.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle27.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle27.ForeColor = System.Drawing.SystemColors.MenuHighlight
+        DataGridViewCellStyle27.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle27.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle27.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DataGridView1.DefaultCellStyle = DataGridViewCellStyle27
+        Me.DataGridView1.Location = New System.Drawing.Point(280, 37)
+        Me.DataGridView1.Name = "DataGridView1"
+        DataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle28.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle28.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle28.ForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle28.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle28.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle28.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridView1.RowHeadersDefaultCellStyle = DataGridViewCellStyle28
+        Me.DataGridView1.RowHeadersWidth = 51
+        Me.DataGridView1.RowTemplate.Height = 24
+        Me.DataGridView1.Size = New System.Drawing.Size(584, 204)
+        Me.DataGridView1.TabIndex = 21
+        '
+        'Button1
+        '
+        Me.Button1.ForeColor = System.Drawing.SystemColors.InactiveCaptionText
+        Me.Button1.Location = New System.Drawing.Point(910, 180)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(100, 61)
+        Me.Button1.TabIndex = 23
+        Me.Button1.Text = "Generar informe"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'IU_VentanaPrincipal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1470, 647)
+        Me.ClientSize = New System.Drawing.Size(1444, 647)
         Me.Controls.Add(Me.TabControl1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(4)
@@ -1641,11 +1543,10 @@ Partial Class IU_VentanaPrincipal
         Me.GBBotonesEdicionGP.ResumeLayout(False)
         Me.TabPageConfi.ResumeLayout(False)
         Me.GroupBoxInformes.ResumeLayout(False)
-        Me.GBEditarRoles.ResumeLayout(False)
-        Me.GBEditarRoles.PerformLayout()
         Me.GroupBoxPaises.ResumeLayout(False)
         Me.GBEditarAñadirPais.ResumeLayout(False)
         Me.GBEditarAñadirPais.PerformLayout()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1662,13 +1563,8 @@ Partial Class IU_VentanaPrincipal
     Friend WithEvents ListBoxPaises As ListBox
     Friend WithEvents TextBoxDescPais As TextBox
     Friend WithEvents GroupBoxInformes As GroupBox
-    Friend WithEvents BtEditarConf As Button
-    Friend WithEvents BtAñadirRol As Button
-    Friend WithEvents BtBorrarRol As Button
-    Friend WithEvents ListBoxRoles As ListBox
+    Friend WithEvents ListBoxTemporadas As ListBox
     Friend WithEvents BtEditarPais As Button
-    Friend WithEvents BtLimpiarRoles As Button
-    Friend WithEvents TextBoxDescRol As TextBox
     Friend WithEvents LabelPais As Label
     Friend WithEvents GBOpcionesPer As GroupBox
     Friend WithEvents ListBoxPilotos As ListBox
@@ -1676,15 +1572,11 @@ Partial Class IU_VentanaPrincipal
     Friend WithEvents BtCancelarPiloto As Button
     Friend WithEvents BtLimpiarPiloto As Button
     Friend WithEvents BtGuardarPiloto As Button
-    Friend WithEvents GBEditarRoles As GroupBox
     Friend WithEvents Button6 As Button
     Friend WithEvents Button7 As Button
-    Friend WithEvents Label7 As Label
     Friend WithEvents GBEditarAñadirPais As GroupBox
     Friend WithEvents BtGuardarPais As Button
     Friend WithEvents BtLimpiarPais As Button
-    Friend WithEvents BtCancelarRoles As Button
-    Friend WithEvents BtGuardarRoles As Button
     Friend WithEvents TabGranPremio As TabPage
     Friend WithEvents ImageList1 As ImageList
     Friend WithEvents ToolTipAñadir As ToolTip
@@ -1754,4 +1646,6 @@ Partial Class IU_VentanaPrincipal
     Friend WithEvents BtAñadirGP As Button
     Friend WithEvents BtEditarGP As Button
     Friend WithEvents BtEliminarGP As Button
+    Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents Button1 As Button
 End Class

@@ -1032,4 +1032,5 @@ Public Class IU_VentanaPrincipal
             Return "No"
         End If
     End Function
+
 End Class

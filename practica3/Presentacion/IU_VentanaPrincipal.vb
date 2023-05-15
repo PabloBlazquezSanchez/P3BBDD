@@ -322,6 +322,21 @@ Public Class IU_VentanaPrincipal
 
     End Sub
 
+    Private Function CalcularPuntuacion(ByVal posicion As Integer, ByVal vueltaRapida As String) As Integer
+        Dim puntuaciones() As Integer = {25, 18, 15, 12, 10, 8, 6, 4, 2, 1}
+        Dim puntuacion As Integer = 0
+
+        If posicion > 0 And posicion <= 10 Then
+            puntuacion = puntuaciones(posicion - 1)
+
+            If vueltaRapida = "Sí" And posicion <= 10 Then
+                puntuacion += 1
+            End If
+        End If
+
+        Return puntuacion
+    End Function
+
     Private Function comprobarCamposPil() As Boolean
         Dim camposValidos As Boolean
         camposValidos = True
@@ -772,7 +787,9 @@ Public Class IU_VentanaPrincipal
                 GP.LeerGP()
                 Dim clas As New ClasificacionCarrera
                 If (Not IsNothing(clas.ResultadoPiloto(piloto.idPILOTO, edi.idEDICION))) And (clas.ResultadoPiloto(piloto.idPILOTO, edi.idEDICION) <> 0) Then
-                    mensaje = mensaje & GP.NOMBRE & " | Edición: " & edi.NOMBRE & " | Resultado: " & clas.ResultadoPiloto(piloto.idPILOTO, edi.idEDICION) & " | Vuelta rápida: " & vueltaRapida(edi.PILOTO_VR, piloto.idPILOTO) & vbNewLine
+                    Dim posicion As Integer = clas.ResultadoPiloto(piloto.idPILOTO, edi.idEDICION)
+                    Dim VR As String = vueltaRapida(edi.PILOTO_VR, piloto.idPILOTO)
+                    mensaje = mensaje & GP.NOMBRE & " | Edición: " & edi.NOMBRE & " | Puntos: " & posicion & " | Resultado: " & CalcularPuntuacion(posicion, VR) & " | Vuelta rápida: " & VR & vbNewLine
                 End If
             Next
 

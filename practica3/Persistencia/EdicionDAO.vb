@@ -47,6 +47,24 @@
         Return Ediciones
     End Function
 
+    Public Function ObtenerEdicionesDeGP(ByVal id As String) As Collection
+        Dim resultado As New Collection
+        Dim col, aux As Collection
+        col = AgenteBD.ObtenerAgente().Leer("SELECT * FROM EDICION e JOIN GRAN_PREMIO g ON e.idGRAN_PREMIO=g.idGRAN_PREMIO WHERE e.idGRAN_PREMIO='" & id & "';")
+        For Each aux In col
+            Dim e As New Edicion()
+            e.idEDICION = CInt(aux(1))
+            e.idGRAN_PREMIO = aux(2).ToString
+            e.NOMBRE = aux(3).ToString
+            e.CIRCUITO = aux(4).ToString
+            e.FECHA = aux(5).ToString
+            e.ANIO = aux(6).ToString
+            e.PILOTO_VR = aux(7)
+            resultado.Add(e)
+        Next
+        Return resultado
+    End Function
+
     Public Function LeerTodas() As Collection
         Dim col, aux As Collection
         col = AgenteBD.ObtenerAgente().Leer("SELECT * FROM EDICION ORDER BY idEDICION")

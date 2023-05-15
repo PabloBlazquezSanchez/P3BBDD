@@ -22,6 +22,10 @@ Public Class Edicion
     Public Function ObtenerPartGP_Piloto(ByVal id As String) As Collection
         Return Me.EdDAO.ObtenerPartGP_Piloto(id)
     End Function
+
+    Public Function ObtenerEdicionesDeGP(ByVal id As String) As Collection
+        Return Me.EdDAO.ObtenerEdicionesDeGP(id)
+    End Function
     Public Sub New(id As String)
         Me.EdDAO = New EdicionDAO
         Me.idEDICION = id

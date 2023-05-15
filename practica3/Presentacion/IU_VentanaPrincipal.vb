@@ -40,11 +40,6 @@ Public Class IU_VentanaPrincipal
         For Each GranPremio As GranPremio In myGranPremio.GPDAO.LeerTodas
             ListBoxGranPremio.Items.Add(GranPremio.idGRAN_PREMIO & " - " & GranPremio.NOMBRE)
         Next
-
-        Dim myEdicion As New Edicion()
-        For Each Edicion As Edicion In myEdicion.EdDAO.LeerTodas
-            ListBoxEdición.Items.Add(Edicion.idEDICION & " - " & Edicion.NOMBRE)
-        Next
     End Sub
 
     Function comprobarNombrePropio(ByVal Nombre As String) As Boolean
@@ -182,7 +177,7 @@ Public Class IU_VentanaPrincipal
         TextBoxLongitudCircuito.Undo()
         TextBoxLongitudCircuito.ClearUndo()
         TextBoxCurvasCircuito.Undo()
-        TextBoxCurvasCircuito.Undo()
+        TextBoxCurvasCircuito.ClearUndo()
         TextBoxIDCircuito.Undo()
         TextBoxIDCircuito.ClearUndo()
         ModoEditarAñadirCir(False)
@@ -218,54 +213,59 @@ Public Class IU_VentanaPrincipal
             If (Not check And Me.estadoCircuito = 0) Then 'Intento crear un circuito con un ID ya existente
                 MsgBox("ID de circuito ya existe.", vbExclamation)
             Else
-                'Por lo demás, no tengo restricciones de repetición de grandes premios, así que me limito a insertarlo'
-                Dim circuitoInsercion As Circuito = New Circuito()
-                Dim paisCirc As Pais = New Pais()
-                Dim nombreC As String = TextBoxNombreCircuito.Text.Trim()
-                Dim ciudadC As String = TextBoxCiudadCircuito.Text.Trim()
-                Dim abr As String = paisCirc.GetAbreviacion(CBPaisCircuito.SelectedItem)
-                Dim lon As Integer = CInt(TextBoxLongitudCircuito.Text)
-                Dim cur As Integer = CInt(TextBoxCurvasCircuito.Text)
-                Dim idC As Integer = CInt(TextBoxIDCircuito.Text)
+                Try
+                    Dim circuitoInsercion As Circuito = New Circuito()
+                    Dim paisCirc As Pais = New Pais()
+                    Dim nombreC As String = TextBoxNombreCircuito.Text.Trim()
+                    Dim ciudadC As String = TextBoxCiudadCircuito.Text.Trim()
+                    Dim abr As String = paisCirc.GetAbreviacion(CBPaisCircuito.SelectedItem)
+                    Dim lon As Integer = CInt(TextBoxLongitudCircuito.Text)
+                    Dim cur As Integer = CInt(TextBoxCurvasCircuito.Text)
+                    Dim idC As Integer = CInt(TextBoxIDCircuito.Text)
 
-                If abr = "" Then
-                    MsgBox("Error con el país entrante.", vbExclamation)
-                    Exit Sub
-                Else
-                    circuitoInsercion.Nombre = nombreC
-                    circuitoInsercion.Ciudad = ciudadC
-                    circuitoInsercion.Pais = abr
-                    circuitoInsercion.Longitud = lon
-                    circuitoInsercion.Curva = cur
-                    circuitoInsercion.IdCircuito = idC
-                    If Me.estadoCircuito = 0 Then 'Añadir un pais'
-                        circuitoInsercion.InsertarCircuito()
-                        circuitoInsercion.LeerCircuito()
-                        ListBoxCircuitos.Items.Add(circuitoInsercion.IdCircuito & " - " & circuitoInsercion.Nombre)
-                        MsgBox("Se ha añadido a la base de datos el circuito " & circuitoInsercion.Nombre & " correctamente.", vbInformation)
-                    ElseIf Me.estadoCircuito = 1 Then 'Editar un pais ya existente'
-                        Dim indice As Integer
-                        Try
-                            Dim actualizar As Integer
-                            Me.circuitoEdi = circuitoInsercion
-                            actualizar = circuitoEdi.ActualizarCircuito
-                            If (actualizar <> 1) Then
-                                MsgBox("Error. No se pudo modificar", vbCritical)
-                                'BtCancelarCir.PerformClick()
-                            Else
-                                MsgBox("Circuito modificado con éxito", vbInformation)
-                                indice = ListBoxCircuitos.SelectedIndex
-                                ListBoxCircuitos.Items.RemoveAt(indice)
-                                ListBoxCircuitos.Items.Insert(indice, Me.circuitoEdi.IdCircuito & " - " & Me.circuitoEdi.Nombre)
-                                'BtCancelarCir.PerformClick()
-                            End If
-                        Catch ex As Exception
-                            MessageBox.Show(ex.Message, ex.Source)
-                        End Try
+                    If abr = "" Then
+                        MsgBox("Error con el país entrante.", vbExclamation)
+                        Exit Sub
+                    Else
+                        circuitoInsercion.Nombre = nombreC
+                        circuitoInsercion.Ciudad = ciudadC
+                        circuitoInsercion.Pais = abr
+                        circuitoInsercion.Longitud = lon
+                        circuitoInsercion.Curva = cur
+                        circuitoInsercion.IdCircuito = idC
+                        If Me.estadoCircuito = 0 Then 'Añadir un pais'
+                            circuitoInsercion.InsertarCircuito()
+                            circuitoInsercion.LeerCircuito()
+                            ListBoxCircuitos.Items.Add(circuitoInsercion.IdCircuito & " - " & circuitoInsercion.Nombre)
+                            MsgBox("Se ha añadido a la base de datos el circuito " & circuitoInsercion.Nombre & " correctamente.", vbInformation)
+                        ElseIf Me.estadoCircuito = 1 Then 'Editar un pais ya existente'
+                            Dim indice As Integer
+                            Try
+                                Dim actualizar As Integer
+                                Me.circuitoEdi = circuitoInsercion
+                                actualizar = circuitoEdi.ActualizarCircuito
+                                If (actualizar <> 1) Then
+                                    MsgBox("Error. No se pudo modificar", vbCritical)
+                                    'BtCancelarCir.PerformClick()
+                                Else
+                                    MsgBox("Circuito modificado con éxito", vbInformation)
+                                    indice = ListBoxCircuitos.SelectedIndex
+                                    ListBoxCircuitos.Items.RemoveAt(indice)
+                                    ListBoxCircuitos.Items.Insert(indice, Me.circuitoEdi.IdCircuito & " - " & Me.circuitoEdi.Nombre)
+                                    'BtCancelarCir.PerformClick()
+                                End If
+                            Catch ex As Exception
+                                MessageBox.Show(ex.Message, ex.Source)
+                            End Try
+                        End If
+                        estadoCircuito = -1
+                        ModoEditarAñadirCir(False)
                     End If
-                    estadoCircuito = -1
-                    ModoEditarAñadirCir(False)
-                End If
+                Catch ex As System.InvalidCastException
+                    MessageBox.Show("Datos introducidos no válidos")
+                Catch ex As Exception
+                    MessageBox.Show(ex.Message, ex.Source)
+                End Try
             End If
         End If
     End Sub
@@ -579,6 +579,25 @@ Public Class IU_VentanaPrincipal
 
     End Sub
 
+    Private Sub ListBoxGranPremio_DarEdiciones(sender As Object, e As EventArgs) Handles ListBoxGranPremio.SelectedIndexChanged
+        ListBoxEdición.Items.Clear()
+        Dim split As String() = ListBoxGranPremio.SelectedItem.ToString().Split(New [Char]() {" "c})
+        Dim id As String
+        id = split(0)
+        Try
+            Dim ediciones As New Edicion()
+            For Each Edicion As Edicion In ediciones.EdDAO.ObtenerEdicionesDeGP(id)
+                ListBoxEdición.Items.Add(Edicion.idEDICION & " - " & Edicion.NOMBRE)
+            Next
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+        End Try
+
+        'Dim myEdicion As New Edicion()
+        'For Each Edicion As Edicion In myEdicion.EdDAO.LeerTodas
+        '    ListBoxEdición.Items.Add(Edicion.idEDICION & " - " & Edicion.NOMBRE)
+        'Next
+    End Sub
     Private Sub ListBoxGranPremio_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBoxGranPremio.SelectedIndexChanged
         If ListBoxGranPremio.SelectedItem IsNot Nothing Then
             BtEditarGP.Enabled = True

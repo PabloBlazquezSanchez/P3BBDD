@@ -5,8 +5,8 @@
         Me.GP = New Collection
     End Sub
 
-    Public Sub LeerTodas()
-        Dim g As GranPremio
+    Public Function LeerTodas() As Collection
+        Dim g As New GranPremio
         Dim col, aux As Collection
         col = AgenteBD.ObtenerAgente().Leer("SELECT * FROM GRAN_PREMIO ORDER BY idGRAN_PREMIO")
         For Each aux In col
@@ -15,7 +15,8 @@
             g.NOMBRE = aux(3).ToString
             Me.GP.Add(g)
         Next
-    End Sub
+        Return GP
+    End Function
 
     Public Sub Leer(ByRef g As GranPremio)
         Dim col As Collection : Dim aux As Collection

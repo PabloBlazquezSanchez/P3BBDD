@@ -12,6 +12,7 @@ Public Class IU_VentanaPrincipal
 
     Private pais As Pais
     Private piloto As New Piloto()
+    Private GranPremio As GranPremio
 
     Private Sub Form2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim myPais As New Pais()
@@ -30,6 +31,11 @@ Public Class IU_VentanaPrincipal
         For Each circuito As Circuito In myCircuito.CircuDAO.LeerTodas
             ListBoxCircuitos.Items.Add(circuito.IdCircuito & " - " & circuito.Nombre)
 
+        Next
+
+        Dim myGranPremio As New GranPremio()
+        For Each GranPremio As GranPremio In myGranPremio.GPDAO.LeerTodas
+            ListBoxGranPremio.Items.Add(GranPremio.idGRAN_PREMIO & " - " & GranPremio.NOMBRE)
         Next
     End Sub
 

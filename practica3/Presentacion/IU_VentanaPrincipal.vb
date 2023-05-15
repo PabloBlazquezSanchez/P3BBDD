@@ -10,9 +10,12 @@ Public Class IU_VentanaPrincipal
     Private pilotoEdi As Piloto
     Private circuitoEdi As Circuito
 
+    Private estadoGP As Integer
+    Private GranPremio As GranPremio
+    Private GranPremioEdi As GranPremio
+
     Private pais As Pais
     Private piloto As New Piloto()
-    Private GranPremio As GranPremio
 
     Private Sub Form2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim myPais As New Pais()
@@ -571,6 +574,163 @@ Public Class IU_VentanaPrincipal
 
     End Sub
 
+    Private Sub ListBoxGranPremio_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBoxGranPremio.SelectedIndexChanged
+        If ListBoxGranPremio.SelectedItem IsNot Nothing Then
+            BtEditarGP.Enabled = True
+            BtEliminarGP.Enabled = True
+            Dim split As String() = ListBoxGranPremio.SelectedItem.ToString().Split(New [Char]() {" "c})
+            Dim id As String
+            id = split(0)
+            Dim gp As GranPremio
+            gp = New GranPremio
+            gp.idGRAN_PREMIO = id
+            Try
+                gp.LeerGP()
+                Me.GranPremio = gp
+                Me.GranPremioEdi = gp
+            Catch ex As Exception
+                MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            End Try
+            TextBoxIDGranPremio.Text = gp.idGRAN_PREMIO
+            TextBoxNombreGP.Text = gp.NOMBRE
+            Dim myPais As New Pais(gp.PAIS)
+            myPais.LeerPais()
+            Dim textoBuscado As String = myPais.Nombre
+
+            CBPaisGP.Items.Clear()
+            For Each pais As Pais In myPais.PaisDAO.LeerTodas
+                CBPaisGP.Items.Add(pais.Nombre)
+            Next
+
+            For Each item As Object In CBPaisGP.Items
+                If item.ToString().Contains(textoBuscado) Then
+                    CBPaisGP.SelectedItem = item
+                    Exit For
+                End If
+            Next
+        Else
+            BtEliminarGP.Enabled = False
+            BtEditarGP.Enabled = False
+        End If
+    End Sub
+
+    Private Function comprobarCamposGP() As Boolean
+        Dim camposValidos As Boolean
+        camposValidos = True
+        If TextBoxNombreGP.Text = "" Or TextBoxIDGranPremio.Text = "" Or CBPaisGP.SelectedItem Is Nothing Then
+            camposValidos = False
+            MsgBox("Es necesario que rellene todos los campos en Datos Personales", vbExclamation)
+        End If
+        Return camposValidos
+    End Function
+
+    Private Sub ModoEditarAñadirGP(mode As Boolean)
+        GBOpcionesGP.Enabled = Not mode
+        ListBoxGranPremio.Enabled = Not mode
+        GBDatosGranPremio.Enabled = mode
+        GBBotonesEdicionGP.Enabled = mode
+    End Sub
+
+    Private Sub BtAñadirGP_Click(sender As Object, e As EventArgs) Handles BtAñadirGP.Click
+        estadoGP = 0
+        ModoEditarAñadirGP(True)
+        BtLimpiarGP.PerformClick()
+    End Sub
+
+    Private Sub BtEditarGP_Click(sender As Object, e As EventArgs) Handles BtEditarGP.Click
+        estadoGP = 1
+        ModoEditarAñadirGP(True)
+    End Sub
+
+    Private Sub BtEliminarGP_Click(sender As Object, e As EventArgs) Handles BtEliminarGP.Click
+        Dim borrar As Integer
+        borrar = MsgBox("¿Estás seguro que desea eliminar el Gran Premio seleccionado?", +vbYesNo + vbDefaultButton1 + vbQuestion, "Eliminar Gran Premio")
+        If (borrar = vbYes) Then
+            Try
+                Me.GranPremio.BorrarGP()
+                ListBoxGranPremio.Items.RemoveAt(ListBoxGranPremio.SelectedIndex)
+            Catch ex As Exception
+                MsgBox("No se pudo borrar el Gran Premio al estar vinculado con otros datos.", vbExclamation)
+            End Try
+        End If
+    End Sub
+
+    Private Sub BtCancelarGP_Click(sender As Object, e As EventArgs) Handles BtCancelarGP.Click
+        Dim volver As Integer
+        volver = MsgBox("¿Estas seguro de que desea volver? Se perderán los cambios no guardados.", vbYesNo + vbDefaultButton2 + vbQuestion, "Cerrar modo edición.")
+        If (volver = vbYes) Then
+            DeshacerCamposGP()
+        End If
+    End Sub
+
+    Private Sub DeshacerCamposGP()
+        estadoGP = -1
+        TextBoxNombreGP.Undo()
+        TextBoxNombreGP.ClearUndo()
+        TextBoxIDGranPremio.Undo()
+        TextBoxIDGranPremio.ClearUndo()
+        ModoEditarAñadirGP(False)
+    End Sub
+
+    Private Sub BtLimpiarGP_Click(sender As Object, e As EventArgs) Handles BtLimpiarGP.Click
+        LimpiarFormEditaGP()
+    End Sub
+
+    Private Sub LimpiarFormEditaGP()
+        LimpiarTextoFormularioGeneral(GBDatosGranPremio)
+    End Sub
+
+    Private Sub BtGuardarGP_Click(sender As Object, e As EventArgs) Handles BtGuardarGP.Click
+        Dim indice As Integer
+        If comprobarCamposGP() Then
+            Dim check As Boolean = True
+            Dim myGP As New GranPremio()
+            myGP.LeerTodosGP()
+            For Each iterGP As GranPremio In myGP.GPDAO.LeerTodas()
+                If iterGP.idGRAN_PREMIO = TextBoxIDGranPremio.Text() Then
+                    check = False
+                End If
+            Next
+            If (Not check And Me.estadoGP = 0) Then
+                MsgBox("ID del Gran Premio ya existente.", vbExclamation)
+            Else
+                Dim gp As New GranPremio()
+                Dim pais As New Pais()
+                gp.NOMBRE = TextBoxNombreGP.Text()
+                gp.idGRAN_PREMIO = TextBoxIDGranPremio.Text()
+                pais.Nombre = CBPaisGP.SelectedItem
+                gp.PAIS = pais.GetAbreviacion(pais.Nombre)
+                If (Me.estadoGP = 0) Then
+                    Try
+                        gp.InsertarGP()
+                        ListBoxGranPremio.Items.Add(gp.idGRAN_PREMIO & " - " & gp.NOMBRE)
+                        MsgBox("Se ha añadido a la base de datos el Gran Premio " & gp.NOMBRE & " correctamente.", vbInformation)
+                        ModoEditarAñadirGP(False)
+                    Catch ex As Exception
+                        MessageBox.Show(ex.Message, ex.Source)
+                    End Try
+                ElseIf (Me.estadoGP = 1) Then
+                    Try
+                        Dim actualizar As Integer
+                        actualizar = gp.ActualizarGP()
+                        If (actualizar <> 1) Then
+                            MsgBox("Error. No se pudo modificar.", vbCritical)
+                        Else
+                            MsgBox("Gran Premio modificado con éxito.", vbInformation)
+                            indice = ListBoxGranPremio.SelectedIndex
+                            ListBoxGranPremio.Items.RemoveAt(indice)
+                            ListBoxGranPremio.Items.Insert(indice, gp.idGRAN_PREMIO & " - " & gp.NOMBRE)
+                        End If
+                        estadoGP = -1
+                        ModoEditarAñadirGP(False)
+                    Catch ex As Exception
+                        MessageBox.Show(ex.Message, ex.Source)
+                    End Try
+                End If
+            End If
+        End If
+    End Sub
+
     '--------------------------------'
     '   MÉTODOS PARA CONFIGURACION   '
     '   COMO PAISES INFORMES ETC     '
@@ -753,6 +913,14 @@ Public Class IU_VentanaPrincipal
         Next
     End Sub
     Private Sub CBPaisCircuito_Click(sender As Object, e As EventArgs) Handles CBPaisCircuito.Click
+        Dim myPais As New Pais()
+        CBPaisCircuito.Items.Clear()
+        For Each pais As Pais In myPais.PaisDAO.LeerTodas
+            CBPaisCircuito.Items.Add(pais.Nombre)
+        Next
+    End Sub
+
+    Private Sub CBPaisGP_Click(sender As Object, e As EventArgs) Handles CBPaisGP.Click
         Dim myPais As New Pais()
         CBPaisCircuito.Items.Clear()
         For Each pais As Pais In myPais.PaisDAO.LeerTodas

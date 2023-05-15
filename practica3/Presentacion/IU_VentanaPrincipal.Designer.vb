@@ -24,10 +24,10 @@ Partial Class IU_VentanaPrincipal
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(IU_VentanaPrincipal))
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPageCircuitos = New System.Windows.Forms.TabPage()
         Me.GBEditarAñadirCircuito = New System.Windows.Forms.GroupBox()
@@ -83,23 +83,27 @@ Partial Class IU_VentanaPrincipal
         Me.BtEliminarPil = New System.Windows.Forms.Button()
         Me.ListBoxPilotos = New System.Windows.Forms.ListBox()
         Me.TabGranPremio = New System.Windows.Forms.TabPage()
+        Me.GBOpcionesGP = New System.Windows.Forms.GroupBox()
+        Me.ButtonAnadirEdicion = New System.Windows.Forms.Button()
+        Me.BtAñadirGP = New System.Windows.Forms.Button()
+        Me.BtEditarGP = New System.Windows.Forms.Button()
+        Me.BtEliminarGP = New System.Windows.Forms.Button()
         Me.DataGridView2 = New System.Windows.Forms.DataGridView()
         Me.DataGridViewEdicion = New System.Windows.Forms.DataGridView()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Button11 = New System.Windows.Forms.Button()
         Me.ListBoxEdición = New System.Windows.Forms.ListBox()
-        Me.GroupBox5 = New System.Windows.Forms.GroupBox()
+        Me.GBDatosGranPremio = New System.Windows.Forms.GroupBox()
         Me.TextBoxIDGranPremio = New System.Windows.Forms.TextBox()
-        Me.ComboBox3 = New System.Windows.Forms.ComboBox()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.CBPaisGP = New System.Windows.Forms.ComboBox()
+        Me.TextBoxNombreGP = New System.Windows.Forms.TextBox()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.LabelNombreGranPremio = New System.Windows.Forms.Label()
-        Me.ButtonAnadirEdicion = New System.Windows.Forms.Button()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.Button3 = New System.Windows.Forms.Button()
-        Me.Button4 = New System.Windows.Forms.Button()
+        Me.GBBotonesEdicionGP = New System.Windows.Forms.GroupBox()
+        Me.BtCancelarGP = New System.Windows.Forms.Button()
+        Me.BtLimpiarGP = New System.Windows.Forms.Button()
+        Me.BtGuardarGP = New System.Windows.Forms.Button()
         Me.ListBoxGranPremio = New System.Windows.Forms.ListBox()
         Me.TabPageConfi = New System.Windows.Forms.TabPage()
         Me.GroupBoxInformes = New System.Windows.Forms.GroupBox()
@@ -126,10 +130,6 @@ Partial Class IU_VentanaPrincipal
         Me.ListBoxPaises = New System.Windows.Forms.ListBox()
         Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.ToolTipAñadir = New System.Windows.Forms.ToolTip(Me.components)
-        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.Button5 = New System.Windows.Forms.Button()
-        Me.Button8 = New System.Windows.Forms.Button()
-        Me.Button9 = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
         Me.TabPageCircuitos.SuspendLayout()
         Me.GBEditarAñadirCircuito.SuspendLayout()
@@ -142,17 +142,17 @@ Partial Class IU_VentanaPrincipal
         Me.GBBotonesEdicionPiloto.SuspendLayout()
         Me.GBOpcionesPer.SuspendLayout()
         Me.TabGranPremio.SuspendLayout()
+        Me.GBOpcionesGP.SuspendLayout()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridViewEdicion, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox5.SuspendLayout()
-        Me.GroupBox1.SuspendLayout()
+        Me.GBDatosGranPremio.SuspendLayout()
+        Me.GBBotonesEdicionGP.SuspendLayout()
         Me.TabPageConfi.SuspendLayout()
         Me.GroupBoxInformes.SuspendLayout()
         Me.GBEditarRoles.SuspendLayout()
         Me.GroupBoxPaises.SuspendLayout()
         Me.GBEditarAñadirPais.SuspendLayout()
-        Me.GroupBox2.SuspendLayout()
         Me.SuspendLayout()
         '
         'TabControl1
@@ -894,14 +894,14 @@ Partial Class IU_VentanaPrincipal
         '
         Me.TabGranPremio.BackColor = System.Drawing.SystemColors.Control
         Me.TabGranPremio.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TabGranPremio.Controls.Add(Me.GroupBox2)
+        Me.TabGranPremio.Controls.Add(Me.GBOpcionesGP)
         Me.TabGranPremio.Controls.Add(Me.DataGridView2)
         Me.TabGranPremio.Controls.Add(Me.DataGridViewEdicion)
         Me.TabGranPremio.Controls.Add(Me.PictureBox1)
         Me.TabGranPremio.Controls.Add(Me.Button11)
         Me.TabGranPremio.Controls.Add(Me.ListBoxEdición)
-        Me.TabGranPremio.Controls.Add(Me.GroupBox5)
-        Me.TabGranPremio.Controls.Add(Me.GroupBox1)
+        Me.TabGranPremio.Controls.Add(Me.GBDatosGranPremio)
+        Me.TabGranPremio.Controls.Add(Me.GBBotonesEdicionGP)
         Me.TabGranPremio.Controls.Add(Me.ListBoxGranPremio)
         Me.TabGranPremio.ForeColor = System.Drawing.SystemColors.ControlLightLight
         Me.TabGranPremio.ImageIndex = 3
@@ -913,17 +913,90 @@ Partial Class IU_VentanaPrincipal
         Me.TabGranPremio.TabIndex = 4
         Me.TabGranPremio.Text = "Grandes Premios"
         '
+        'GBOpcionesGP
+        '
+        Me.GBOpcionesGP.Controls.Add(Me.ButtonAnadirEdicion)
+        Me.GBOpcionesGP.Controls.Add(Me.BtAñadirGP)
+        Me.GBOpcionesGP.Controls.Add(Me.BtEditarGP)
+        Me.GBOpcionesGP.Controls.Add(Me.BtEliminarGP)
+        Me.GBOpcionesGP.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GBOpcionesGP.Location = New System.Drawing.Point(569, 39)
+        Me.GBOpcionesGP.Margin = New System.Windows.Forms.Padding(4)
+        Me.GBOpcionesGP.Name = "GBOpcionesGP"
+        Me.GBOpcionesGP.Padding = New System.Windows.Forms.Padding(4)
+        Me.GBOpcionesGP.Size = New System.Drawing.Size(251, 138)
+        Me.GBOpcionesGP.TabIndex = 25
+        Me.GBOpcionesGP.TabStop = False
+        Me.GBOpcionesGP.Text = "Opciones"
+        '
+        'ButtonAnadirEdicion
+        '
+        Me.ButtonAnadirEdicion.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.ButtonAnadirEdicion.Location = New System.Drawing.Point(21, 84)
+        Me.ButtonAnadirEdicion.Name = "ButtonAnadirEdicion"
+        Me.ButtonAnadirEdicion.Size = New System.Drawing.Size(223, 31)
+        Me.ButtonAnadirEdicion.TabIndex = 24
+        Me.ButtonAnadirEdicion.Text = "Añadir Edición"
+        Me.ButtonAnadirEdicion.UseVisualStyleBackColor = True
+        '
+        'BtAñadirGP
+        '
+        Me.BtAñadirGP.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.BtAñadirGP.FlatAppearance.BorderSize = 0
+        Me.BtAñadirGP.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtAñadirGP.Image = CType(resources.GetObject("BtAñadirGP.Image"), System.Drawing.Image)
+        Me.BtAñadirGP.Location = New System.Drawing.Point(21, 30)
+        Me.BtAñadirGP.Margin = New System.Windows.Forms.Padding(4)
+        Me.BtAñadirGP.Name = "BtAñadirGP"
+        Me.BtAñadirGP.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.BtAñadirGP.Size = New System.Drawing.Size(64, 47)
+        Me.BtAñadirGP.TabIndex = 6
+        Me.BtAñadirGP.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.BtAñadirGP.UseVisualStyleBackColor = True
+        '
+        'BtEditarGP
+        '
+        Me.BtEditarGP.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.BtEditarGP.Enabled = False
+        Me.BtEditarGP.FlatAppearance.BorderSize = 0
+        Me.BtEditarGP.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtEditarGP.Image = CType(resources.GetObject("BtEditarGP.Image"), System.Drawing.Image)
+        Me.BtEditarGP.Location = New System.Drawing.Point(93, 30)
+        Me.BtEditarGP.Margin = New System.Windows.Forms.Padding(4)
+        Me.BtEditarGP.Name = "BtEditarGP"
+        Me.BtEditarGP.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.BtEditarGP.Size = New System.Drawing.Size(64, 47)
+        Me.BtEditarGP.TabIndex = 7
+        Me.BtEditarGP.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.BtEditarGP.UseVisualStyleBackColor = True
+        '
+        'BtEliminarGP
+        '
+        Me.BtEliminarGP.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.BtEliminarGP.Enabled = False
+        Me.BtEliminarGP.FlatAppearance.BorderSize = 0
+        Me.BtEliminarGP.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtEliminarGP.Image = CType(resources.GetObject("BtEliminarGP.Image"), System.Drawing.Image)
+        Me.BtEliminarGP.Location = New System.Drawing.Point(165, 30)
+        Me.BtEliminarGP.Margin = New System.Windows.Forms.Padding(4)
+        Me.BtEliminarGP.Name = "BtEliminarGP"
+        Me.BtEliminarGP.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.BtEliminarGP.Size = New System.Drawing.Size(64, 47)
+        Me.BtEliminarGP.TabIndex = 8
+        Me.BtEliminarGP.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.BtEliminarGP.UseVisualStyleBackColor = True
+        '
         'DataGridView2
         '
         Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlLightLight
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DataGridView2.DefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle9.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlLightLight
+        DataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DataGridView2.DefaultCellStyle = DataGridViewCellStyle9
         Me.DataGridView2.Location = New System.Drawing.Point(956, 335)
         Me.DataGridView2.Name = "DataGridView2"
         Me.DataGridView2.RowHeadersWidth = 51
@@ -938,33 +1011,33 @@ Partial Class IU_VentanaPrincipal
         Me.DataGridViewEdicion.AllowUserToResizeColumns = False
         Me.DataGridViewEdicion.AllowUserToResizeRows = False
         Me.DataGridViewEdicion.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridViewEdicion.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle10.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle10.ForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridViewEdicion.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle10
         Me.DataGridViewEdicion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlLightLight
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DataGridViewEdicion.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle11.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlLightLight
+        DataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DataGridViewEdicion.DefaultCellStyle = DataGridViewCellStyle11
         Me.DataGridViewEdicion.Location = New System.Drawing.Point(37, 335)
         Me.DataGridViewEdicion.Name = "DataGridViewEdicion"
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridViewEdicion.RowHeadersDefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle12.Font = New System.Drawing.Font("Microsoft Sans Serif", 7.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle12.ForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridViewEdicion.RowHeadersDefaultCellStyle = DataGridViewCellStyle12
         Me.DataGridViewEdicion.RowHeadersWidth = 51
         Me.DataGridViewEdicion.RowTemplate.Height = 24
         Me.DataGridViewEdicion.Size = New System.Drawing.Size(783, 176)
@@ -1002,24 +1075,25 @@ Partial Class IU_VentanaPrincipal
         Me.ListBoxEdición.Size = New System.Drawing.Size(221, 244)
         Me.ListBoxEdición.TabIndex = 21
         '
-        'GroupBox5
+        'GBDatosGranPremio
         '
-        Me.GroupBox5.Controls.Add(Me.TextBoxIDGranPremio)
-        Me.GroupBox5.Controls.Add(Me.ComboBox3)
-        Me.GroupBox5.Controls.Add(Me.TextBox2)
-        Me.GroupBox5.Controls.Add(Me.Label9)
-        Me.GroupBox5.Controls.Add(Me.Label10)
-        Me.GroupBox5.Controls.Add(Me.LabelNombreGranPremio)
-        Me.GroupBox5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox5.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.GroupBox5.Location = New System.Drawing.Point(876, 39)
-        Me.GroupBox5.Margin = New System.Windows.Forms.Padding(4)
-        Me.GroupBox5.Name = "GroupBox5"
-        Me.GroupBox5.Padding = New System.Windows.Forms.Padding(4)
-        Me.GroupBox5.Size = New System.Drawing.Size(497, 183)
-        Me.GroupBox5.TabIndex = 2
-        Me.GroupBox5.TabStop = False
-        Me.GroupBox5.Text = "Datos del Gran Premio"
+        Me.GBDatosGranPremio.Controls.Add(Me.TextBoxIDGranPremio)
+        Me.GBDatosGranPremio.Controls.Add(Me.CBPaisGP)
+        Me.GBDatosGranPremio.Controls.Add(Me.TextBoxNombreGP)
+        Me.GBDatosGranPremio.Controls.Add(Me.Label9)
+        Me.GBDatosGranPremio.Controls.Add(Me.Label10)
+        Me.GBDatosGranPremio.Controls.Add(Me.LabelNombreGranPremio)
+        Me.GBDatosGranPremio.Enabled = False
+        Me.GBDatosGranPremio.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GBDatosGranPremio.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.GBDatosGranPremio.Location = New System.Drawing.Point(876, 39)
+        Me.GBDatosGranPremio.Margin = New System.Windows.Forms.Padding(4)
+        Me.GBDatosGranPremio.Name = "GBDatosGranPremio"
+        Me.GBDatosGranPremio.Padding = New System.Windows.Forms.Padding(4)
+        Me.GBDatosGranPremio.Size = New System.Drawing.Size(497, 183)
+        Me.GBDatosGranPremio.TabIndex = 2
+        Me.GBDatosGranPremio.TabStop = False
+        Me.GBDatosGranPremio.Text = "Datos del Gran Premio"
         '
         'TextBoxIDGranPremio
         '
@@ -1032,27 +1106,27 @@ Partial Class IU_VentanaPrincipal
         Me.TextBoxIDGranPremio.Size = New System.Drawing.Size(270, 23)
         Me.TextBoxIDGranPremio.TabIndex = 17
         '
-        'ComboBox3
+        'CBPaisGP
         '
-        Me.ComboBox3.BackColor = System.Drawing.SystemColors.Control
-        Me.ComboBox3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ComboBox3.FormattingEnabled = True
-        Me.ComboBox3.Location = New System.Drawing.Point(173, 77)
-        Me.ComboBox3.Margin = New System.Windows.Forms.Padding(4)
-        Me.ComboBox3.Name = "ComboBox3"
-        Me.ComboBox3.Size = New System.Drawing.Size(268, 25)
-        Me.ComboBox3.TabIndex = 11
+        Me.CBPaisGP.BackColor = System.Drawing.SystemColors.Control
+        Me.CBPaisGP.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CBPaisGP.FormattingEnabled = True
+        Me.CBPaisGP.Location = New System.Drawing.Point(173, 77)
+        Me.CBPaisGP.Margin = New System.Windows.Forms.Padding(4)
+        Me.CBPaisGP.Name = "CBPaisGP"
+        Me.CBPaisGP.Size = New System.Drawing.Size(268, 25)
+        Me.CBPaisGP.TabIndex = 26
         '
-        'TextBox2
+        'TextBoxNombreGP
         '
-        Me.TextBox2.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox2.Location = New System.Drawing.Point(173, 30)
-        Me.TextBox2.Margin = New System.Windows.Forms.Padding(4)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(270, 23)
-        Me.TextBox2.TabIndex = 7
+        Me.TextBoxNombreGP.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBoxNombreGP.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TextBoxNombreGP.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBoxNombreGP.Location = New System.Drawing.Point(173, 30)
+        Me.TextBoxNombreGP.Margin = New System.Windows.Forms.Padding(4)
+        Me.TextBoxNombreGP.Name = "TextBoxNombreGP"
+        Me.TextBoxNombreGP.Size = New System.Drawing.Size(270, 23)
+        Me.TextBoxNombreGP.TabIndex = 7
         '
         'Label9
         '
@@ -1087,76 +1161,66 @@ Partial Class IU_VentanaPrincipal
         Me.LabelNombreGranPremio.TabIndex = 1
         Me.LabelNombreGranPremio.Text = "Nombre"
         '
-        'ButtonAnadirEdicion
+        'GBBotonesEdicionGP
         '
-        Me.ButtonAnadirEdicion.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.ButtonAnadirEdicion.Location = New System.Drawing.Point(21, 84)
-        Me.ButtonAnadirEdicion.Name = "ButtonAnadirEdicion"
-        Me.ButtonAnadirEdicion.Size = New System.Drawing.Size(223, 31)
-        Me.ButtonAnadirEdicion.TabIndex = 24
-        Me.ButtonAnadirEdicion.Text = "Añadir Edición"
-        Me.ButtonAnadirEdicion.UseVisualStyleBackColor = True
+        Me.GBBotonesEdicionGP.Controls.Add(Me.BtCancelarGP)
+        Me.GBBotonesEdicionGP.Controls.Add(Me.BtLimpiarGP)
+        Me.GBBotonesEdicionGP.Controls.Add(Me.BtGuardarGP)
+        Me.GBBotonesEdicionGP.Enabled = False
+        Me.GBBotonesEdicionGP.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GBBotonesEdicionGP.Location = New System.Drawing.Point(569, 193)
+        Me.GBBotonesEdicionGP.Margin = New System.Windows.Forms.Padding(4)
+        Me.GBBotonesEdicionGP.Name = "GBBotonesEdicionGP"
+        Me.GBBotonesEdicionGP.Padding = New System.Windows.Forms.Padding(4)
+        Me.GBBotonesEdicionGP.Size = New System.Drawing.Size(251, 102)
+        Me.GBBotonesEdicionGP.TabIndex = 19
+        Me.GBBotonesEdicionGP.TabStop = False
+        Me.GBBotonesEdicionGP.Text = "Botones de edición"
         '
-        'GroupBox1
+        'BtCancelarGP
         '
-        Me.GroupBox1.Controls.Add(Me.Button2)
-        Me.GroupBox1.Controls.Add(Me.Button3)
-        Me.GroupBox1.Controls.Add(Me.Button4)
-        Me.GroupBox1.Enabled = False
-        Me.GroupBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox1.Location = New System.Drawing.Point(569, 193)
-        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(4)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(4)
-        Me.GroupBox1.Size = New System.Drawing.Size(251, 102)
-        Me.GroupBox1.TabIndex = 19
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "Botones de edición"
+        Me.BtCancelarGP.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.BtCancelarGP.FlatAppearance.BorderSize = 0
+        Me.BtCancelarGP.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtCancelarGP.Image = CType(resources.GetObject("BtCancelarGP.Image"), System.Drawing.Image)
+        Me.BtCancelarGP.Location = New System.Drawing.Point(21, 30)
+        Me.BtCancelarGP.Margin = New System.Windows.Forms.Padding(4)
+        Me.BtCancelarGP.Name = "BtCancelarGP"
+        Me.BtCancelarGP.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.BtCancelarGP.Size = New System.Drawing.Size(64, 47)
+        Me.BtCancelarGP.TabIndex = 7
+        Me.BtCancelarGP.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.BtCancelarGP.UseVisualStyleBackColor = True
         '
-        'Button2
+        'BtLimpiarGP
         '
-        Me.Button2.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button2.FlatAppearance.BorderSize = 0
-        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button2.Image = CType(resources.GetObject("Button2.Image"), System.Drawing.Image)
-        Me.Button2.Location = New System.Drawing.Point(21, 30)
-        Me.Button2.Margin = New System.Windows.Forms.Padding(4)
-        Me.Button2.Name = "Button2"
-        Me.Button2.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.Button2.Size = New System.Drawing.Size(64, 47)
-        Me.Button2.TabIndex = 7
-        Me.Button2.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Button2.UseVisualStyleBackColor = True
+        Me.BtLimpiarGP.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.BtLimpiarGP.FlatAppearance.BorderSize = 0
+        Me.BtLimpiarGP.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtLimpiarGP.Image = CType(resources.GetObject("BtLimpiarGP.Image"), System.Drawing.Image)
+        Me.BtLimpiarGP.Location = New System.Drawing.Point(93, 30)
+        Me.BtLimpiarGP.Margin = New System.Windows.Forms.Padding(4)
+        Me.BtLimpiarGP.Name = "BtLimpiarGP"
+        Me.BtLimpiarGP.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.BtLimpiarGP.Size = New System.Drawing.Size(64, 47)
+        Me.BtLimpiarGP.TabIndex = 8
+        Me.BtLimpiarGP.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.BtLimpiarGP.UseVisualStyleBackColor = True
         '
-        'Button3
+        'BtGuardarGP
         '
-        Me.Button3.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button3.FlatAppearance.BorderSize = 0
-        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button3.Image = CType(resources.GetObject("Button3.Image"), System.Drawing.Image)
-        Me.Button3.Location = New System.Drawing.Point(93, 30)
-        Me.Button3.Margin = New System.Windows.Forms.Padding(4)
-        Me.Button3.Name = "Button3"
-        Me.Button3.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.Button3.Size = New System.Drawing.Size(64, 47)
-        Me.Button3.TabIndex = 8
-        Me.Button3.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Button3.UseVisualStyleBackColor = True
-        '
-        'Button4
-        '
-        Me.Button4.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button4.FlatAppearance.BorderSize = 0
-        Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button4.Image = CType(resources.GetObject("Button4.Image"), System.Drawing.Image)
-        Me.Button4.Location = New System.Drawing.Point(165, 30)
-        Me.Button4.Margin = New System.Windows.Forms.Padding(4)
-        Me.Button4.Name = "Button4"
-        Me.Button4.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.Button4.Size = New System.Drawing.Size(64, 47)
-        Me.Button4.TabIndex = 9
-        Me.Button4.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Button4.UseVisualStyleBackColor = True
+        Me.BtGuardarGP.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.BtGuardarGP.FlatAppearance.BorderSize = 0
+        Me.BtGuardarGP.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.BtGuardarGP.Image = CType(resources.GetObject("BtGuardarGP.Image"), System.Drawing.Image)
+        Me.BtGuardarGP.Location = New System.Drawing.Point(165, 30)
+        Me.BtGuardarGP.Margin = New System.Windows.Forms.Padding(4)
+        Me.BtGuardarGP.Name = "BtGuardarGP"
+        Me.BtGuardarGP.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.BtGuardarGP.Size = New System.Drawing.Size(64, 47)
+        Me.BtGuardarGP.TabIndex = 9
+        Me.BtGuardarGP.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.BtGuardarGP.UseVisualStyleBackColor = True
         '
         'ListBoxGranPremio
         '
@@ -1536,69 +1600,6 @@ Partial Class IU_VentanaPrincipal
         Me.ImageList1.Images.SetKeyName(2, "ajustes.png")
         Me.ImageList1.Images.SetKeyName(3, "f1.png")
         '
-        'GroupBox2
-        '
-        Me.GroupBox2.Controls.Add(Me.ButtonAnadirEdicion)
-        Me.GroupBox2.Controls.Add(Me.Button5)
-        Me.GroupBox2.Controls.Add(Me.Button8)
-        Me.GroupBox2.Controls.Add(Me.Button9)
-        Me.GroupBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox2.Location = New System.Drawing.Point(569, 39)
-        Me.GroupBox2.Margin = New System.Windows.Forms.Padding(4)
-        Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Padding = New System.Windows.Forms.Padding(4)
-        Me.GroupBox2.Size = New System.Drawing.Size(251, 138)
-        Me.GroupBox2.TabIndex = 25
-        Me.GroupBox2.TabStop = False
-        Me.GroupBox2.Text = "Opciones"
-        '
-        'Button5
-        '
-        Me.Button5.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button5.FlatAppearance.BorderSize = 0
-        Me.Button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button5.Image = CType(resources.GetObject("Button5.Image"), System.Drawing.Image)
-        Me.Button5.Location = New System.Drawing.Point(21, 30)
-        Me.Button5.Margin = New System.Windows.Forms.Padding(4)
-        Me.Button5.Name = "Button5"
-        Me.Button5.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.Button5.Size = New System.Drawing.Size(64, 47)
-        Me.Button5.TabIndex = 6
-        Me.Button5.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Button5.UseVisualStyleBackColor = True
-        '
-        'Button8
-        '
-        Me.Button8.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button8.Enabled = False
-        Me.Button8.FlatAppearance.BorderSize = 0
-        Me.Button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button8.Image = CType(resources.GetObject("Button8.Image"), System.Drawing.Image)
-        Me.Button8.Location = New System.Drawing.Point(93, 30)
-        Me.Button8.Margin = New System.Windows.Forms.Padding(4)
-        Me.Button8.Name = "Button8"
-        Me.Button8.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.Button8.Size = New System.Drawing.Size(64, 47)
-        Me.Button8.TabIndex = 7
-        Me.Button8.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Button8.UseVisualStyleBackColor = True
-        '
-        'Button9
-        '
-        Me.Button9.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.Button9.Enabled = False
-        Me.Button9.FlatAppearance.BorderSize = 0
-        Me.Button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button9.Image = CType(resources.GetObject("Button9.Image"), System.Drawing.Image)
-        Me.Button9.Location = New System.Drawing.Point(165, 30)
-        Me.Button9.Margin = New System.Windows.Forms.Padding(4)
-        Me.Button9.Name = "Button9"
-        Me.Button9.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.Button9.Size = New System.Drawing.Size(64, 47)
-        Me.Button9.TabIndex = 8
-        Me.Button9.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Button9.UseVisualStyleBackColor = True
-        '
         'IU_VentanaPrincipal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -1625,12 +1626,13 @@ Partial Class IU_VentanaPrincipal
         Me.GBBotonesEdicionPiloto.ResumeLayout(False)
         Me.GBOpcionesPer.ResumeLayout(False)
         Me.TabGranPremio.ResumeLayout(False)
+        Me.GBOpcionesGP.ResumeLayout(False)
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridViewEdicion, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupBox5.ResumeLayout(False)
-        Me.GroupBox5.PerformLayout()
-        Me.GroupBox1.ResumeLayout(False)
+        Me.GBDatosGranPremio.ResumeLayout(False)
+        Me.GBDatosGranPremio.PerformLayout()
+        Me.GBBotonesEdicionGP.ResumeLayout(False)
         Me.TabPageConfi.ResumeLayout(False)
         Me.GroupBoxInformes.ResumeLayout(False)
         Me.GBEditarRoles.ResumeLayout(False)
@@ -1638,7 +1640,6 @@ Partial Class IU_VentanaPrincipal
         Me.GroupBoxPaises.ResumeLayout(False)
         Me.GBEditarAñadirPais.ResumeLayout(False)
         Me.GBEditarAñadirPais.PerformLayout()
-        Me.GroupBox2.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -1682,10 +1683,10 @@ Partial Class IU_VentanaPrincipal
     Friend WithEvents ImageList1 As ImageList
     Friend WithEvents ToolTipAñadir As ToolTip
     Friend WithEvents ListBoxGranPremio As ListBox
-    Friend WithEvents GroupBox1 As GroupBox
-    Friend WithEvents Button2 As Button
-    Friend WithEvents Button3 As Button
-    Friend WithEvents Button4 As Button
+    Friend WithEvents GBBotonesEdicionGP As GroupBox
+    Friend WithEvents BtCancelarGP As Button
+    Friend WithEvents BtLimpiarGP As Button
+    Friend WithEvents BtGuardarGP As Button
     Friend WithEvents TabPageCircuitos As TabPage
     Friend WithEvents GBEditarAñadirCircuito As GroupBox
     Friend WithEvents LabelIDCircuito As Label
@@ -1718,10 +1719,10 @@ Partial Class IU_VentanaPrincipal
     Friend WithEvents LabelIDPiloto As Label
     Friend WithEvents LabelFechaPiloto As Label
     Friend WithEvents LabelNombreApellidosPiloto As Label
-    Friend WithEvents GroupBox5 As GroupBox
+    Friend WithEvents GBDatosGranPremio As GroupBox
     Friend WithEvents TextBoxIDGranPremio As TextBox
-    Friend WithEvents ComboBox3 As ComboBox
-    Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents CBPaisGP As ComboBox
+    Friend WithEvents TextBoxNombreGP As TextBox
     Friend WithEvents Label9 As Label
     Friend WithEvents Label10 As Label
     Friend WithEvents LabelNombreGranPremio As Label
@@ -1743,8 +1744,8 @@ Partial Class IU_VentanaPrincipal
     Friend WithEvents ButtonSelectInformePil As Button
     Friend WithEvents ListBoxAñoInforme As ListBox
     Friend WithEvents ListBoxEdicionGPInforme As ListBox
-    Friend WithEvents GroupBox2 As GroupBox
-    Friend WithEvents Button5 As Button
-    Friend WithEvents Button8 As Button
-    Friend WithEvents Button9 As Button
+    Friend WithEvents GBOpcionesGP As GroupBox
+    Friend WithEvents BtAñadirGP As Button
+    Friend WithEvents BtEditarGP As Button
+    Friend WithEvents BtEliminarGP As Button
 End Class

@@ -35,7 +35,7 @@
     End Function
 
     Public Function Actualizar(ByVal g As GranPremio) As String
-        Return AgenteBD.ObtenerAgente().Modificar("UPDATE GRAN_PREMIO SET PAIS='" & g.PAIS & "', NOMBRE'" & g.NOMBRE & "' WHERE idGRAN_PREMIO='" & g.idGRAN_PREMIO & "';")
+        Return AgenteBD.ObtenerAgente().Modificar("UPDATE GRAN_PREMIO SET PAIS='" & g.PAIS & "', NOMBRE='" & g.NOMBRE & "' WHERE idGRAN_PREMIO='" & g.idGRAN_PREMIO & "';")
     End Function
 
     Public Function Borrar(ByVal g As GranPremio) As String

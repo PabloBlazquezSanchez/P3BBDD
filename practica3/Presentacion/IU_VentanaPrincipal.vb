@@ -924,7 +924,7 @@ Public Class IU_VentanaPrincipal
         Dim myPais As New Pais()
         CBPaisCircuito.Items.Clear()
         For Each pais As Pais In myPais.PaisDAO.LeerTodas
-            CBPaisCircuito.Items.Add(pais.Nombre)
+            CBPaisGP.Items.Add(pais.Nombre)
         Next
     End Sub
 

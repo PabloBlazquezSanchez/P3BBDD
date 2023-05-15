@@ -49,7 +49,6 @@
 
     Public Function LeerTodas() As Collection
         Dim col, aux As Collection
-        Dim resultado As New Collection
         col = AgenteBD.ObtenerAgente().Leer("SELECT * FROM EDICION ORDER BY idEDICION")
         For Each aux In col
             Dim e As New Edicion()
@@ -60,7 +59,7 @@
             e.FECHA = aux(5).ToString
             e.ANIO = aux(6).ToString
             e.PILOTO_VR = aux(7)
-            resultado.Add(e)
+            Ediciones.Add(e)
         Next
         Return Ediciones
     End Function

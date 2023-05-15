@@ -40,6 +40,11 @@ Public Class IU_VentanaPrincipal
         For Each GranPremio As GranPremio In myGranPremio.GPDAO.LeerTodas
             ListBoxGranPremio.Items.Add(GranPremio.idGRAN_PREMIO & " - " & GranPremio.NOMBRE)
         Next
+
+        Dim myEdicion As New Edicion()
+        For Each Edicion As Edicion In myEdicion.EdDAO.LeerTodas
+            ListBoxEdición.Items.Add(Edicion.idEDICION & " - " & Edicion.NOMBRE)
+        Next
     End Sub
 
     Function comprobarNombrePropio(ByVal Nombre As String) As Boolean
@@ -922,7 +927,7 @@ Public Class IU_VentanaPrincipal
 
     Private Sub CBPaisGP_Click(sender As Object, e As EventArgs) Handles CBPaisGP.Click
         Dim myPais As New Pais()
-        CBPaisCircuito.Items.Clear()
+        CBPaisGP.Items.Clear()
         For Each pais As Pais In myPais.PaisDAO.LeerTodas
             CBPaisGP.Items.Add(pais.Nombre)
         Next

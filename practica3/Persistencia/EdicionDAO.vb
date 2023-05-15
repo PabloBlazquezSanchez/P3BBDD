@@ -5,11 +5,10 @@
         Me.Ediciones = New Collection
     End Sub
 
-    Public Function GetGPPiloto(ByVal name As String, fecha As String) As Collection
-
+    Public Function GetGPAnio(fecha As String) As Collection
         Dim col, aux As Collection
         Dim resultado As New Collection
-        col = AgenteBD.ObtenerAgente.Leer("SELECT * FROM EDICION WHERE PILOTO_VR ='" & name & "' AND ANIO='" & fecha & "' ORDER BY idGRAN_PREMIO;")
+        col = AgenteBD.ObtenerAgente.Leer("SELECT * FROM EDICION WHERE ANIO='" & fecha & "' ORDER BY idGRAN_PREMIO;")
         For Each aux In col
             Dim e As New Edicion()
             e.idEDICION = CInt(aux(1))
@@ -35,6 +34,18 @@
         Return resultado
     End Function
 
+    Public Function ObtenerPartGP_Piloto(ByVal id As String) As Collection
+
+        Dim p As Edicion
+        Dim col, aux As Collection
+        col = AgenteBD.ObtenerAgente().Leer("SELECT * FROM EDICION e JOIN CLASIFICACION_CARRERA c ON e.idEDICION=c.EDICION WHERE c.PILOTO='" & id & "';")
+        For Each aux In col
+            p = New Edicion(aux(1).ToString)
+            p.idGRAN_PREMIO = aux(2).ToString
+            Me.Ediciones.Add(p)
+        Next
+        Return Ediciones
+    End Function
 
     Public Function LeerTodas() As Collection
         Dim col, aux As Collection

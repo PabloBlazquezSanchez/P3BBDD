@@ -293,7 +293,6 @@ Public Class IU_VentanaPrincipal
 
     Private Sub generarFichaPiloto(piloto As Piloto)
 
-        ListBoxParticipaciones.Items.Clear()
         TextBoxNombre1.Text = piloto.Nombre
         TextBoxPilInforme2.Text = piloto.Nombre
 
@@ -301,12 +300,26 @@ Public Class IU_VentanaPrincipal
         Dim edi As New Edicion
         myEdicion = edi.EdDAO.GetEdicionPiloto(piloto.idPILOTO)
 
+        Dim myEdiciones As Collection
+        Dim ed As New Edicion
+        myEdiciones = ed.ObtenerPartGP_Piloto(piloto.idPILOTO)
+
         Dim fecha As String
         ListBoxAñoInforme.Items.Clear()
+        ListBoxEdicionGPInforme.Items.Clear()
+
 
         For Each fecha In myEdicion
             ListBoxAñoInforme.Items.Add(fecha)
         Next
+
+        Dim nombre As Edicion
+        For Each nombre In myEdiciones
+            Dim GP As New GranPremio(nombre.idGRAN_PREMIO)
+            GP.LeerGP()
+            ListBoxEdicionGPInforme.Items.Add(GP.NOMBRE)
+        Next
+
     End Sub
 
     Private Function comprobarCamposPil() As Boolean
@@ -719,32 +732,60 @@ Public Class IU_VentanaPrincipal
     End Sub
 
     Private Sub ButtonInformePil2_Click(sender As Object, e As EventArgs) Handles ButtonInformePil2.Click
+        Dim myGP As Collection
+        Dim edi As New Edicion
+        If String.IsNullOrEmpty(ListBoxEdicionGPInforme.Text) Then
+            MsgBox("Es necesario que seleccione un Gran Premio", vbExclamation)
+        Else
+            myGP = edi.EdDAO.GetGPAnio(ListBoxAñoInforme.SelectedItem.ToString())
+            Dim mensaje As String
+            mensaje = ""
 
+
+            For Each edi In myGP
+                Dim GP As New GranPremio(edi.idGRAN_PREMIO)
+                GP.LeerGP()
+                Dim clas As New ClasificacionCarrera
+                If (Not IsNothing(clas.ResultadoPiloto(piloto.idPILOTO, edi.idEDICION))) And (clas.ResultadoPiloto(piloto.idPILOTO, edi.idEDICION) <> 0) Then
+                    mensaje = mensaje & GP.NOMBRE & " | Edición: " & edi.NOMBRE & " | Resultado: " & clas.ResultadoPiloto(piloto.idPILOTO, edi.idEDICION) & " | Vuelta rápida: " & vueltaRapida(edi.PILOTO_VR, piloto.idPILOTO) & vbNewLine
+                End If
+            Next
+
+            MessageBox.Show(mensaje)
+        End If
     End Sub
 
     Private Sub ButtonInformePil_Click(sender As Object, e As EventArgs) Handles ButtonInformePil.Click
 
         Dim myGP As Collection
         Dim edi As New Edicion
-        MessageBox.Show(piloto.idPILOTO & " r" & ListBoxAñoInforme.Text)
         If String.IsNullOrEmpty(ListBoxAñoInforme.Text) Then
             MsgBox("Es necesario que seleccione un año", vbExclamation)
         Else
-            myGP = edi.EdDAO.GetGPPiloto(piloto.idPILOTO, ListBoxAñoInforme.SelectedItem.ToString())
+            myGP = edi.EdDAO.GetGPAnio(ListBoxAñoInforme.SelectedItem.ToString())
             Dim mensaje As String
             mensaje = ""
-            ListBoxAñoInforme.Items.Clear()
 
 
             For Each edi In myGP
                 Dim GP As New GranPremio(edi.idGRAN_PREMIO)
-                Dim clas As New ClasificacionCarrera
                 GP.LeerGP()
-                mensaje = mensaje & GP.NOMBRE & " | Edición: " & edi.NOMBRE & " | Resultado: " & clas.ResultadoPiloto(piloto.idPILOTO, edi.idEDICION) & " | Vuelta rápida: " & vbNewLine
+                Dim clas As New ClasificacionCarrera
+                If (Not IsNothing(clas.ResultadoPiloto(piloto.idPILOTO, edi.idEDICION))) And (clas.ResultadoPiloto(piloto.idPILOTO, edi.idEDICION) <> 0) Then
+                    mensaje = mensaje & GP.NOMBRE & " | Edición: " & edi.NOMBRE & " | Resultado: " & clas.ResultadoPiloto(piloto.idPILOTO, edi.idEDICION) & " | Vuelta rápida: " & vueltaRapida(edi.PILOTO_VR, piloto.idPILOTO) & vbNewLine
+                End If
             Next
 
             MessageBox.Show(mensaje)
-
         End If
     End Sub
+
+    Private Function vueltaRapida(pILOTO_VR As Integer, idPILOTO As String) As String
+
+        If pILOTO_VR = idPILOTO Then
+            Return "Sí"
+        Else
+            Return "No"
+        End If
+    End Function
 End Class

@@ -27,6 +27,8 @@
         Next
     End Sub
 
+
+
     Public Function Insertar(ByVal g As GranPremio) As String
         Return AgenteBD.ObtenerAgente().Modificar("INSERT INTO GRAN_PREMIO VALUES ('" & g.idGRAN_PREMIO & "', '" & g.PAIS & "', '" & g.NOMBRE & "');")
     End Function

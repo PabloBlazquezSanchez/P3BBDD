@@ -981,7 +981,7 @@ Public Class IU_VentanaPrincipal
     Private Sub ButtonInformePil2_Click(sender As Object, e As EventArgs) Handles ButtonInformePil2.Click
         Dim myGP As Collection
         Dim edi As New Edicion
-        Dim mensaje As String
+        Dim mensaje As String = ""
         If String.IsNullOrEmpty(ListBoxEdicionGPInforme.Text) Then
             MsgBox("Es necesario que seleccione un Gran Premio", vbExclamation)
         Else

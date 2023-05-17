@@ -1079,6 +1079,12 @@ Public Class IU_VentanaPrincipal
             Next
             puntos_pil = 0
         Next
+        DataGridViewClasMun.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+    End Sub
 
+    Private Sub ListBoxTemporadas_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBoxTemporadas.SelectedIndexChanged
+        If ListBoxTemporadas.SelectedItem IsNot Nothing Then
+            BtGenInformeClasMun.Enabled = True
+        End If
     End Sub
 End Class

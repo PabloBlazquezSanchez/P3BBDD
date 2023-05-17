@@ -1050,7 +1050,6 @@ Public Class IU_VentanaPrincipal
         Dim split As String() = ListBoxTemporadas.SelectedItem.ToString().Split(" ")
         Dim anio As Integer = CInt(split(1))
 
-        Dim puntos() As Integer = {25, 18, 15, 12, 10, 8, 6, 4, 2, 1}
         Dim dorsales() As Integer
 
         Dim InscripcionMd As New InscripcionMundial()
@@ -1070,25 +1069,16 @@ Public Class IU_VentanaPrincipal
             Dim puntos_pil As Integer
             pil = dorsales(i)
             Dim col As Collection = edi.EdDAO.GetGPAnio(CStr(anio))
-            MsgBox(col(1).ToString, vbInformation)
-            Dim editerador As Collection = New Collection()
+            Dim editerador As New Edicion()
             For Each editerador In col
-                numeroedicion = editerador(1) 'Excepcion de tipo System.MissingMemberException
-                pilotoVMR = editerador(7)
+                numeroedicion = editerador.ANIO 'Excepcion de tipo System.MissingMemberException
+                pilotoVMR = editerador.PILOTO_VR
                 posicion = cc.PosicionCarrera(pil, numeroedicion)
-                If posicion <= 10 Then
-                    puntos_pil = puntos_pil + puntos(posicion - 1)
-                Else
-                    puntos_pil = puntos_pil + 0
-                End If
-                If pilotoVMR = pil Then
-                    puntos_pil = puntos_pil + 1
-                End If
+                puntos_pil = CalcularPuntuacion(posicion, pilotoVMR)
+
             Next
-            Console.WriteLine(puntos_pil)
-            'Donde pone console.write line es cuando se tiene que insertar puntos_pil al DataGridView, junto al piloto
-            'Importante poner de alguna manera que se debe ordenar por puntos
             puntos_pil = 0
         Next
+
     End Sub
 End Class

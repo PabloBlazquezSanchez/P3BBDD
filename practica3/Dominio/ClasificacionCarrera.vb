@@ -15,6 +15,9 @@ Public Class ClasificacionCarrera
     Public Function ResultadoPiloto(id As String, edicion As String) As String
         Return Me.ClasifDAO.ResultadoPiloto(id, edicion)
     End Function
+    Public Function PosicionCarrera(id As Integer, edicion As Integer) As Integer
+        Return Me.ClasifDAO.PosicionCarrera(id, edicion)
+    End Function
 
     Public Sub LeerTodosClasif()
         Me.ClasifDAO.LeerTodas()

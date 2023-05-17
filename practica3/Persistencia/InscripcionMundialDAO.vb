@@ -50,5 +50,15 @@
         Return dorsales
     End Function
 
-
+    Public Function DevolverTemporadas() As Collection
+        Dim temporadas As New Collection
+        Dim col, aux As Collection
+        col = AgenteBD.ObtenerAgente.Leer("SELECT DISTINCT TEMPORADA FROM INSCRIPCION_MUNDIAL ORDER BY TEMPORADA;")
+        For Each aux In col
+            Dim t As New InscripcionMundial()
+            t.TEMPORADA = CInt(aux(1))
+            temporadas.Add(t)
+        Next
+        Return temporadas
+    End Function
 End Class

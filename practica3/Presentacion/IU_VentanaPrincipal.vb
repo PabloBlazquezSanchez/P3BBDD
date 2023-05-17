@@ -40,6 +40,11 @@ Public Class IU_VentanaPrincipal
         For Each GranPremio As GranPremio In myGranPremio.GPDAO.LeerTodas
             ListBoxGranPremio.Items.Add(GranPremio.idGRAN_PREMIO & " - " & GranPremio.NOMBRE)
         Next
+
+        Dim myInscripcion As New InscripcionMundial()
+        For Each Inscripcion As InscripcionMundial In myInscripcion.InscrMunDAO.DevolverTemporadas
+            ListBoxTemporadas.Items.Add("Temporada " & Inscripcion.TEMPORADA)
+        Next
     End Sub
 
     Function comprobarNombrePropio(ByVal Nombre As String) As Boolean
@@ -1035,4 +1040,55 @@ Public Class IU_VentanaPrincipal
         End If
     End Function
 
+    Private Sub BtGenInformeClasMun_Click(sender As Object, e As EventArgs) Handles BtGenInformeClasMun.Click
+        DataGridViewClasMun.Columns.Add("Posición", "Posición")
+        DataGridViewClasMun.Columns.Add("Piloto", "Piloto")
+        DataGridViewClasMun.Columns.Add("Puntos Totales", "Puntos Totales")
+        DataGridViewClasMun.DefaultCellStyle.ForeColor = Color.Black
+        DataGridViewClasMun.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+        'Poner que no funcione el boton de informe hasta que no se tenga seleccionada una temporada
+        Dim split As String() = ListBoxTemporadas.SelectedItem.ToString().Split(" ")
+        Dim anio As Integer = CInt(split(1))
+
+        Dim puntos() As Integer = {25, 18, 15, 12, 10, 8, 6, 4, 2, 1}
+        Dim dorsales() As Integer
+
+        Dim InscripcionMd As New InscripcionMundial()
+        dorsales = InscripcionMd.ObtenerDorsalesInscripcion(anio)
+        Dim nCorredores As Integer = UBound(dorsales)
+
+        Dim edi As Edicion = New Edicion()
+        'edi.LeerTodasEdiciones()
+        edi.ANIO = anio
+        'edi.LeerEdicion()
+        Dim cc As ClasificacionCarrera = New ClasificacionCarrera()
+        Dim pil As Integer
+        Dim posicion As Integer
+        Dim numeroedicion As Integer
+        Dim pilotoVMR As Integer
+        For i As Integer = 0 To dorsales.Length - 1
+            Dim puntos_pil As Integer
+            pil = dorsales(i)
+            Dim col As Collection = edi.EdDAO.GetGPAnio(CStr(anio))
+            MsgBox(col(1).ToString, vbInformation)
+            Dim editerador As Collection = New Collection()
+            For Each editerador In col
+                numeroedicion = editerador(1) 'Excepcion de tipo System.MissingMemberException
+                pilotoVMR = editerador(7)
+                posicion = cc.PosicionCarrera(pil, numeroedicion)
+                If posicion <= 10 Then
+                    puntos_pil = puntos_pil + puntos(posicion - 1)
+                Else
+                    puntos_pil = puntos_pil + 0
+                End If
+                If pilotoVMR = pil Then
+                    puntos_pil = puntos_pil + 1
+                End If
+            Next
+            Console.WriteLine(puntos_pil)
+            'Donde pone console.write line es cuando se tiene que insertar puntos_pil al DataGridView, junto al piloto
+            'Importante poner de alguna manera que se debe ordenar por puntos
+            puntos_pil = 0
+        Next
+    End Sub
 End Class

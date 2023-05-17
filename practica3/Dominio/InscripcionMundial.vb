@@ -35,4 +35,8 @@ Public Class InscripcionMundial
     Public Function ObtenerDorsalesInscripcion(ByVal i As Integer) As Integer()
         Return Me.InscrMunDAO.ObtenerDorsales(i)
     End Function
+
+    Public Function DevolverTemporadas() As Collection
+        Return Me.InscrMunDAO.DevolverTemporadas()
+    End Function
 End Class

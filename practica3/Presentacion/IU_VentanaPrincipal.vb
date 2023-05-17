@@ -976,20 +976,22 @@ Public Class IU_VentanaPrincipal
     Private Sub ButtonInformePil2_Click(sender As Object, e As EventArgs) Handles ButtonInformePil2.Click
         Dim myGP As Collection
         Dim edi As New Edicion
+        Dim mensaje As String
         If String.IsNullOrEmpty(ListBoxEdicionGPInforme.Text) Then
             MsgBox("Es necesario que seleccione un Gran Premio", vbExclamation)
         Else
-            myGP = edi.EdDAO.GetGPAnio(ListBoxAñoInforme.SelectedItem.ToString())
-            Dim mensaje As String
-            mensaje = ""
+            Dim nGP As New GranPremio
+            nGP.NOMBRE = ListBoxEdicionGPInforme.Text
+            nGP.LeerNombreGP()
 
 
+            myGP = edi.ObtenerEdicionesDeGP(nGP.idGRAN_PREMIO)
             For Each edi In myGP
-                Dim GP As New GranPremio(edi.idGRAN_PREMIO)
-                GP.LeerGP()
                 Dim clas As New ClasificacionCarrera
                 If (Not IsNothing(clas.ResultadoPiloto(piloto.idPILOTO, edi.idEDICION))) And (clas.ResultadoPiloto(piloto.idPILOTO, edi.idEDICION) <> 0) Then
-                    mensaje = mensaje & GP.NOMBRE & " | Edición: " & edi.NOMBRE & " | Resultado: " & clas.ResultadoPiloto(piloto.idPILOTO, edi.idEDICION) & " | Vuelta rápida: " & vueltaRapida(edi.PILOTO_VR, piloto.idPILOTO) & vbNewLine
+                    Dim posicion As Integer = clas.ResultadoPiloto(piloto.idPILOTO, edi.idEDICION)
+                    Dim VR As String = vueltaRapida(edi.PILOTO_VR, piloto.idPILOTO)
+                    mensaje = mensaje & "Edición: " & edi.NOMBRE & " | Posición: " & posicion & " | Puntos: " & CalcularPuntuacion(posicion, VR) & " | Vuelta rápida: " & VR & vbNewLine
                 End If
             Next
 
@@ -1016,7 +1018,7 @@ Public Class IU_VentanaPrincipal
                 If (Not IsNothing(clas.ResultadoPiloto(piloto.idPILOTO, edi.idEDICION))) And (clas.ResultadoPiloto(piloto.idPILOTO, edi.idEDICION) <> 0) Then
                     Dim posicion As Integer = clas.ResultadoPiloto(piloto.idPILOTO, edi.idEDICION)
                     Dim VR As String = vueltaRapida(edi.PILOTO_VR, piloto.idPILOTO)
-                    mensaje = mensaje & GP.NOMBRE & " | Edición: " & edi.NOMBRE & " | Puntos: " & posicion & " | Resultado: " & CalcularPuntuacion(posicion, VR) & " | Vuelta rápida: " & VR & vbNewLine
+                    mensaje = mensaje & GP.NOMBRE & " | Edición: " & edi.NOMBRE & " | Posición: " & posicion & " | Puntos: " & CalcularPuntuacion(posicion, VR) & " | Vuelta rápida: " & VR & vbNewLine
                 End If
             Next
 

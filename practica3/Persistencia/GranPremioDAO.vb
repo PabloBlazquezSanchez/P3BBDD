@@ -28,7 +28,15 @@
         Next
     End Sub
 
-
+    Public Sub LeerNombre(ByRef g As GranPremio)
+        Dim col As Collection : Dim aux As Collection
+        col = AgenteBD.ObtenerAgente().Leer("SELECT * FROM GRAN_PREMIO WHERE NOMBRE='" & g.NOMBRE & "';")
+        For Each aux In col
+            g.idGRAN_PREMIO = CInt(aux(1).ToString)
+            g.PAIS = aux(2).ToString
+            g.NOMBRE = aux(3).ToString
+        Next
+    End Sub
 
     Public Function Insertar(ByVal g As GranPremio) As String
         Return AgenteBD.ObtenerAgente().Modificar("INSERT INTO GRAN_PREMIO VALUES ('" & g.idGRAN_PREMIO & "', '" & g.PAIS & "', '" & g.NOMBRE & "');")

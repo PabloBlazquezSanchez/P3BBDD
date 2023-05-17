@@ -27,7 +27,7 @@
         Dim col As Collection
         Dim iter As Object
         Dim resultado As New Collection
-        col = AgenteBD.ObtenerAgente.Leer("SELECT DISTINCT ANIO FROM EDICION WHERE PILOTO_VR ='" & name & "' ORDER BY ANIO DESC;")
+        col = AgenteBD.ObtenerAgente.Leer("SELECT DISTINCT ANIO FROM EDICION E JOIN CLASIFICACION_CARRERA C ON E.idEDICION=C.EDICION WHERE C.PILOTO ='" & name & "' ORDER BY ANIO DESC;")
         For Each iter In col
             resultado.Add(CStr(iter(1)))
         Next

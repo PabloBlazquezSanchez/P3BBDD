@@ -21,6 +21,10 @@ Public Class GranPremio
         Me.GPDAO.Leer(Me)
     End Sub
 
+    Public Sub LeerNombreGP()
+        Me.GPDAO.LeerNombre(Me)
+    End Sub
+
     Public Function InsertarGP() As String
         Return Me.GPDAO.Insertar(Me)
     End Function

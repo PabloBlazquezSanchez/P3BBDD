@@ -718,9 +718,10 @@ Public Class IU_VentanaPrincipal
         If ListBoxEdición.SelectedItem IsNot Nothing Then
             Dim split As String() = ListBoxEdición.SelectedItem.ToString().Split(New [Char]() {" "c})
             Dim id As String = split(0)
-            Dim edicion As Edicion = New Edicion With {
-                .idEDICION = id
-            }
+            edicion.idEDICION = id
+
+
+            InformeEdicion.Enabled = True
             'MsgBox(edicion.idEDICION, vbQuestion)
             Try
                 edicion.LeerEdicion()
@@ -731,9 +732,7 @@ Public Class IU_VentanaPrincipal
 
                 Dim myCircuito As New Circuito(edicion.CIRCUITO)
                 myCircuito.LeerCircuito()
-                 CBCircuitoEdi.Text = myCircuito.Nombre
-
-
+                CBCircuitoEdi.Text = myCircuito.Nombre
 
                 DateTimeEdicion.Value = edicion.FECHA
                 TextBoxAnioEdi.Text = edicion.ANIO
@@ -763,7 +762,7 @@ Public Class IU_VentanaPrincipal
 
     Private Sub ModoEdicionTorneo(mode As Boolean)
         ButtonAnadirEdicion.Enabled = Not mode
-        Button1.Enabled = Not mode 'ESTE ES EL BOTON DE GENERAR INFORME
+        InformeEdicion.Enabled = Not mode 'ESTE ES EL BOTON DE GENERAR INFORME
         ListBoxGranPremio.Enabled = Not mode
         ListBoxEdición.Enabled = Not mode
         GroupBoxAgregarEdi.Enabled = mode
@@ -866,6 +865,9 @@ Public Class IU_VentanaPrincipal
                 End If
             End If
         End If
+        DataGridView2.Visible = True
+        DataGridViewEdicion.Visible = True
+        PictureBox1.Visible = True
     End Sub
 
     Private Sub Carrera(ByRef edicioninsert As Edicion)
@@ -1268,6 +1270,18 @@ Public Class IU_VentanaPrincipal
         Dim selectedDate As DateTime = DateTimeEdicion.Value
         Dim selectedYear As Integer = selectedDate.Year
         TextBoxAnioEdi.Text = selectedYear
+
+    End Sub
+
+    Private Sub InformeEdicion_Click(sender As Object, e As EventArgs) Handles InformeEdicion.Click
+        DataGridView2.Visible = True
+        DataGridViewEdicion.Visible = True
+        PictureBox1.Visible = True
+
+        Dim num As Integer
+        num = edicion.idEDICION
+
+
 
     End Sub
 End Class

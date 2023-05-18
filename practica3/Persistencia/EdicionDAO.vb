@@ -86,13 +86,13 @@
         Dim col As Collection : Dim aux As Collection
         col = AgenteBD.ObtenerAgente.Leer("SELECT * FROM EDICION WHERE idEDICION= '" & e.idEDICION & "';")
         For Each aux In col
-            e = New Edicion(CInt(aux(0).ToString))
-            e.idGRAN_PREMIO = aux(1).ToString
-            e.NOMBRE = aux(2).ToString
-            e.CIRCUITO = aux(3).ToString
-            e.FECHA = aux(4).ToString
-            e.ANIO = aux(5).ToString
-            e.PILOTO_VR = aux(6)
+            'e = New Edicion(CInt(aux(0).ToString)) EN TODO CASO 1
+            e.idGRAN_PREMIO = CInt(aux(2).ToString)
+            e.NOMBRE = aux(3).ToString
+            e.CIRCUITO = aux(4).ToString
+            e.FECHA = aux(5).ToString
+            e.ANIO = aux(6).ToString
+            e.PILOTO_VR = aux(7)
         Next
     End Sub
 

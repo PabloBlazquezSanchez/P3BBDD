@@ -4,18 +4,23 @@ Imports MySql.Web
 Public Class IU_VentanaPrincipal
     Private estadoCircuito As Integer
     Private circuito As Circuito
-    Private estadoPiloto As Integer
-    Private estadoPais As Integer
-    Private paisEdi As Pais
-    Private pilotoEdi As Piloto
     Private circuitoEdi As Circuito
+
+    Private estadoPiloto As Integer
+    Private piloto As New Piloto()
+    Private pilotoEdi As Piloto
+
+    Private estadoPais As Integer
+    Private pais As Pais
+    Private paisEdi As Pais
 
     Private estadoGP As Integer
     Private GranPremio As GranPremio
     Private GranPremioEdi As GranPremio
 
-    Private pais As Pais
-    Private piloto As New Piloto()
+    Private estadoEdicion As Integer
+    Private edicion As Edicion
+    Private edicionEdi As Edicion
 
     Private Sub Form2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim myPais As New Pais()
@@ -113,7 +118,6 @@ Public Class IU_VentanaPrincipal
                 TextBoxLongitudCircuito.Text = circuito.Longitud
                 TextBoxIDCircuito.Text = circuito.IdCircuito
 
-
                 Dim textoBuscado As String = myPais.Nombre
                 CBPaisCircuito.Items.Clear()
                 For Each pais As Pais In myPais.PaisDAO.LeerTodas
@@ -126,8 +130,6 @@ Public Class IU_VentanaPrincipal
                         Exit For
                     End If
                 Next
-
-
             Catch ex As Exception
                 MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             End Try
@@ -388,7 +390,7 @@ Public Class IU_VentanaPrincipal
 
         ElseIf Not IsNumeric(TextBoxIDPiloto.Text) Then
             camposValidos = False
-            MsgBox("ID del piloto no válido. Sólo puede contener letras y espacios ", vbExclamation)
+            MsgBox("ID o dorsal de piloto no válido. Sólo se admiten números", vbExclamation)
         End If
 
         If String.IsNullOrEmpty(CBPaisPiloto.Text) Then
@@ -511,105 +513,11 @@ Public Class IU_VentanaPrincipal
     End Sub
 
     '--------------------------------'
-    '        MÉTODOS PARA GP         '
+    '   MÉTODOS PARA GRAN PREMIO     '
     '--------------------------------'
-
-    Private Sub AnadirEdicion_Click(sender As Object, e As EventArgs) Handles ButtonAnadirEdicion.Click
-        ' Agrega las columnas al control DataGridView
-        DataGridViewEdicion.Columns.Add("Posición", "Posición")
-        DataGridViewEdicion.Columns.Add("Piloto", "Piloto")
-        'DataGridViewEdicion.Columns.Add("Dorsal", "Dorsal")
-        DataGridViewEdicion.Columns.Add("Pais", "Pais")
-        DataGridViewEdicion.Columns.Add("Puntos", "Puntos")
-
-        ' Establecer el color de texto negro y alinear el texto en el centro de las celdas
-        DataGridViewEdicion.DefaultCellStyle.ForeColor = Color.Black
-        DataGridViewEdicion.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-
-        ' También puedes hacer lo mismo para el otro DataGridView
-        DataGridView2.DefaultCellStyle.ForeColor = Color.Black
-        DataGridView2.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-
-        ' Declaración e inicialización de los arrays
-        Dim puntos() As Integer = {25, 18, 15, 12, 10, 8, 6, 4, 2, 1}
-        Dim dorsales() As Integer
-        ' Obtención de los dorsales
-        Dim InscripcionMd As New InscripcionMundial()
-        dorsales = InscripcionMd.ObtenerDorsalesInscripcion(2023)
-        Dim nCorredores As Integer = UBound(dorsales)
-
-        ' Asignación de los dorsales aleatorios al control DataGridView
-        Dim dorsalesDisponibles As New List(Of Integer)(dorsales)
-        Dim rnd As New Random()
-        Dim j As Integer
-        Dim driver As Piloto = New Piloto()
-        Dim dorsal As Integer
-        Dim nombreCorredor As String
-        Dim paisCorredor As String
-
-        Dim VMR As Integer = rnd.Next(0, nCorredores)
-
-        If (VMR + 1 <= 10) Then
-            puntos(VMR) = puntos(VMR) + 1
-        End If
-
-        For i As Integer = 0 To dorsales.Length - 1
-            j = rnd.Next(0, dorsalesDisponibles.Count)
-            dorsal = dorsalesDisponibles(j)
-            driver.idPILOTO = dorsal
-            driver.LeerPiloto()
-            nombreCorredor = driver.Nombre 'piloto.DevolverNombrePiloto(dorsal)
-            paisCorredor = driver.Pais
-            If (i < puntos.Length) Then
-                DataGridViewEdicion.Rows.Add(i + 1, nombreCorredor, paisCorredor, puntos(i))
-            Else
-                DataGridViewEdicion.Rows.Add(i + 1, nombreCorredor, paisCorredor, 0) 'Y si haces un ToString tras objeto piloto?
-            End If
-            dorsalesDisponibles.RemoveAt(j)
-        Next i
-
-        DataGridView2.Columns.Add("Piloto", "Piloto")
-        DataGridView2.Columns.Add("Pais", "Pais")
-        DataGridViewEdicion.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewEdicion.ColumnHeadersDefaultCellStyle.Font = New Font(DataGridViewEdicion.Font, FontStyle.Bold)
-        DataGridView2.Rows.Add(DataGridViewEdicion.Rows(VMR).Cells(1).Value, DataGridViewEdicion.Rows(VMR).Cells(2).Value)
-
-        ' Configuración de las propiedades del DataGridView
-        DataGridViewEdicion.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill ' Ajusta el ancho de las columnas automáticamente
-        DataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
-        ' Habilitar el botón nuevamente
-        ButtonAnadirEdicion.Enabled = False
-
-        DataGridViewEdicion.ReadOnly = True
-        DataGridViewEdicion.RowHeadersVisible = False
-
-        DataGridView2.ReadOnly = True
-        DataGridView2.RowHeadersVisible = False
-        DataGridView2.ScrollBars = False
-
-    End Sub
-
-    Private Sub ListBoxGranPremio_DarEdiciones(sender As Object, e As EventArgs) Handles ListBoxGranPremio.SelectedIndexChanged
-        ListBoxEdición.Items.Clear()
-        Dim split As String() = ListBoxGranPremio.SelectedItem.ToString().Split(New [Char]() {" "c})
-        Dim id As String
-        id = split(0)
-        Try
-            Dim ediciones As New Edicion()
-            For Each Edicion As Edicion In ediciones.EdDAO.ObtenerEdicionesDeGP(id)
-                ListBoxEdición.Items.Add(Edicion.idEDICION & " - " & Edicion.NOMBRE)
-            Next
-        Catch ex As Exception
-            MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-        End Try
-
-        'Dim myEdicion As New Edicion()
-        'For Each Edicion As Edicion In myEdicion.EdDAO.LeerTodas
-        '    ListBoxEdición.Items.Add(Edicion.idEDICION & " - " & Edicion.NOMBRE)
-        'Next
-    End Sub
     Private Sub ListBoxGranPremio_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBoxGranPremio.SelectedIndexChanged
         If ListBoxGranPremio.SelectedItem IsNot Nothing Then
+            ButtonAnadirEdicion.Enabled = True
             BtEditarGP.Enabled = True
             BtEliminarGP.Enabled = True
             Dim split As String() = ListBoxGranPremio.SelectedItem.ToString().Split(New [Char]() {" "c})
@@ -775,6 +683,274 @@ Public Class IU_VentanaPrincipal
     End Sub
 
     '--------------------------------'
+    '     MÉTODOS PARA EDICION       '
+    '--------------------------------'
+
+    'Añado elementos al List Box de Ediciones cuando seleccione un Gran Premio
+    Private Sub ListBoxGranPremio_DarEdiciones(sender As Object, e As EventArgs) Handles ListBoxGranPremio.SelectedIndexChanged
+        ListBoxEdición.Items.Clear()
+        Dim split As String() = ListBoxGranPremio.SelectedItem.ToString().Split(New [Char]() {" "c}) 'EXCEPCION AQUI AL NO SELECCIONAR NADA
+        Dim id As String
+        id = split(0)
+        Try
+            Dim ediciones As New Edicion()
+            For Each Edicion As Edicion In ediciones.EdDAO.ObtenerEdicionesDeGP(id)
+                ListBoxEdición.Items.Add(Edicion.idEDICION & " - " & Edicion.NOMBRE)
+            Next
+        Catch ex As Exception
+            MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+        End Try
+
+        'Dim myEdicion As New Edicion()
+        'For Each Edicion As Edicion In myEdicion.EdDAO.LeerTodas
+        '    ListBoxEdición.Items.Add(Edicion.idEDICION & " - " & Edicion.NOMBRE)
+        'Next
+    End Sub
+
+    Private Sub ListBoxEdición_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBoxEdición.SelectedIndexChanged
+        If ListBoxEdición.SelectedItem IsNot Nothing Then
+            Dim split As String() = ListBoxEdición.SelectedItem.ToString().Split(New [Char]() {" "c})
+            Dim id As String = split(0)
+            Dim edicion As Edicion = New Edicion With {
+                .idEDICION = id
+            }
+            'MsgBox(edicion.idEDICION, vbQuestion)
+            Try
+                edicion.LeerEdicion()
+                Me.edicion = edicion
+                Me.edicionEdi = edicion
+                TextBoxNoGP.Text = edicion.idGRAN_PREMIO
+                TextBoxNombreEdicion.Text = edicion.NOMBRE
+
+                Dim myCircuito As New Circuito(edicion.CIRCUITO)
+                myCircuito.LeerCircuito()
+                Dim textoBuscado As String = myCircuito.Nombre
+                CBCircuitoEdi.Items.Clear()
+
+                For Each ci As Circuito In myCircuito.CircuDAO.LeerTodas
+                    CBCircuitoEdi.Items.Add(ci.Nombre)
+                Next
+
+                For Each item As Object In CBCircuitoEdi.Items
+                    If item.ToString().Contains(textoBuscado) Then
+                        CBCircuitoEdi.SelectedItem = item
+                        Exit For
+                    End If
+                Next
+                DateTimeEdicion.Value = edicion.FECHA
+                TextBoxAnioEdi.Text = edicion.ANIO
+                TextBoxIDEdicion.Text = edicion.idEDICION
+                ButtonAnadirEdicion.Enabled = True
+            Catch ex As Exception
+                MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
+        Else
+            ButtonAnadirEdicion.Enabled = False
+        End If
+    End Sub
+
+    Private Sub AnadirEdicion_Click(sender As Object, e As EventArgs) Handles ButtonAnadirEdicion.Click
+        Me.estadoEdicion = 0
+        ModoEdicionTorneo(True)
+        LimpiarFormEditaEdi()
+    End Sub
+
+    Private Sub ButtonLimpiarEdi_Click(sender As Object, e As EventArgs) Handles ButtonLimpiarEdi.Click
+        LimpiarFormEditaEdi()
+    End Sub
+
+    Private Sub LimpiarFormEditaEdi()
+        LimpiarTextoFormularioGeneral(GroupBoxAgregarEdi)
+    End Sub
+
+    Private Sub ModoEdicionTorneo(mode As Boolean)
+        ButtonAnadirEdicion.Enabled = Not mode
+        Button1.Enabled = Not mode 'ESTE ES EL BOTON DE GENERAR INFORME
+        GBBotonesEdicionGP.Enabled = Not mode
+        ListBoxGranPremio.Enabled = Not mode
+        ListBoxEdición.Enabled = Not mode
+        GroupBoxAgregarEdi.Enabled = mode
+        ButtonAddTorneo.Enabled = mode
+    End Sub
+
+    Private Function comprobarCamposEdicion() As Boolean
+        Dim camposValidos As Boolean
+        camposValidos = True
+        If TextBoxNombreEdicion.Text = "" Or TextBoxIDEdicion.Text = "" Or TextBoxNoGP.Text = "" Or TextBoxAnioEdi.Text = "" Or DateTimeEdicion.Value = DateTime.MinValue Then
+            camposValidos = False
+            MsgBox("Es necesario que rellene todos los campos para poderse realizar una edición", vbExclamation)
+
+        ElseIf Not (comprobarNombrePropio(TextBoxNombreEdicion.Text)) Then
+            camposValidos = False
+            MsgBox("Nombre de edición no válido. Sólo puede contener letras y espacios", vbExclamation)
+
+        ElseIf Not IsNumeric(TextBoxIDEdicion.Text) Then
+            camposValidos = False
+            MsgBox("ID de edición no válido. Sólo se admiten números", vbExclamation)
+
+        ElseIf Not IsNumeric(TextBoxNoGP.Text) Then
+            camposValidos = False
+            MsgBox("Número de GP no válido. Sólo se admiten números", vbExclamation)
+
+        ElseIf Not IsNumeric(TextBoxAnioEdi.Text) Then
+            camposValidos = False
+            MsgBox("ID de edición no válido. Sólo se admiten números", vbExclamation)
+        End If
+
+        If String.IsNullOrEmpty(CBCircuitoEdi.Text) Then
+            camposValidos = False
+            MsgBox("Es necesario que seleccione un circuito donde disputar el torneo", vbExclamation)
+        End If
+        Return camposValidos
+    End Function
+
+    Private Sub ButtonVolverEdi_Click(sender As Object, e As EventArgs) Handles ButtonVolverEdi.Click
+        Dim volver As Integer
+        volver = MsgBox("¿Estas seguro de que desea volver? Se perderán los cambios no guardados.", vbYesNo + vbDefaultButton2 + vbQuestion, "Cerrar modo edición.")
+        If (volver = vbYes) Then
+            DeshacerCamposEdicion()
+        End If
+    End Sub
+
+    Private Sub DeshacerCamposEdicion()
+        estadoEdicion = -1
+        TextBoxNombreEdicion.Undo()
+        TextBoxNombreEdicion.ClearUndo()
+        TextBoxIDEdicion.Undo()
+        TextBoxIDEdicion.ClearUndo()
+        ModoEdicionTorneo(False)
+    End Sub
+
+    Private Sub ButtonAddTorneo_Click(sender As Object, e As EventArgs) Handles ButtonAddTorneo.Click
+        If comprobarCamposEdicion() Then
+            Dim check As Boolean = True
+            Dim myEdi As New Edicion()
+            myEdi.LeerTodasEdiciones()
+            For Each iteradorEdi As Edicion In myEdi.EdDAO.LeerTodas
+                If iteradorEdi.idEDICION = TextBoxIDEdicion.Text() Then
+                    check = False
+                End If
+            Next
+
+            Dim checkII As Boolean = True
+            Dim myGP As New GranPremio()
+            myGP.LeerTodosGP()
+            For Each iteradorGP As GranPremio In myGP.GPDAO.LeerTodas
+                If iteradorGP.idGRAN_PREMIO = TextBoxNoGP.Text() Then
+                    checkII = False
+                End If
+            Next
+
+            '
+            ' COMPROBAR QUE EL NO. GP PUESTO TAMBIÉN COINCIDA CON EL CIRCUITO
+            '
+
+            'And Me.estadoEdicion = 0
+            If (checkII) Then 'Intento generar una edición con un GP inexistente
+                MsgBox("ID de GP no existe.", vbExclamation)
+                ButtonLimpiarEdi.PerformClick()
+            ElseIf (Not check) Then 'Intento generar una edicion con un ID ya existente
+                MsgBox("ID de edicion ya existe.", vbExclamation)
+                ButtonLimpiarEdi.PerformClick()
+                'Y AQUI EL ULTIMO ELSEIF
+            Else
+                If comprobarCamposEdicion() Then
+                    'Si cumple con todos los requisitos, se puede hacer la carrera o torneo
+                    Dim myEdicion As Edicion = New Edicion With {
+                        .idEDICION = CInt(TextBoxIDEdicion.Text), .idGRAN_PREMIO = CInt(TextBoxNoGP.Text), .NOMBRE = TextBoxNombreEdicion.Text, .CIRCUITO = CInt(CBCircuitoEdi.SelectedIndex), .FECHA = DateTimeEdicion.Value, .ANIO = CInt(TextBoxAnioEdi.Text), .PILOTO_VR = 1
+                    } 'Temporalmente el VMR es de 1, pero se cambiará
+                    myEdicion.InsertarEdicion()
+                    Carrera(myEdicion)
+                End If
+            End If
+        End If
+    End Sub
+
+    Private Sub Carrera(ByRef edicioninsert As Edicion)
+        ' Agrega las columnas al control DataGridView
+        DataGridViewEdicion.Columns.Add("Posición", "Posición")
+        DataGridViewEdicion.Columns.Add("Piloto", "Piloto")
+        DataGridViewEdicion.Columns.Add("Pais", "Pais")
+        DataGridViewEdicion.Columns.Add("Puntos", "Puntos")
+
+        ' Establecer el color de texto negro y alinear el texto en el centro de las celdas
+        DataGridViewEdicion.DefaultCellStyle.ForeColor = Color.Black
+        DataGridViewEdicion.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+
+        ' También puedes hacer lo mismo para el otro DataGridView
+        DataGridView2.DefaultCellStyle.ForeColor = Color.Black
+        DataGridView2.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+
+        ' Declaración e inicialización de los arrays
+        Dim puntos() As Integer = {25, 18, 15, 12, 10, 8, 6, 4, 2, 1}
+        Dim dorsales() As Integer
+        ' Obtención de los dorsales
+        Dim InscripcionMd As New InscripcionMundial()
+        dorsales = InscripcionMd.ObtenerDorsalesInscripcion(2023)
+        Dim nCorredores As Integer = UBound(dorsales)
+
+        ' Asignación de los dorsales aleatorios al control DataGridView
+        Dim dorsalesDisponibles As New List(Of Integer)(dorsales)
+        Dim rnd As New Random()
+        Dim j As Integer
+        Dim driver As Piloto = New Piloto()
+        Dim dorsal As Integer
+        Dim nombreCorredor As String
+        Dim paisCorredor As String
+        Dim banderacuadrospiloto As ClasificacionCarrera
+        Dim VMR As Integer = rnd.Next(0, nCorredores)
+        If (VMR + 1 <= 10) Then
+            puntos(VMR) = puntos(VMR) + 1
+        End If
+
+        For i As Integer = 0 To dorsales.Length - 1
+            j = rnd.Next(0, dorsalesDisponibles.Count)
+            dorsal = dorsalesDisponibles(j)
+            driver.idPILOTO = dorsal
+            driver.LeerPiloto()
+            nombreCorredor = driver.Nombre 'piloto.DevolverNombrePiloto(dorsal)
+            paisCorredor = driver.Pais
+            If (i < puntos.Length) Then
+                DataGridViewEdicion.Rows.Add(i + 1, nombreCorredor, paisCorredor, puntos(i))
+            Else
+                DataGridViewEdicion.Rows.Add(i + 1, nombreCorredor, paisCorredor, 0) 'Y si haces un ToString tras objeto piloto?
+            End If
+            'NUEVA CLASIFICACION_CARRERA DE CADA PILOTO, CON LA EDICION PASADA POR REFERENCIA
+            banderacuadrospiloto = New ClasificacionCarrera With {
+                .PILOTO = driver, .POSICION = i + 1, .EDICION = edicioninsert.idEDICION
+            }
+            banderacuadrospiloto.InsertarClasif()
+            'SI ES EL PILOTO DE LA VUELTA RÁPIDA, LO AÑADIMOS A LA EDICIÓN
+            If (i = VMR) Then
+                edicioninsert.PILOTO_VR = dorsal
+                edicioninsert.ActualizarEdicion()
+            End If
+            'QUITAMOS DE LA LISTA EL PILOTO YA CLASIFICADO
+            dorsalesDisponibles.RemoveAt(j)
+        Next i
+
+        DataGridView2.Columns.Add("Piloto", "Piloto")
+        DataGridView2.Columns.Add("Pais", "Pais")
+        DataGridViewEdicion.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+        DataGridViewEdicion.ColumnHeadersDefaultCellStyle.Font = New Font(DataGridViewEdicion.Font, FontStyle.Bold)
+        DataGridView2.Rows.Add(DataGridViewEdicion.Rows(VMR).Cells(1).Value, DataGridViewEdicion.Rows(VMR).Cells(2).Value)
+
+        ' Configuración de las propiedades del DataGridView
+        DataGridViewEdicion.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill ' Ajusta el ancho de las columnas automáticamente
+        DataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+        ' Habilitar el botón nuevamente
+        ButtonAnadirEdicion.Enabled = False
+
+        DataGridViewEdicion.ReadOnly = True
+        DataGridViewEdicion.RowHeadersVisible = False
+
+        DataGridView2.ReadOnly = True
+        DataGridView2.RowHeadersVisible = False
+        DataGridView2.ScrollBars = False
+    End Sub
+
+
+    '--------------------------------'
     '   MÉTODOS PARA CONFIGURACION   '
     '   COMO PAISES INFORMES ETC     '
     '--------------------------------'
@@ -822,7 +998,6 @@ Public Class IU_VentanaPrincipal
         BtEditarPais.Enabled = False
         BtBorrarPais.Enabled = False
         ListBoxPaises.Enabled = False
-
     End Sub
 
     Private Sub BtLimpiarPais_Click(sender As Object, e As EventArgs) Handles BtLimpiarPais.Click
@@ -945,7 +1120,7 @@ Public Class IU_VentanaPrincipal
     End Sub
 
     '--------------------------------'
-    '        OTROS MÉTODOS           '
+    '    OTROS MÉTODOS (INFORMES)    '
     '--------------------------------'
     Private Sub CBPaisPiloto_Click(sender As Object, e As EventArgs) Handles CBPaisPiloto.Click
         Dim myPais As New Pais()
@@ -1032,7 +1207,6 @@ Public Class IU_VentanaPrincipal
     End Sub
 
     Private Function vueltaRapida(pILOTO_VR As Integer, idPILOTO As String) As String
-
         If pILOTO_VR = idPILOTO Then
             Return "Sí"
         Else
@@ -1088,11 +1262,4 @@ Public Class IU_VentanaPrincipal
         End If
     End Sub
 
-    Private Sub GroupBox1_Enter(sender As Object, e As EventArgs) Handles GroupBox1.Enter
-
-    End Sub
-
-    Private Sub TabGranPremio_Click(sender As Object, e As EventArgs) Handles TabGranPremio.Click
-
-    End Sub
 End Class

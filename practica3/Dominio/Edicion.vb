@@ -12,6 +12,11 @@ Public Class Edicion
         Me.EdDAO = New EdicionDAO
     End Sub
 
+    Public Sub New(id As String)
+        Me.EdDAO = New EdicionDAO
+        Me.idEDICION = id
+    End Sub
+
     Public Function GetGPAnio(ByVal fecha As String) As Collection
         Return Me.EdDAO.GetGPAnio(fecha)
     End Function
@@ -26,10 +31,6 @@ Public Class Edicion
     Public Function ObtenerEdicionesDeGP(ByVal id As String) As Collection
         Return Me.EdDAO.ObtenerEdicionesDeGP(id)
     End Function
-    Public Sub New(id As String)
-        Me.EdDAO = New EdicionDAO
-        Me.idEDICION = id
-    End Sub
 
     Public Sub LeerTodasEdiciones()
         Me.EdDAO.LeerTodas()

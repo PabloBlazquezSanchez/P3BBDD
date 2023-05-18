@@ -86,19 +86,20 @@ Partial Class IU_VentanaPrincipal
         Me.BtEliminarPil = New System.Windows.Forms.Button()
         Me.ListBoxPilotos = New System.Windows.Forms.ListBox()
         Me.TabGranPremio = New System.Windows.Forms.TabPage()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.TextBox4 = New System.Windows.Forms.TextBox()
-        Me.DateTimePicker1 = New System.Windows.Forms.DateTimePicker()
+        Me.GroupBoxAgregarEdi = New System.Windows.Forms.GroupBox()
+        Me.ButtonVolverEdi = New System.Windows.Forms.Button()
+        Me.ButtonLimpiarEdi = New System.Windows.Forms.Button()
+        Me.ButtonAddTorneo = New System.Windows.Forms.Button()
+        Me.TextBoxAnioEdi = New System.Windows.Forms.TextBox()
+        Me.DateTimeEdicion = New System.Windows.Forms.DateTimePicker()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
-        Me.ComboBox2 = New System.Windows.Forms.ComboBox()
+        Me.CBCircuitoEdi = New System.Windows.Forms.ComboBox()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.TextBox3 = New System.Windows.Forms.TextBox()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
-        Me.Label2 = New System.Windows.Forms.Label()
+        Me.TextBoxNoGP = New System.Windows.Forms.TextBox()
+        Me.TextBoxIDEdicion = New System.Windows.Forms.TextBox()
+        Me.TextBoxNombreEdicion = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.GBOpcionesGP = New System.Windows.Forms.GroupBox()
@@ -154,7 +155,7 @@ Partial Class IU_VentanaPrincipal
         Me.GBBotonesEdicionPiloto.SuspendLayout()
         Me.GBOpcionesPer.SuspendLayout()
         Me.TabGranPremio.SuspendLayout()
-        Me.GroupBox1.SuspendLayout()
+        Me.GroupBoxAgregarEdi.SuspendLayout()
         Me.GBOpcionesGP.SuspendLayout()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridViewEdicion, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -203,7 +204,7 @@ Partial Class IU_VentanaPrincipal
         Me.TabPageCircuitos.Margin = New System.Windows.Forms.Padding(4)
         Me.TabPageCircuitos.Name = "TabPageCircuitos"
         Me.TabPageCircuitos.Padding = New System.Windows.Forms.Padding(4)
-        Me.TabPageCircuitos.Size = New System.Drawing.Size(4183, 1996)
+        Me.TabPageCircuitos.Size = New System.Drawing.Size(4183, 2014)
         Me.TabPageCircuitos.TabIndex = 0
         Me.TabPageCircuitos.Text = "Circuitos"
         '
@@ -519,7 +520,7 @@ Partial Class IU_VentanaPrincipal
         Me.TabPagePilotos.Margin = New System.Windows.Forms.Padding(4)
         Me.TabPagePilotos.Name = "TabPagePilotos"
         Me.TabPagePilotos.Padding = New System.Windows.Forms.Padding(4)
-        Me.TabPagePilotos.Size = New System.Drawing.Size(4183, 1996)
+        Me.TabPagePilotos.Size = New System.Drawing.Size(4183, 2014)
         Me.TabPagePilotos.TabIndex = 1
         Me.TabPagePilotos.Text = "Pilotos"
         '
@@ -907,7 +908,7 @@ Partial Class IU_VentanaPrincipal
         '
         Me.TabGranPremio.BackColor = System.Drawing.SystemColors.Control
         Me.TabGranPremio.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TabGranPremio.Controls.Add(Me.GroupBox1)
+        Me.TabGranPremio.Controls.Add(Me.GroupBoxAgregarEdi)
         Me.TabGranPremio.Controls.Add(Me.GBOpcionesGP)
         Me.TabGranPremio.Controls.Add(Me.DataGridView2)
         Me.TabGranPremio.Controls.Add(Me.DataGridViewEdicion)
@@ -927,63 +928,105 @@ Partial Class IU_VentanaPrincipal
         Me.TabGranPremio.TabIndex = 4
         Me.TabGranPremio.Text = "Grandes Premios"
         '
-        'GroupBox1
+        'GroupBoxAgregarEdi
         '
-        Me.GroupBox1.Controls.Add(Me.TextBox4)
-        Me.GroupBox1.Controls.Add(Me.DateTimePicker1)
-        Me.GroupBox1.Controls.Add(Me.Label11)
-        Me.GroupBox1.Controls.Add(Me.Label8)
-        Me.GroupBox1.Controls.Add(Me.Label7)
-        Me.GroupBox1.Controls.Add(Me.ComboBox2)
-        Me.GroupBox1.Controls.Add(Me.Label6)
-        Me.GroupBox1.Controls.Add(Me.TextBox3)
-        Me.GroupBox1.Controls.Add(Me.TextBox1)
-        Me.GroupBox1.Controls.Add(Me.ComboBox1)
-        Me.GroupBox1.Controls.Add(Me.TextBox2)
-        Me.GroupBox1.Controls.Add(Me.Label2)
-        Me.GroupBox1.Controls.Add(Me.Label3)
-        Me.GroupBox1.Controls.Add(Me.Label4)
-        Me.GroupBox1.Enabled = False
-        Me.GroupBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.GroupBox1.Location = New System.Drawing.Point(1046, 255)
-        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(4)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(4)
-        Me.GroupBox1.Size = New System.Drawing.Size(328, 348)
-        Me.GroupBox1.TabIndex = 27
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "Datos de la edición"
+        Me.GroupBoxAgregarEdi.Controls.Add(Me.ButtonVolverEdi)
+        Me.GroupBoxAgregarEdi.Controls.Add(Me.ButtonLimpiarEdi)
+        Me.GroupBoxAgregarEdi.Controls.Add(Me.ButtonAddTorneo)
+        Me.GroupBoxAgregarEdi.Controls.Add(Me.TextBoxAnioEdi)
+        Me.GroupBoxAgregarEdi.Controls.Add(Me.DateTimeEdicion)
+        Me.GroupBoxAgregarEdi.Controls.Add(Me.Label11)
+        Me.GroupBoxAgregarEdi.Controls.Add(Me.Label8)
+        Me.GroupBoxAgregarEdi.Controls.Add(Me.Label7)
+        Me.GroupBoxAgregarEdi.Controls.Add(Me.CBCircuitoEdi)
+        Me.GroupBoxAgregarEdi.Controls.Add(Me.Label6)
+        Me.GroupBoxAgregarEdi.Controls.Add(Me.TextBoxNoGP)
+        Me.GroupBoxAgregarEdi.Controls.Add(Me.TextBoxIDEdicion)
+        Me.GroupBoxAgregarEdi.Controls.Add(Me.TextBoxNombreEdicion)
+        Me.GroupBoxAgregarEdi.Controls.Add(Me.Label3)
+        Me.GroupBoxAgregarEdi.Controls.Add(Me.Label4)
+        Me.GroupBoxAgregarEdi.Enabled = False
+        Me.GroupBoxAgregarEdi.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GroupBoxAgregarEdi.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.GroupBoxAgregarEdi.Location = New System.Drawing.Point(1046, 255)
+        Me.GroupBoxAgregarEdi.Margin = New System.Windows.Forms.Padding(4)
+        Me.GroupBoxAgregarEdi.Name = "GroupBoxAgregarEdi"
+        Me.GroupBoxAgregarEdi.Padding = New System.Windows.Forms.Padding(4)
+        Me.GroupBoxAgregarEdi.Size = New System.Drawing.Size(328, 348)
+        Me.GroupBoxAgregarEdi.TabIndex = 27
+        Me.GroupBoxAgregarEdi.TabStop = False
+        Me.GroupBoxAgregarEdi.Text = "Datos de la edición o torneo"
         '
-        'TextBox4
+        'ButtonVolverEdi
         '
-        Me.TextBox4.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBox4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox4.Location = New System.Drawing.Point(120, 289)
-        Me.TextBox4.Margin = New System.Windows.Forms.Padding(4)
-        Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.Size = New System.Drawing.Size(192, 23)
-        Me.TextBox4.TabIndex = 34
+        Me.ButtonVolverEdi.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.ButtonVolverEdi.FlatAppearance.BorderSize = 0
+        Me.ButtonVolverEdi.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonVolverEdi.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.ButtonVolverEdi.Image = CType(resources.GetObject("ButtonVolverEdi.Image"), System.Drawing.Image)
+        Me.ButtonVolverEdi.Location = New System.Drawing.Point(26, 294)
+        Me.ButtonVolverEdi.Margin = New System.Windows.Forms.Padding(4)
+        Me.ButtonVolverEdi.Name = "ButtonVolverEdi"
+        Me.ButtonVolverEdi.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.ButtonVolverEdi.Size = New System.Drawing.Size(64, 37)
+        Me.ButtonVolverEdi.TabIndex = 37
+        Me.ButtonVolverEdi.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.ButtonVolverEdi.UseVisualStyleBackColor = True
         '
-        'DateTimePicker1
+        'ButtonLimpiarEdi
         '
-        Me.DateTimePicker1.CustomFormat = "dd/MMM/yyyy"
-        Me.DateTimePicker1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DateTimePicker1.Location = New System.Drawing.Point(120, 246)
-        Me.DateTimePicker1.Margin = New System.Windows.Forms.Padding(4)
-        Me.DateTimePicker1.MaxDate = New Date(2010, 1, 1, 0, 0, 0, 0)
-        Me.DateTimePicker1.MinDate = New Date(1900, 1, 1, 0, 0, 0, 0)
-        Me.DateTimePicker1.Name = "DateTimePicker1"
-        Me.DateTimePicker1.Size = New System.Drawing.Size(192, 23)
-        Me.DateTimePicker1.TabIndex = 33
-        Me.DateTimePicker1.Value = New Date(2010, 1, 1, 0, 0, 0, 0)
+        Me.ButtonLimpiarEdi.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.ButtonLimpiarEdi.FlatAppearance.BorderSize = 0
+        Me.ButtonLimpiarEdi.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonLimpiarEdi.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.ButtonLimpiarEdi.Image = CType(resources.GetObject("ButtonLimpiarEdi.Image"), System.Drawing.Image)
+        Me.ButtonLimpiarEdi.Location = New System.Drawing.Point(118, 294)
+        Me.ButtonLimpiarEdi.Margin = New System.Windows.Forms.Padding(4)
+        Me.ButtonLimpiarEdi.Name = "ButtonLimpiarEdi"
+        Me.ButtonLimpiarEdi.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.ButtonLimpiarEdi.Size = New System.Drawing.Size(64, 37)
+        Me.ButtonLimpiarEdi.TabIndex = 36
+        Me.ButtonLimpiarEdi.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.ButtonLimpiarEdi.UseVisualStyleBackColor = True
+        '
+        'ButtonAddTorneo
+        '
+        Me.ButtonAddTorneo.Location = New System.Drawing.Point(217, 293)
+        Me.ButtonAddTorneo.Name = "ButtonAddTorneo"
+        Me.ButtonAddTorneo.Size = New System.Drawing.Size(95, 38)
+        Me.ButtonAddTorneo.TabIndex = 35
+        Me.ButtonAddTorneo.Text = "Torneo"
+        Me.ButtonAddTorneo.UseVisualStyleBackColor = True
+        '
+        'TextBoxAnioEdi
+        '
+        Me.TextBoxAnioEdi.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBoxAnioEdi.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TextBoxAnioEdi.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBoxAnioEdi.Location = New System.Drawing.Point(120, 252)
+        Me.TextBoxAnioEdi.Margin = New System.Windows.Forms.Padding(4)
+        Me.TextBoxAnioEdi.Name = "TextBoxAnioEdi"
+        Me.TextBoxAnioEdi.Size = New System.Drawing.Size(192, 23)
+        Me.TextBoxAnioEdi.TabIndex = 34
+        '
+        'DateTimeEdicion
+        '
+        Me.DateTimeEdicion.CustomFormat = "dd/MMM/yyyy"
+        Me.DateTimeEdicion.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DateTimeEdicion.Location = New System.Drawing.Point(120, 204)
+        Me.DateTimeEdicion.Margin = New System.Windows.Forms.Padding(4)
+        Me.DateTimeEdicion.MaxDate = New Date(2024, 1, 1, 0, 0, 0, 0)
+        Me.DateTimeEdicion.MinDate = New Date(1900, 1, 1, 0, 0, 0, 0)
+        Me.DateTimeEdicion.Name = "DateTimeEdicion"
+        Me.DateTimeEdicion.Size = New System.Drawing.Size(192, 23)
+        Me.DateTimeEdicion.TabIndex = 33
+        Me.DateTimeEdicion.Value = New Date(2010, 1, 1, 0, 0, 0, 0)
         '
         'Label11
         '
         Me.Label11.AutoSize = True
         Me.Label11.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label11.Location = New System.Drawing.Point(25, 291)
+        Me.Label11.Location = New System.Drawing.Point(19, 252)
         Me.Label11.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(33, 17)
@@ -994,7 +1037,7 @@ Partial Class IU_VentanaPrincipal
         '
         Me.Label8.AutoSize = True
         Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label8.Location = New System.Drawing.Point(23, 252)
+        Me.Label8.Location = New System.Drawing.Point(19, 209)
         Me.Label8.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(47, 17)
@@ -1005,95 +1048,73 @@ Partial Class IU_VentanaPrincipal
         '
         Me.Label7.AutoSize = True
         Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.Location = New System.Drawing.Point(20, 211)
+        Me.Label7.Location = New System.Drawing.Point(19, 165)
         Me.Label7.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(55, 17)
         Me.Label7.TabIndex = 30
         Me.Label7.Text = "Circuito"
         '
-        'ComboBox2
+        'CBCircuitoEdi
         '
-        Me.ComboBox2.BackColor = System.Drawing.SystemColors.Control
-        Me.ComboBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ComboBox2.FormattingEnabled = True
-        Me.ComboBox2.Location = New System.Drawing.Point(120, 207)
-        Me.ComboBox2.Margin = New System.Windows.Forms.Padding(4)
-        Me.ComboBox2.Name = "ComboBox2"
-        Me.ComboBox2.Size = New System.Drawing.Size(192, 25)
-        Me.ComboBox2.TabIndex = 29
+        Me.CBCircuitoEdi.BackColor = System.Drawing.SystemColors.Control
+        Me.CBCircuitoEdi.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CBCircuitoEdi.FormattingEnabled = True
+        Me.CBCircuitoEdi.Location = New System.Drawing.Point(120, 162)
+        Me.CBCircuitoEdi.Margin = New System.Windows.Forms.Padding(4)
+        Me.CBCircuitoEdi.Name = "CBCircuitoEdi"
+        Me.CBCircuitoEdi.Size = New System.Drawing.Size(192, 25)
+        Me.CBCircuitoEdi.TabIndex = 29
         '
         'Label6
         '
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(20, 162)
+        Me.Label6.Location = New System.Drawing.Point(19, 121)
         Me.Label6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(28, 17)
+        Me.Label6.Size = New System.Drawing.Size(79, 17)
         Me.Label6.TabIndex = 28
-        Me.Label6.Text = "GP"
+        Me.Label6.Text = "ID / No. GP"
         '
-        'TextBox3
+        'TextBoxNoGP
         '
-        Me.TextBox3.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBox3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox3.Location = New System.Drawing.Point(120, 162)
-        Me.TextBox3.Margin = New System.Windows.Forms.Padding(4)
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(192, 23)
-        Me.TextBox3.TabIndex = 27
+        Me.TextBoxNoGP.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBoxNoGP.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TextBoxNoGP.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBoxNoGP.Location = New System.Drawing.Point(120, 119)
+        Me.TextBoxNoGP.Margin = New System.Windows.Forms.Padding(4)
+        Me.TextBoxNoGP.Name = "TextBoxNoGP"
+        Me.TextBoxNoGP.Size = New System.Drawing.Size(192, 23)
+        Me.TextBoxNoGP.TabIndex = 27
         '
-        'TextBox1
+        'TextBoxIDEdicion
         '
-        Me.TextBox1.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox1.Location = New System.Drawing.Point(120, 116)
-        Me.TextBox1.Margin = New System.Windows.Forms.Padding(4)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(192, 23)
-        Me.TextBox1.TabIndex = 17
+        Me.TextBoxIDEdicion.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBoxIDEdicion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TextBoxIDEdicion.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBoxIDEdicion.Location = New System.Drawing.Point(120, 73)
+        Me.TextBoxIDEdicion.Margin = New System.Windows.Forms.Padding(4)
+        Me.TextBoxIDEdicion.Name = "TextBoxIDEdicion"
+        Me.TextBoxIDEdicion.Size = New System.Drawing.Size(192, 23)
+        Me.TextBoxIDEdicion.TabIndex = 17
         '
-        'ComboBox1
+        'TextBoxNombreEdicion
         '
-        Me.ComboBox1.BackColor = System.Drawing.SystemColors.Control
-        Me.ComboBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(120, 68)
-        Me.ComboBox1.Margin = New System.Windows.Forms.Padding(4)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(192, 25)
-        Me.ComboBox1.TabIndex = 26
-        '
-        'TextBox2
-        '
-        Me.TextBox2.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox2.Location = New System.Drawing.Point(120, 24)
-        Me.TextBox2.Margin = New System.Windows.Forms.Padding(4)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(192, 23)
-        Me.TextBox2.TabIndex = 7
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(20, 80)
-        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(35, 17)
-        Me.Label2.TabIndex = 6
-        Me.Label2.Text = "Pais"
+        Me.TextBoxNombreEdicion.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBoxNombreEdicion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TextBoxNombreEdicion.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBoxNombreEdicion.Location = New System.Drawing.Point(120, 28)
+        Me.TextBoxNombreEdicion.Margin = New System.Windows.Forms.Padding(4)
+        Me.TextBoxNombreEdicion.Name = "TextBoxNombreEdicion"
+        Me.TextBoxNombreEdicion.Size = New System.Drawing.Size(192, 23)
+        Me.TextBoxNombreEdicion.TabIndex = 7
         '
         'Label3
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(19, 124)
+        Me.Label3.Location = New System.Drawing.Point(19, 75)
         Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(21, 17)
@@ -1141,6 +1162,7 @@ Partial Class IU_VentanaPrincipal
         '
         'ButtonAnadirEdicion
         '
+        Me.ButtonAnadirEdicion.Enabled = False
         Me.ButtonAnadirEdicion.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!)
         Me.ButtonAnadirEdicion.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
         Me.ButtonAnadirEdicion.Location = New System.Drawing.Point(16, 71)
@@ -1462,7 +1484,7 @@ Partial Class IU_VentanaPrincipal
         Me.TabPageConfi.Location = New System.Drawing.Point(4, 31)
         Me.TabPageConfi.Margin = New System.Windows.Forms.Padding(4)
         Me.TabPageConfi.Name = "TabPageConfi"
-        Me.TabPageConfi.Size = New System.Drawing.Size(4183, 1996)
+        Me.TabPageConfi.Size = New System.Drawing.Size(4183, 2014)
         Me.TabPageConfi.TabIndex = 2
         Me.TabPageConfi.Text = "Configuración"
         '
@@ -1750,8 +1772,8 @@ Partial Class IU_VentanaPrincipal
         Me.GBBotonesEdicionPiloto.ResumeLayout(False)
         Me.GBOpcionesPer.ResumeLayout(False)
         Me.TabGranPremio.ResumeLayout(False)
-        Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox1.PerformLayout()
+        Me.GroupBoxAgregarEdi.ResumeLayout(False)
+        Me.GroupBoxAgregarEdi.PerformLayout()
         Me.GBOpcionesGP.ResumeLayout(False)
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridViewEdicion, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1867,19 +1889,20 @@ Partial Class IU_VentanaPrincipal
     Friend WithEvents DataGridViewClasMun As DataGridView
     Friend WithEvents BtGenInformeClasMun As Button
     Friend WithEvents Button1 As Button
-    Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents GroupBoxAgregarEdi As GroupBox
     Friend WithEvents Label7 As Label
-    Friend WithEvents ComboBox2 As ComboBox
+    Friend WithEvents CBCircuitoEdi As ComboBox
     Friend WithEvents Label6 As Label
-    Friend WithEvents TextBox3 As TextBox
-    Friend WithEvents TextBox1 As TextBox
-    Friend WithEvents ComboBox1 As ComboBox
-    Friend WithEvents TextBox2 As TextBox
-    Friend WithEvents Label2 As Label
+    Friend WithEvents TextBoxNoGP As TextBox
+    Friend WithEvents TextBoxIDEdicion As TextBox
+    Friend WithEvents TextBoxNombreEdicion As TextBox
     Friend WithEvents Label3 As Label
     Friend WithEvents Label4 As Label
     Friend WithEvents Label8 As Label
     Friend WithEvents Label11 As Label
-    Friend WithEvents TextBox4 As TextBox
-    Friend WithEvents DateTimePicker1 As DateTimePicker
+    Friend WithEvents TextBoxAnioEdi As TextBox
+    Friend WithEvents DateTimeEdicion As DateTimePicker
+    Friend WithEvents ButtonAddTorneo As Button
+    Friend WithEvents ButtonLimpiarEdi As Button
+    Friend WithEvents ButtonVolverEdi As Button
 End Class

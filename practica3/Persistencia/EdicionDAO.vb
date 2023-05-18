@@ -97,11 +97,15 @@
     End Sub
 
     Public Function Insertar(ByVal e As Edicion) As String
-        Return AgenteBD.ObtenerAgente.Modificar("INSERT INTO EDICION VALUES ('" & e.idEDICION & "', '" & e.idGRAN_PREMIO & "', '" & e.NOMBRE & "', '" & e.CIRCUITO & "', '" & e.FECHA & "', '" & e.ANIO & "', '" & e.PILOTO_VR & "');")
+        Dim fecha As Date = DateTime.ParseExact(e.FECHA.ToString("dd/MM/yyyy"), "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture)
+
+        Return AgenteBD.ObtenerAgente.Modificar("INSERT INTO EDICION VALUES ('" & e.idEDICION & "', '" & e.idGRAN_PREMIO & "', '" & e.NOMBRE & "', '" & e.CIRCUITO & "', '" & fecha.ToString("yyyy/MM/dd") & "', '" & e.ANIO & "', '" & e.PILOTO_VR & "');")
     End Function
 
     Public Function Actualizar(ByVal e As Edicion) As String
-        Return AgenteBD.ObtenerAgente.Modificar("UPDATE EDICION SET VALUES idGRAN_PREMIO='" & e.idGRAN_PREMIO & "', NOMBRE='" & e.NOMBRE & "', CIRCUITO='" & e.CIRCUITO & "', FECHA='" & e.FECHA & "', ANIO='" & e.ANIO & "', PILOTO_VR='" & e.PILOTO_VR & "' WHERE idEDICION='" & e.idEDICION & "';")
+        Dim fecha As Date = DateTime.ParseExact(e.FECHA.ToString("dd/MM/yyyy"), "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture)
+
+        Return AgenteBD.ObtenerAgente.Modificar("UPDATE EDICION SET NOMBRE='" & e.NOMBRE & "', CIRCUITO='" & e.CIRCUITO & "', FECHA='" & fecha.ToString("yyyy/MM/dd") & "', ANIO='" & e.ANIO & "', PILOTO_VR='" & e.PILOTO_VR & "' WHERE idEDICION='" & e.idEDICION & "';")
     End Function
 
     Public Function Borrar(ByVal e As Edicion) As String

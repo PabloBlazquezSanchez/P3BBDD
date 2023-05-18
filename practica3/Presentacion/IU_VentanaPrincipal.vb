@@ -544,6 +544,12 @@ Public Class IU_VentanaPrincipal
                 CBPaisGP.Items.Add(pais.Nombre)
             Next
 
+            Dim myCircuito As New Circuito()
+
+            For Each ci As Circuito In myCircuito.CircuDAO.LeerTodas
+                CBCircuitoEdi.Items.Add(ci.Nombre)
+            Next
+
             For Each item As Object In CBPaisGP.Items
                 If item.ToString().Contains(textoBuscado) Then
                     CBPaisGP.SelectedItem = item
@@ -724,19 +730,10 @@ Public Class IU_VentanaPrincipal
 
                 Dim myCircuito As New Circuito(edicion.CIRCUITO)
                 myCircuito.LeerCircuito()
-                Dim textoBuscado As String = myCircuito.Nombre
-                CBCircuitoEdi.Items.Clear()
+                 CBCircuitoEdi.Text = myCircuito.Nombre
 
-                For Each ci As Circuito In myCircuito.CircuDAO.LeerTodas
-                    CBCircuitoEdi.Items.Add(ci.Nombre)
-                Next
 
-                For Each item As Object In CBCircuitoEdi.Items
-                    If item.ToString().Contains(textoBuscado) Then
-                        CBCircuitoEdi.SelectedItem = item
-                        Exit For
-                    End If
-                Next
+
                 DateTimeEdicion.Value = edicion.FECHA
                 TextBoxAnioEdi.Text = edicion.ANIO
                 TextBoxIDEdicion.Text = edicion.idEDICION
@@ -859,6 +856,7 @@ Public Class IU_VentanaPrincipal
                     Dim myEdicion As Edicion = New Edicion With {
                         .idEDICION = CInt(TextBoxIDEdicion.Text), .idGRAN_PREMIO = CInt(TextBoxNoGP.Text), .NOMBRE = TextBoxNombreEdicion.Text, .CIRCUITO = CInt(CBCircuitoEdi.SelectedIndex), .FECHA = DateTimeEdicion.Value, .ANIO = CInt(TextBoxAnioEdi.Text), .PILOTO_VR = 1
                     } 'Temporalmente el VMR es de 1, pero se cambiará
+                    MessageBox.Show(DateTimeEdicion.Value)
                     myEdicion.InsertarEdicion()
                     Carrera(myEdicion)
                 End If

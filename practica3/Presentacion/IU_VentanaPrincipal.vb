@@ -718,8 +718,9 @@ Public Class IU_VentanaPrincipal
         If ListBoxEdición.SelectedItem IsNot Nothing Then
             Dim split As String() = ListBoxEdición.SelectedItem.ToString().Split(New [Char]() {" "c})
             Dim id As String = split(0)
-            edicion.idEDICION = id
-
+            Dim edicion As Edicion = New Edicion With {
+                .idEDICION = id
+            }
 
             InformeEdicion.Enabled = True
             'MsgBox(edicion.idEDICION, vbQuestion)
@@ -890,7 +891,7 @@ Public Class IU_VentanaPrincipal
         Dim dorsales() As Integer
         ' Obtención de los dorsales
         Dim InscripcionMd As New InscripcionMundial()
-        dorsales = InscripcionMd.ObtenerDorsalesInscripcion(2023)
+        dorsales = InscripcionMd.ObtenerDorsalesInscripcion(edicion.ANIO)
         Dim nCorredores As Integer = UBound(dorsales)
 
         ' Asignación de los dorsales aleatorios al control DataGridView
@@ -1277,11 +1278,11 @@ Public Class IU_VentanaPrincipal
         DataGridView2.Visible = True
         DataGridViewEdicion.Visible = True
         PictureBox1.Visible = True
+        DataGridView2.Visible = True
+        DataGridViewEdicion.Visible = True
+        PictureBox1.Visible = True
 
         Dim num As Integer
         num = edicion.idEDICION
-
-
-
     End Sub
 End Class

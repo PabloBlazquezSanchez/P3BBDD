@@ -5,6 +5,8 @@ Public Class IU_VentanaPrincipal
     Private estadoCircuito As Integer
     Private circuito As Circuito
     Private circuitoEdi As Circuito
+    Private myGranP As GranPremio
+
 
     Private estadoPiloto As Integer
     Private piloto As New Piloto()
@@ -523,21 +525,21 @@ Public Class IU_VentanaPrincipal
             Dim split As String() = ListBoxGranPremio.SelectedItem.ToString().Split(New [Char]() {" "c})
             Dim id As String
             id = split(0)
-            Dim gp As GranPremio
-            gp = New GranPremio
-            gp.idGRAN_PREMIO = id
+            myGranP = New GranPremio
+            myGranP.idGRAN_PREMIO = id
             Try
-                gp.LeerGP()
-                Me.GranPremio = gp
-                Me.GranPremioEdi = gp
+                myGranP.LeerGP()
+                Me.GranPremio = myGranP
+                Me.GranPremioEdi = myGranP
             Catch ex As Exception
                 MessageBox.Show(ex.Message, ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             End Try
-            TextBoxIDGranPremio.Text = gp.idGRAN_PREMIO
-            TextBoxNombreGP.Text = gp.NOMBRE
-            Dim myPais As New Pais(gp.PAIS)
+            TextBoxIDGranPremio.Text = myGranP.idGRAN_PREMIO
+            TextBoxNombreGP.Text = myGranP.NOMBRE
+            Dim myPais As New Pais(myGranP.PAIS)
             myPais.LeerPais()
             Dim textoBuscado As String = myPais.Nombre
+
 
             CBPaisGP.Items.Clear()
             For Each pais As Pais In myPais.PaisDAO.LeerTodas
@@ -576,7 +578,6 @@ Public Class IU_VentanaPrincipal
         GBOpcionesGP.Enabled = Not mode
         ListBoxGranPremio.Enabled = Not mode
         GBDatosGranPremio.Enabled = mode
-        GBBotonesEdicionGP.Enabled = mode
     End Sub
 
     Private Sub BtAñadirGP_Click(sender As Object, e As EventArgs) Handles BtAñadirGP.Click
@@ -748,8 +749,8 @@ Public Class IU_VentanaPrincipal
 
     Private Sub AnadirEdicion_Click(sender As Object, e As EventArgs) Handles ButtonAnadirEdicion.Click
         Me.estadoEdicion = 0
-        ModoEdicionTorneo(True)
         LimpiarFormEditaEdi()
+        ModoEdicionTorneo(True)
     End Sub
 
     Private Sub ButtonLimpiarEdi_Click(sender As Object, e As EventArgs) Handles ButtonLimpiarEdi.Click
@@ -763,11 +764,14 @@ Public Class IU_VentanaPrincipal
     Private Sub ModoEdicionTorneo(mode As Boolean)
         ButtonAnadirEdicion.Enabled = Not mode
         Button1.Enabled = Not mode 'ESTE ES EL BOTON DE GENERAR INFORME
-        GBBotonesEdicionGP.Enabled = Not mode
         ListBoxGranPremio.Enabled = Not mode
         ListBoxEdición.Enabled = Not mode
         GroupBoxAgregarEdi.Enabled = mode
         ButtonAddTorneo.Enabled = mode
+        TextBoxNoGP.Enabled = False
+        TextBoxNoGP.Text = myGranP.idGRAN_PREMIO
+        TextBoxAnioEdi.Enabled = False
+
     End Sub
 
     Private Function comprobarCamposEdicion() As Boolean
@@ -1260,4 +1264,10 @@ Public Class IU_VentanaPrincipal
         End If
     End Sub
 
+    Private Sub DateTimeEdicion_ValueChanged(sender As Object, e As EventArgs) Handles DateTimeEdicion.ValueChanged
+        Dim selectedDate As DateTime = DateTimeEdicion.Value
+        Dim selectedYear As Integer = selectedDate.Year
+        TextBoxAnioEdi.Text = selectedYear
+
+    End Sub
 End Class

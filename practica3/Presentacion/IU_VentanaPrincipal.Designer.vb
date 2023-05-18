@@ -87,6 +87,9 @@ Partial Class IU_VentanaPrincipal
         Me.ListBoxPilotos = New System.Windows.Forms.ListBox()
         Me.TabGranPremio = New System.Windows.Forms.TabPage()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.TextBox4 = New System.Windows.Forms.TextBox()
+        Me.DateTimePicker1 = New System.Windows.Forms.DateTimePicker()
+        Me.Label11 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.ComboBox2 = New System.Windows.Forms.ComboBox()
@@ -139,9 +142,6 @@ Partial Class IU_VentanaPrincipal
         Me.ListBoxPaises = New System.Windows.Forms.ListBox()
         Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.ToolTipAñadir = New System.Windows.Forms.ToolTip(Me.components)
-        Me.Label11 = New System.Windows.Forms.Label()
-        Me.DateTimePicker1 = New System.Windows.Forms.DateTimePicker()
-        Me.TextBox4 = New System.Windows.Forms.TextBox()
         Me.TabControl1.SuspendLayout()
         Me.TabPageCircuitos.SuspendLayout()
         Me.GBEditarAñadirCircuito.SuspendLayout()
@@ -184,7 +184,7 @@ Partial Class IU_VentanaPrincipal
         Me.TabControl1.Margin = New System.Windows.Forms.Padding(4)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(4191, 2031)
+        Me.TabControl1.Size = New System.Drawing.Size(4191, 2049)
         Me.TabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed
         Me.TabControl1.TabIndex = 1
         '
@@ -923,7 +923,7 @@ Partial Class IU_VentanaPrincipal
         Me.TabGranPremio.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.TabGranPremio.Name = "TabGranPremio"
         Me.TabGranPremio.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.TabGranPremio.Size = New System.Drawing.Size(4183, 1996)
+        Me.TabGranPremio.Size = New System.Drawing.Size(4183, 2014)
         Me.TabGranPremio.TabIndex = 4
         Me.TabGranPremio.Text = "Grandes Premios"
         '
@@ -946,20 +946,55 @@ Partial Class IU_VentanaPrincipal
         Me.GroupBox1.Enabled = False
         Me.GroupBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.GroupBox1.Location = New System.Drawing.Point(983, 291)
+        Me.GroupBox1.Location = New System.Drawing.Point(1046, 255)
         Me.GroupBox1.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Padding = New System.Windows.Forms.Padding(4)
-        Me.GroupBox1.Size = New System.Drawing.Size(391, 311)
+        Me.GroupBox1.Size = New System.Drawing.Size(328, 348)
         Me.GroupBox1.TabIndex = 27
         Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "Datos del Gran Premio"
+        Me.GroupBox1.Text = "Datos de la edición"
+        '
+        'TextBox4
+        '
+        Me.TextBox4.BackColor = System.Drawing.SystemColors.Control
+        Me.TextBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TextBox4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox4.Location = New System.Drawing.Point(120, 289)
+        Me.TextBox4.Margin = New System.Windows.Forms.Padding(4)
+        Me.TextBox4.Name = "TextBox4"
+        Me.TextBox4.Size = New System.Drawing.Size(192, 23)
+        Me.TextBox4.TabIndex = 34
+        '
+        'DateTimePicker1
+        '
+        Me.DateTimePicker1.CustomFormat = "dd/MMM/yyyy"
+        Me.DateTimePicker1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DateTimePicker1.Location = New System.Drawing.Point(120, 246)
+        Me.DateTimePicker1.Margin = New System.Windows.Forms.Padding(4)
+        Me.DateTimePicker1.MaxDate = New Date(2010, 1, 1, 0, 0, 0, 0)
+        Me.DateTimePicker1.MinDate = New Date(1900, 1, 1, 0, 0, 0, 0)
+        Me.DateTimePicker1.Name = "DateTimePicker1"
+        Me.DateTimePicker1.Size = New System.Drawing.Size(192, 23)
+        Me.DateTimePicker1.TabIndex = 33
+        Me.DateTimePicker1.Value = New Date(2010, 1, 1, 0, 0, 0, 0)
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label11.Location = New System.Drawing.Point(25, 291)
+        Me.Label11.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(33, 17)
+        Me.Label11.TabIndex = 32
+        Me.Label11.Text = "Año"
         '
         'Label8
         '
         Me.Label8.AutoSize = True
         Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label8.Location = New System.Drawing.Point(23, 251)
+        Me.Label8.Location = New System.Drawing.Point(23, 252)
         Me.Label8.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(47, 17)
@@ -970,7 +1005,7 @@ Partial Class IU_VentanaPrincipal
         '
         Me.Label7.AutoSize = True
         Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.Location = New System.Drawing.Point(23, 211)
+        Me.Label7.Location = New System.Drawing.Point(20, 211)
         Me.Label7.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(55, 17)
@@ -982,7 +1017,7 @@ Partial Class IU_VentanaPrincipal
         Me.ComboBox2.BackColor = System.Drawing.SystemColors.Control
         Me.ComboBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ComboBox2.FormattingEnabled = True
-        Me.ComboBox2.Location = New System.Drawing.Point(118, 208)
+        Me.ComboBox2.Location = New System.Drawing.Point(120, 207)
         Me.ComboBox2.Margin = New System.Windows.Forms.Padding(4)
         Me.ComboBox2.Name = "ComboBox2"
         Me.ComboBox2.Size = New System.Drawing.Size(192, 25)
@@ -992,19 +1027,19 @@ Partial Class IU_VentanaPrincipal
         '
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(22, 169)
+        Me.Label6.Location = New System.Drawing.Point(20, 162)
         Me.Label6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(88, 17)
+        Me.Label6.Size = New System.Drawing.Size(28, 17)
         Me.Label6.TabIndex = 28
-        Me.Label6.Text = "Gran Premio"
+        Me.Label6.Text = "GP"
         '
         'TextBox3
         '
         Me.TextBox3.BackColor = System.Drawing.SystemColors.Control
         Me.TextBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox3.Location = New System.Drawing.Point(118, 167)
+        Me.TextBox3.Location = New System.Drawing.Point(120, 162)
         Me.TextBox3.Margin = New System.Windows.Forms.Padding(4)
         Me.TextBox3.Name = "TextBox3"
         Me.TextBox3.Size = New System.Drawing.Size(192, 23)
@@ -1015,7 +1050,7 @@ Partial Class IU_VentanaPrincipal
         Me.TextBox1.BackColor = System.Drawing.SystemColors.Control
         Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox1.Location = New System.Drawing.Point(118, 124)
+        Me.TextBox1.Location = New System.Drawing.Point(120, 116)
         Me.TextBox1.Margin = New System.Windows.Forms.Padding(4)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(192, 23)
@@ -1026,7 +1061,7 @@ Partial Class IU_VentanaPrincipal
         Me.ComboBox1.BackColor = System.Drawing.SystemColors.Control
         Me.ComboBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(118, 73)
+        Me.ComboBox1.Location = New System.Drawing.Point(120, 68)
         Me.ComboBox1.Margin = New System.Windows.Forms.Padding(4)
         Me.ComboBox1.Name = "ComboBox1"
         Me.ComboBox1.Size = New System.Drawing.Size(192, 25)
@@ -1037,7 +1072,7 @@ Partial Class IU_VentanaPrincipal
         Me.TextBox2.BackColor = System.Drawing.SystemColors.Control
         Me.TextBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox2.Location = New System.Drawing.Point(118, 24)
+        Me.TextBox2.Location = New System.Drawing.Point(120, 24)
         Me.TextBox2.Margin = New System.Windows.Forms.Padding(4)
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.Size = New System.Drawing.Size(192, 23)
@@ -1047,7 +1082,7 @@ Partial Class IU_VentanaPrincipal
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(23, 76)
+        Me.Label2.Location = New System.Drawing.Point(20, 80)
         Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(35, 17)
@@ -1058,18 +1093,18 @@ Partial Class IU_VentanaPrincipal
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(22, 126)
+        Me.Label3.Location = New System.Drawing.Point(19, 124)
         Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(71, 17)
+        Me.Label3.Size = New System.Drawing.Size(21, 17)
         Me.Label3.TabIndex = 5
-        Me.Label3.Text = "ID Edición"
+        Me.Label3.Text = "ID"
         '
         'Label4
         '
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(22, 26)
+        Me.Label4.Location = New System.Drawing.Point(19, 30)
         Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(58, 17)
@@ -1095,7 +1130,7 @@ Partial Class IU_VentanaPrincipal
         '
         'Button1
         '
-        Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!)
+        Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!)
         Me.Button1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
         Me.Button1.Location = New System.Drawing.Point(16, 110)
         Me.Button1.Name = "Button1"
@@ -1106,6 +1141,7 @@ Partial Class IU_VentanaPrincipal
         '
         'ButtonAnadirEdicion
         '
+        Me.ButtonAnadirEdicion.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!)
         Me.ButtonAnadirEdicion.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
         Me.ButtonAnadirEdicion.Location = New System.Drawing.Point(16, 71)
         Me.ButtonAnadirEdicion.Name = "ButtonAnadirEdicion"
@@ -1175,11 +1211,11 @@ Partial Class IU_VentanaPrincipal
         DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.DataGridView2.DefaultCellStyle = DataGridViewCellStyle1
-        Me.DataGridView2.Location = New System.Drawing.Point(154, 537)
+        Me.DataGridView2.Location = New System.Drawing.Point(154, 548)
         Me.DataGridView2.Name = "DataGridView2"
         Me.DataGridView2.RowHeadersWidth = 51
         Me.DataGridView2.RowTemplate.Height = 24
-        Me.DataGridView2.Size = New System.Drawing.Size(575, 55)
+        Me.DataGridView2.Size = New System.Drawing.Size(860, 55)
         Me.DataGridView2.TabIndex = 25
         '
         'DataGridViewEdicion
@@ -1206,7 +1242,7 @@ Partial Class IU_VentanaPrincipal
         DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.DataGridViewEdicion.DefaultCellStyle = DataGridViewCellStyle3
-        Me.DataGridViewEdicion.Location = New System.Drawing.Point(37, 335)
+        Me.DataGridViewEdicion.Location = New System.Drawing.Point(37, 348)
         Me.DataGridViewEdicion.Name = "DataGridViewEdicion"
         DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control
@@ -1218,13 +1254,13 @@ Partial Class IU_VentanaPrincipal
         Me.DataGridViewEdicion.RowHeadersDefaultCellStyle = DataGridViewCellStyle4
         Me.DataGridViewEdicion.RowHeadersWidth = 51
         Me.DataGridViewEdicion.RowTemplate.Height = 24
-        Me.DataGridViewEdicion.Size = New System.Drawing.Size(692, 176)
+        Me.DataGridViewEdicion.Size = New System.Drawing.Size(977, 176)
         Me.DataGridViewEdicion.TabIndex = 20
         '
         'PictureBox1
         '
         Me.PictureBox1.Image = Global.Practica3.My.Resources.Resources.VMR
-        Me.PictureBox1.Location = New System.Drawing.Point(37, 537)
+        Me.PictureBox1.Location = New System.Drawing.Point(37, 548)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(74, 55)
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
@@ -1268,7 +1304,7 @@ Partial Class IU_VentanaPrincipal
         Me.GBDatosGranPremio.Margin = New System.Windows.Forms.Padding(4)
         Me.GBDatosGranPremio.Name = "GBDatosGranPremio"
         Me.GBDatosGranPremio.Padding = New System.Windows.Forms.Padding(4)
-        Me.GBDatosGranPremio.Size = New System.Drawing.Size(328, 244)
+        Me.GBDatosGranPremio.Size = New System.Drawing.Size(328, 201)
         Me.GBDatosGranPremio.TabIndex = 2
         Me.GBDatosGranPremio.TabStop = False
         Me.GBDatosGranPremio.Text = "Datos del Gran Premio"
@@ -1278,7 +1314,7 @@ Partial Class IU_VentanaPrincipal
         Me.TextBoxIDGranPremio.BackColor = System.Drawing.SystemColors.Control
         Me.TextBoxIDGranPremio.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBoxIDGranPremio.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxIDGranPremio.Location = New System.Drawing.Point(118, 153)
+        Me.TextBoxIDGranPremio.Location = New System.Drawing.Point(118, 143)
         Me.TextBoxIDGranPremio.Margin = New System.Windows.Forms.Padding(4)
         Me.TextBoxIDGranPremio.Name = "TextBoxIDGranPremio"
         Me.TextBoxIDGranPremio.Size = New System.Drawing.Size(192, 23)
@@ -1289,7 +1325,7 @@ Partial Class IU_VentanaPrincipal
         Me.CBPaisGP.BackColor = System.Drawing.SystemColors.Control
         Me.CBPaisGP.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CBPaisGP.FormattingEnabled = True
-        Me.CBPaisGP.Location = New System.Drawing.Point(118, 103)
+        Me.CBPaisGP.Location = New System.Drawing.Point(118, 93)
         Me.CBPaisGP.Margin = New System.Windows.Forms.Padding(4)
         Me.CBPaisGP.Name = "CBPaisGP"
         Me.CBPaisGP.Size = New System.Drawing.Size(192, 25)
@@ -1300,7 +1336,7 @@ Partial Class IU_VentanaPrincipal
         Me.TextBoxNombreGP.BackColor = System.Drawing.SystemColors.Control
         Me.TextBoxNombreGP.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBoxNombreGP.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBoxNombreGP.Location = New System.Drawing.Point(118, 56)
+        Me.TextBoxNombreGP.Location = New System.Drawing.Point(118, 46)
         Me.TextBoxNombreGP.Margin = New System.Windows.Forms.Padding(4)
         Me.TextBoxNombreGP.Name = "TextBoxNombreGP"
         Me.TextBoxNombreGP.Size = New System.Drawing.Size(192, 23)
@@ -1310,7 +1346,7 @@ Partial Class IU_VentanaPrincipal
         '
         Me.Label9.AutoSize = True
         Me.Label9.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.Location = New System.Drawing.Point(23, 110)
+        Me.Label9.Location = New System.Drawing.Point(23, 100)
         Me.Label9.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(35, 17)
@@ -1321,7 +1357,7 @@ Partial Class IU_VentanaPrincipal
         '
         Me.Label10.AutoSize = True
         Me.Label10.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label10.Location = New System.Drawing.Point(23, 159)
+        Me.Label10.Location = New System.Drawing.Point(23, 149)
         Me.Label10.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(21, 17)
@@ -1332,7 +1368,7 @@ Partial Class IU_VentanaPrincipal
         '
         Me.LabelNombreGranPremio.AutoSize = True
         Me.LabelNombreGranPremio.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelNombreGranPremio.Location = New System.Drawing.Point(23, 56)
+        Me.LabelNombreGranPremio.Location = New System.Drawing.Point(23, 46)
         Me.LabelNombreGranPremio.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.LabelNombreGranPremio.Name = "LabelNombreGranPremio"
         Me.LabelNombreGranPremio.Size = New System.Drawing.Size(58, 17)
@@ -1688,46 +1724,11 @@ Partial Class IU_VentanaPrincipal
         Me.ImageList1.Images.SetKeyName(2, "ajustes.png")
         Me.ImageList1.Images.SetKeyName(3, "f1.png")
         '
-        'Label11
-        '
-        Me.Label11.AutoSize = True
-        Me.Label11.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label11.Location = New System.Drawing.Point(23, 280)
-        Me.Label11.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(33, 17)
-        Me.Label11.TabIndex = 32
-        Me.Label11.Text = "Año"
-        '
-        'DateTimePicker1
-        '
-        Me.DateTimePicker1.CustomFormat = "dd/MMM/yyyy"
-        Me.DateTimePicker1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DateTimePicker1.Location = New System.Drawing.Point(118, 246)
-        Me.DateTimePicker1.Margin = New System.Windows.Forms.Padding(4)
-        Me.DateTimePicker1.MaxDate = New Date(2010, 1, 1, 0, 0, 0, 0)
-        Me.DateTimePicker1.MinDate = New Date(1900, 1, 1, 0, 0, 0, 0)
-        Me.DateTimePicker1.Name = "DateTimePicker1"
-        Me.DateTimePicker1.Size = New System.Drawing.Size(268, 23)
-        Me.DateTimePicker1.TabIndex = 33
-        Me.DateTimePicker1.Value = New Date(2010, 1, 1, 0, 0, 0, 0)
-        '
-        'TextBox4
-        '
-        Me.TextBox4.BackColor = System.Drawing.SystemColors.Control
-        Me.TextBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TextBox4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox4.Location = New System.Drawing.Point(118, 278)
-        Me.TextBox4.Margin = New System.Windows.Forms.Padding(4)
-        Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.Size = New System.Drawing.Size(192, 23)
-        Me.TextBox4.TabIndex = 34
-        '
         'IU_VentanaPrincipal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1444, 647)
+        Me.ClientSize = New System.Drawing.Size(1444, 665)
         Me.Controls.Add(Me.TabControl1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(4)

@@ -1087,4 +1087,12 @@ Public Class IU_VentanaPrincipal
             BtGenInformeClasMun.Enabled = True
         End If
     End Sub
+
+    Private Sub GroupBox1_Enter(sender As Object, e As EventArgs) Handles GroupBox1.Enter
+
+    End Sub
+
+    Private Sub TabGranPremio_Click(sender As Object, e As EventArgs) Handles TabGranPremio.Click
+
+    End Sub
 End Class

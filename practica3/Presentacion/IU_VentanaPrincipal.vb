@@ -1235,6 +1235,7 @@ Public Class IU_VentanaPrincipal
     End Function
 
     Private Sub BtGenInformeClasMun_Click(sender As Object, e As EventArgs) Handles BtGenInformeClasMun.Click
+        DataGridViewClasMun.Columns.Clear()
         DataGridViewClasMun.Columns.Add("Dorsal", "Dorsal")
         DataGridViewClasMun.Columns.Add("Piloto", "Piloto")
         DataGridViewClasMun.Columns.Add("Puntos Totales", "Puntos Totales")
@@ -1276,10 +1277,14 @@ Public Class IU_VentanaPrincipal
             puntos_pil = 0
         Next
         DataGridViewClasMun.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
-        'DataGridViewCol
-        'DataGridViewColumn ptos = DataGridViewClasMun.Columns.GetLastColumn(DataGridViewElementStates.Visible, DataGridViewElementStates.None)
+        DataGridViewClasMun.Sort(DataGridViewClasMun.Columns("Puntos Totales"), System.ComponentModel.ListSortDirection.Descending)
 
-        'DataGridViewClasMun.Sort()
+
+        DataGridViewClasMun.ReadOnly = True
+        DataGridViewClasMun.RowHeadersVisible = False
+        DataGridViewClasMun.ReadOnly = True
+        DataGridViewClasMun.RowHeadersVisible = False
+
     End Sub
 
     Private Sub ListBoxTemporadas_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBoxTemporadas.SelectedIndexChanged
@@ -1311,7 +1316,6 @@ Public Class IU_VentanaPrincipal
         MessageBox.Show(edicion.idEDICION)
         Dim i As Integer = 0
         Dim clas As New ClasificacionCarrera
-        Dim pilotos As Collection
         Dim driver As Piloto = New Piloto()
 
         ' Agrega las columnas al control DataGridView
@@ -1371,6 +1375,18 @@ Public Class IU_VentanaPrincipal
         pais.LeerPais()
 
         DataGridView2.Rows.Add(driver.Nombre, pais.Nombre)
+        Dim circuito As New Circuito()
+        circuito.IdCircuito = edicion.CIRCUITO
+        circuito.LeerCircuito()
+        NombreCircuitoInform.Text = circuito.Nombre
+        CiudadCircuitoInform.Text = circuito.Ciudad
+        LonCircuitoInform.Text = circuito.Longitud
+        CurCircuitoInform.Text = circuito.Curva
+        IDCircuitoInform.Text = circuito.IdCircuito
+
+        pais.idPAIS = circuito.Pais
+        pais.LeerPais()
+        PaisCircuitoInform.Text = pais.Nombre
 
         ButtonAnadirEdicion.Enabled = False
         DataGridViewEdicion.ReadOnly = True
@@ -1381,7 +1397,5 @@ Public Class IU_VentanaPrincipal
 
     End Sub
 
-    Private Sub GroupBoxAgregarEdi_Enter(sender As Object, e As EventArgs) Handles GroupBoxAgregarEdi.Enter
 
-    End Sub
 End Class

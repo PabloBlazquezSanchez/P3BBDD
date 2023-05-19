@@ -1220,7 +1220,7 @@ Public Class IU_VentanaPrincipal
     End Function
 
     Private Sub BtGenInformeClasMun_Click(sender As Object, e As EventArgs) Handles BtGenInformeClasMun.Click
-        DataGridViewClasMun.Columns.Add("Posición", "Posición")
+        DataGridViewClasMun.Columns.Add("Dorsal", "Dorsal")
         DataGridViewClasMun.Columns.Add("Piloto", "Piloto")
         DataGridViewClasMun.Columns.Add("Puntos Totales", "Puntos Totales")
         DataGridViewClasMun.DefaultCellStyle.ForeColor = Color.Black
@@ -1253,9 +1253,9 @@ Public Class IU_VentanaPrincipal
                 numeroedicion = editerador.ANIO 'Excepcion de tipo System.MissingMemberException
                 pilotoVMR = editerador.PILOTO_VR
                 posicion = cc.PosicionCarrera(pil, numeroedicion)
-                puntos_pil = CalcularPuntuacion(posicion, pilotoVMR)
-
+                puntos_pil += CalcularPuntuacion(posicion, pilotoVMR)
             Next
+            DataGridViewClasMun.Rows.Add(pil, piloto.PilotoDAO.DevolverNombrePiloto(pil), puntos_pil)
             puntos_pil = 0
         Next
         DataGridViewClasMun.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill

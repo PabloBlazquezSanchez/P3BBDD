@@ -1265,15 +1265,21 @@ Public Class IU_VentanaPrincipal
             Dim col As Collection = edi.EdDAO.GetGPAnio(CStr(anio))
             Dim editerador As New Edicion()
             For Each editerador In col
-                numeroedicion = editerador.ANIO 'Excepcion de tipo System.MissingMemberException
+                numeroedicion = editerador.idEDICION 'Excepcion de tipo System.MissingMemberException
                 pilotoVMR = editerador.PILOTO_VR
                 posicion = cc.PosicionCarrera(pil, numeroedicion)
-                puntos_pil += CalcularPuntuacion(posicion, pilotoVMR)
+                puntos_pil += CalcularPuntuacion(posicion, vueltaRapida(pilotoVMR, pil))
+                'pilotoVMR
+                'vueltaRapida(pilotoVMR, pil)
             Next
             DataGridViewClasMun.Rows.Add(pil, piloto.PilotoDAO.DevolverNombrePiloto(pil), puntos_pil)
             puntos_pil = 0
         Next
         DataGridViewClasMun.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+        'DataGridViewCol
+        'DataGridViewColumn ptos = DataGridViewClasMun.Columns.GetLastColumn(DataGridViewElementStates.Visible, DataGridViewElementStates.None)
+
+        'DataGridViewClasMun.Sort()
     End Sub
 
     Private Sub ListBoxTemporadas_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBoxTemporadas.SelectedIndexChanged
@@ -1290,6 +1296,8 @@ Public Class IU_VentanaPrincipal
     End Sub
 
     Private Sub InformeEdicion_Click(sender As Object, e As EventArgs) Handles InformeEdicion.Click
+        DataGridViewEdicion.Columns.Clear()
+        DataGridView2.Columns.Clear()
         DataGridView2.Visible = True
         DataGridViewEdicion.Visible = True
         PictureBox1.Visible = True
@@ -1304,7 +1312,7 @@ Public Class IU_VentanaPrincipal
         Dim i As Integer = 0
         Dim clas As New ClasificacionCarrera
         Dim pilotos As Collection
-        Dim driver As Piloto
+        Dim driver As Piloto = New Piloto()
 
         ' Agrega las columnas al control DataGridView
         DataGridViewEdicion.Columns.Add("Posición", "Posición")
@@ -1344,16 +1352,25 @@ Public Class IU_VentanaPrincipal
         End Try
 
 
-        Dim pais As Pais
+        Dim pais As Pais = New Pais()
         For Each clasi As ClasificacionCarrera In clas.ClasifDAO.LeerTodas
             If clasi.EDICION = edicion.idEDICION Then
                 driver.idPILOTO = clasi.PILOTO.idPILOTO
                 driver.LeerPiloto()
                 pais.idPAIS = driver.Pais
                 pais.LeerPais()
-                DataGridViewEdicion.Rows.Add(i + 1, driver.Nombre, pais.Nombre, CalcularPuntuacion(clasi.POSICION, edicion.PILOTO_VR))
+                i += 1
+                DataGridViewEdicion.Rows.Add(i, driver.Nombre, pais.Nombre, CalcularPuntuacion(clasi.POSICION, vueltaRapida(edicion.PILOTO_VR, driver.idPILOTO)))
             End If
         Next
+        'edicion.PILOTO_VR
+        'vueltaRapida(edicion.PILOTO_VR, driver.idPILOTO)
+        driver.idPILOTO = edicion.PILOTO_VR
+        driver.LeerPiloto()
+        pais.idPAIS = driver.Pais
+        pais.LeerPais()
+
+        DataGridView2.Rows.Add(driver.Nombre, pais.Nombre)
 
         ButtonAnadirEdicion.Enabled = False
         DataGridViewEdicion.ReadOnly = True

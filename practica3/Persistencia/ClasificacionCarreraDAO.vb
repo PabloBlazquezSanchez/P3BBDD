@@ -6,11 +6,11 @@
     End Sub
 
     Public Function LeerTodas() As Collection
-        Dim c As New ClasificacionCarrera
         Dim col, aux As Collection
-        Dim Pilto As New Piloto
         col = AgenteBD.ObtenerAgente().Leer("SELECT * FROM CLASIFICACION_CARRERA ORDER BY EDICION")
         For Each aux In col
+            Dim c As New ClasificacionCarrera
+            Dim Pilto As New Piloto
             c.EDICION = aux(1).ToString
             Pilto.idPILOTO = aux(2).ToString
             c.PILOTO = Pilto

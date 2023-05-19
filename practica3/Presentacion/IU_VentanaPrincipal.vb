@@ -826,6 +826,7 @@ Public Class IU_VentanaPrincipal
         TextBoxIDEdicion.Undo()
         TextBoxIDEdicion.ClearUndo()
         ModoEdicionTorneo(False)
+        ButtonLimpiarEdi.PerformClick()
     End Sub
 
     Private Sub ButtonAddTorneo_Click(sender As Object, e As EventArgs) Handles ButtonAddTorneo.Click
@@ -866,16 +867,16 @@ Public Class IU_VentanaPrincipal
                         Dim myEdicion As Edicion = New Edicion With {
                             .idEDICION = CInt(TextBoxIDEdicion.Text), .idGRAN_PREMIO = CInt(TextBoxNoGP.Text), .NOMBRE = TextBoxNombreEdicion.Text, .CIRCUITO = CInt(CBCircuitoEdi.SelectedIndex), .FECHA = DateTimeEdicion.Value, .ANIO = CInt(TextBoxAnioEdi.Text), .PILOTO_VR = 1
                         } 'Temporalmente el VMR es de 1, pero se cambiará
-                        edicion = myEdicion
-                        MessageBox.Show(TextBoxAnioEdi.Text)
-                        myEdicion.InsertarEdicion()
+                    edicion = myEdicion
+                    myEdicion.InsertarEdicion()
                         Carrera(edicion)
-
-                    End If
+                    ListBoxEdición.Items.Add(myEdicion.idEDICION & " - " & myEdicion.NOMBRE)
+                End If
                 End If
 
         End If
-
+        ButtonLimpiarEdi.PerformClick()
+        ModoEdicionTorneo(False)
     End Sub
 
     Private Sub Carrera(edicioninsert As Edicion)
@@ -1166,6 +1167,14 @@ Public Class IU_VentanaPrincipal
         Next
     End Sub
 
+    Private Sub CBCircuitoEdi_Click() Handles CBCircuitoEdi.Click
+        Dim mycir As New Circuito()
+        CBCircuitoEdi.Items.Clear()
+        For Each cir As Circuito In mycir.CircuDAO.LeerTodas
+            CBCircuitoEdi.Items.Add(cir.Nombre)
+        Next
+    End Sub
+
     Private Sub ButtonSelectInformePil_Click(sender As Object, e As EventArgs) Handles ButtonSelectInformePil.Click
         GroupBoxInformePil.Visible = True
         GroupBoxInformePil2.Visible = True
@@ -1241,7 +1250,6 @@ Public Class IU_VentanaPrincipal
         DataGridViewClasMun.Columns.Add("Puntos Totales", "Puntos Totales")
         DataGridViewClasMun.DefaultCellStyle.ForeColor = Color.Black
         DataGridViewClasMun.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-        'Poner que no funcione el boton de informe hasta que no se tenga seleccionada una temporada
         Dim split As String() = ListBoxTemporadas.SelectedItem.ToString().Split(" ")
         Dim anio As Integer = CInt(split(1))
 
@@ -1252,9 +1260,7 @@ Public Class IU_VentanaPrincipal
         Dim nCorredores As Integer = UBound(dorsales)
 
         Dim edi As Edicion = New Edicion()
-        'edi.LeerTodasEdiciones()
         edi.ANIO = anio
-        'edi.LeerEdicion()
         Dim cc As ClasificacionCarrera = New ClasificacionCarrera()
         Dim pil As Integer
         Dim posicion As Integer
@@ -1266,12 +1272,10 @@ Public Class IU_VentanaPrincipal
             Dim col As Collection = edi.EdDAO.GetGPAnio(CStr(anio))
             Dim editerador As New Edicion()
             For Each editerador In col
-                numeroedicion = editerador.idEDICION 'Excepcion de tipo System.MissingMemberException
+                numeroedicion = editerador.idEDICION
                 pilotoVMR = editerador.PILOTO_VR
                 posicion = cc.PosicionCarrera(pil, numeroedicion)
                 puntos_pil += CalcularPuntuacion(posicion, vueltaRapida(pilotoVMR, pil))
-                'pilotoVMR
-                'vueltaRapida(pilotoVMR, pil)
             Next
             DataGridViewClasMun.Rows.Add(pil, piloto.PilotoDAO.DevolverNombrePiloto(pil), puntos_pil)
             puntos_pil = 0
@@ -1313,7 +1317,6 @@ Public Class IU_VentanaPrincipal
 
         Dim num As Integer
         num = edicion.idEDICION
-        MessageBox.Show(edicion.idEDICION)
         Dim i As Integer = 0
         Dim clas As New ClasificacionCarrera
         Dim driver As Piloto = New Piloto()
@@ -1367,8 +1370,6 @@ Public Class IU_VentanaPrincipal
                 DataGridViewEdicion.Rows.Add(i, driver.Nombre, pais.Nombre, CalcularPuntuacion(clasi.POSICION, vueltaRapida(edicion.PILOTO_VR, driver.idPILOTO)))
             End If
         Next
-        'edicion.PILOTO_VR
-        'vueltaRapida(edicion.PILOTO_VR, driver.idPILOTO)
         driver.idPILOTO = edicion.PILOTO_VR
         driver.LeerPiloto()
         pais.idPAIS = driver.Pais
@@ -1396,6 +1397,4 @@ Public Class IU_VentanaPrincipal
         DataGridView2.ScrollBars = False
 
     End Sub
-
-
 End Class

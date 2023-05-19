@@ -839,38 +839,29 @@ Public Class IU_VentanaPrincipal
                 End If
             Next
 
-            Dim checkII As Boolean = True
-            Dim myGP As New GranPremio()
-            myGP.LeerTodosGP()
-            For Each iteradorGP As GranPremio In myGP.GPDAO.LeerTodas
-                If iteradorGP.idGRAN_PREMIO = TextBoxNoGP.Text() Then
-                    checkII = False
-                End If
-            Next
-
-            Dim checkIII As Boolean = False
+            Dim checkIII As Boolean = True
             For Each iteradorEdi As Edicion In myEdi.EdDAO.LeerTodas
-                If iteradorEdi.idGRAN_PREMIO = TextBoxNoGP.Text() & iteradorEdi.ANIO = TextBoxAnioEdi.Text Then
-                    checkIII = True
+                If iteradorEdi.idGRAN_PREMIO = TextBoxNoGP.Text() AndAlso iteradorEdi.ANIO = TextBoxAnioEdi.Text Then
+                    checkIII = False
                 End If
             Next
-            '
-            ' COMPROBAR QUE EL NO. GP PUESTO TAMBIÉN COINCIDA CON EL CIRCUITO
-            '
-
+            
             'And Me.estadoEdicion = 0
-            If (checkII) Then 'Intento generar una edición con un GP inexistente
-                    MsgBox("ID de GP no existe.", vbExclamation)
-                    ButtonLimpiarEdi.PerformClick()
-                ElseIf (Not check) Then 'Intento generar una edicion con un ID ya existente
-                    MsgBox("ID de edicion ya existe.", vbExclamation)
-                    ButtonLimpiarEdi.PerformClick()
-                    'Y AQUI EL ULTIMO ELSEIF
-                ElseIf (checkIII) Then
-                    MessageBox.Show("Solo se puede crear una edición al año por GP")
-                    ButtonLimpiarEdi.PerformClick()
-                Else
-                    If comprobarCamposEdicion() Then
+            If (Not check) Then 'Intento generar una edicion con un ID ya existente
+                MsgBox("ID de edicion ya existe.", vbExclamation)
+                TextBoxIDEdicion.Clear()
+                'Y AQUI EL ULTIMO ELSEIF
+            ElseIf (Not checkIII) Then
+                MessageBox.Show("Solo se puede crear una edición al año por GP")
+                DeshacerCamposEdicion()
+                CBCircuitoEdi.Items.Clear()
+
+                DataGridView2.Visible = False
+                DataGridViewEdicion.Visible = False
+                PictureBox1.Visible = False
+
+            Else
+                If comprobarCamposEdicion() Then
                         'Si cumple con todos los requisitos, se puede hacer la carrera o torneo
                         Dim myEdicion As Edicion = New Edicion With {
                             .idEDICION = CInt(TextBoxIDEdicion.Text), .idGRAN_PREMIO = CInt(TextBoxNoGP.Text), .NOMBRE = TextBoxNombreEdicion.Text, .CIRCUITO = CInt(CBCircuitoEdi.SelectedIndex), .FECHA = DateTimeEdicion.Value, .ANIO = CInt(TextBoxAnioEdi.Text), .PILOTO_VR = 1
@@ -1308,6 +1299,65 @@ Public Class IU_VentanaPrincipal
 
         Dim num As Integer
         num = edicion.idEDICION
+
+
+        ' Agrega las columnas al control DataGridView
+        DataGridViewEdicion.Columns.Add("Posición", "Posición")
+        DataGridViewEdicion.Columns.Add("Piloto", "Piloto")
+        DataGridViewEdicion.Columns.Add("Pais", "Pais")
+        DataGridViewEdicion.Columns.Add("Puntos", "Puntos")
+
+        ' Establecer el color de texto negro y alinear el texto en el centro de las celdas
+        DataGridViewEdicion.DefaultCellStyle.ForeColor = Color.Black
+        DataGridViewEdicion.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+
+        ' También puedes hacer lo mismo para el otro DataGridView
+        DataGridView2.DefaultCellStyle.ForeColor = Color.Black
+        DataGridView2.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+
+        ' Declaración e inicialización de los arrays
+        Dim dorsales() As Integer
+        ' Obtención de los dorsales
+        Dim InscripcionMd As New InscripcionMundial()
+
+        dorsales = InscripcionMd.ObtenerDorsalesInscripcion(edicion.ANIO)
+
+        ' Asignación de los dorsales aleatorios al control DataGridView
+        Dim dorsalesDisponibles As New List(Of Integer)(dorsales)
+        Dim rnd As New Random()
+        Dim j As Integer
+        Dim driver As Piloto = New Piloto()
+        Dim dorsal As Integer
+        Dim nombreCorredor As String
+        Dim paisCorredor As String
+        Dim banderacuadrospiloto As ClasificacionCarrera
+
+        Try
+
+
+
+            DataGridView2.Columns.Add("Piloto", "Piloto")
+            DataGridView2.Columns.Add("Pais", "Pais")
+            DataGridViewEdicion.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            DataGridViewEdicion.ColumnHeadersDefaultCellStyle.Font = New Font(DataGridViewEdicion.Font, FontStyle.Bold)
+            ' DataGridView2.Rows.Add(DataGridViewEdicion.Rows(VMR).Cells(1).Value, DataGridViewEdicion.Rows(VMR).Cells(2).Value)
+
+            ' Configuración de las propiedades del DataGridView
+            DataGridViewEdicion.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill ' Ajusta el ancho de las columnas automáticamente
+            DataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+            ' Habilitar el botón nuevamente
+        Catch
+            MessageBox.Show("Año de edición inválido. No hay corredores")
+        End Try
+        ButtonAnadirEdicion.Enabled = False
+
+        DataGridViewEdicion.ReadOnly = True
+        DataGridViewEdicion.RowHeadersVisible = False
+
+        DataGridView2.ReadOnly = True
+        DataGridView2.RowHeadersVisible = False
+        DataGridView2.ScrollBars = False
+
     End Sub
 
     Private Sub GroupBoxAgregarEdi_Enter(sender As Object, e As EventArgs) Handles GroupBoxAgregarEdi.Enter

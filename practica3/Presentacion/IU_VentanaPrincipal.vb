@@ -810,7 +810,13 @@ Public Class IU_VentanaPrincipal
         volver = MsgBox("¿Estas seguro de que desea volver? Se perderán los cambios no guardados.", vbYesNo + vbDefaultButton2 + vbQuestion, "Cerrar modo edición.")
         If (volver = vbYes) Then
             DeshacerCamposEdicion()
+            CBCircuitoEdi.Items.Clear()
+
         End If
+
+        DataGridView2.Visible = False
+        DataGridViewEdicion.Visible = False
+        PictureBox1.Visible = False
     End Sub
 
     Private Sub DeshacerCamposEdicion()
@@ -860,18 +866,20 @@ Public Class IU_VentanaPrincipal
                     Dim myEdicion As Edicion = New Edicion With {
                         .idEDICION = CInt(TextBoxIDEdicion.Text), .idGRAN_PREMIO = CInt(TextBoxNoGP.Text), .NOMBRE = TextBoxNombreEdicion.Text, .CIRCUITO = CInt(CBCircuitoEdi.SelectedIndex), .FECHA = DateTimeEdicion.Value, .ANIO = CInt(TextBoxAnioEdi.Text), .PILOTO_VR = 1
                     } 'Temporalmente el VMR es de 1, pero se cambiará
-                    MessageBox.Show(DateTimeEdicion.Value)
+                    edicion = myEdicion
+                    MessageBox.Show(TextBoxAnioEdi.Text)
                     myEdicion.InsertarEdicion()
-                    Carrera(myEdicion)
+                    Carrera(edicion)
                 End If
             End If
         End If
+
+    End Sub
+
+    Private Sub Carrera(edicioninsert As Edicion)
         DataGridView2.Visible = True
         DataGridViewEdicion.Visible = True
         PictureBox1.Visible = True
-    End Sub
-
-    Private Sub Carrera(ByRef edicioninsert As Edicion)
         ' Agrega las columnas al control DataGridView
         DataGridViewEdicion.Columns.Add("Posición", "Posición")
         DataGridViewEdicion.Columns.Add("Piloto", "Piloto")
@@ -891,6 +899,7 @@ Public Class IU_VentanaPrincipal
         Dim dorsales() As Integer
         ' Obtención de los dorsales
         Dim InscripcionMd As New InscripcionMundial()
+
         dorsales = InscripcionMd.ObtenerDorsalesInscripcion(edicion.ANIO)
         Dim nCorredores As Integer = UBound(dorsales)
 
@@ -903,50 +912,54 @@ Public Class IU_VentanaPrincipal
         Dim nombreCorredor As String
         Dim paisCorredor As String
         Dim banderacuadrospiloto As ClasificacionCarrera
-        Dim VMR As Integer = rnd.Next(0, nCorredores)
-        If (VMR + 1 <= 10) Then
-            puntos(VMR) = puntos(VMR) + 1
-        End If
-
-        For i As Integer = 0 To dorsales.Length - 1
-            j = rnd.Next(0, dorsalesDisponibles.Count)
-            dorsal = dorsalesDisponibles(j)
-            driver.idPILOTO = dorsal
-            driver.LeerPiloto()
-            nombreCorredor = driver.Nombre 'piloto.DevolverNombrePiloto(dorsal)
-            paisCorredor = driver.Pais
-            If (i < puntos.Length) Then
-                DataGridViewEdicion.Rows.Add(i + 1, nombreCorredor, paisCorredor, puntos(i))
-            Else
-                DataGridViewEdicion.Rows.Add(i + 1, nombreCorredor, paisCorredor, 0) 'Y si haces un ToString tras objeto piloto?
+        Try
+            Dim VMR As Integer = rnd.Next(0, nCorredores)
+            If (VMR + 1 <= 10) Then
+                puntos(VMR) = puntos(VMR) + 1
             End If
-            'NUEVA CLASIFICACION_CARRERA DE CADA PILOTO, CON LA EDICION PASADA POR REFERENCIA
-            banderacuadrospiloto = New ClasificacionCarrera With {
-                .PILOTO = driver, .POSICION = i + 1, .EDICION = edicioninsert.idEDICION
-            }
-            banderacuadrospiloto.InsertarClasif()
-            'SI ES EL PILOTO DE LA VUELTA RÁPIDA, LO AÑADIMOS A LA EDICIÓN
-            If (i = VMR) Then
-                edicioninsert.PILOTO_VR = dorsal
-                edicioninsert.ActualizarEdicion()
-            End If
-            'QUITAMOS DE LA LISTA EL PILOTO YA CLASIFICADO
-            dorsalesDisponibles.RemoveAt(j)
-        Next i
 
-        DataGridView2.Columns.Add("Piloto", "Piloto")
-        DataGridView2.Columns.Add("Pais", "Pais")
-        DataGridViewEdicion.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-        DataGridViewEdicion.ColumnHeadersDefaultCellStyle.Font = New Font(DataGridViewEdicion.Font, FontStyle.Bold)
-        DataGridView2.Rows.Add(DataGridViewEdicion.Rows(VMR).Cells(1).Value, DataGridViewEdicion.Rows(VMR).Cells(2).Value)
+            For i As Integer = 0 To dorsales.Length - 1
+                j = rnd.Next(0, dorsalesDisponibles.Count)
+                dorsal = dorsalesDisponibles(j)
+                driver.idPILOTO = dorsal
+                driver.LeerPiloto()
+                nombreCorredor = driver.Nombre 'piloto.DevolverNombrePiloto(dorsal)
+                paisCorredor = driver.Pais
+                If (i < puntos.Length) Then
+                    DataGridViewEdicion.Rows.Add(i + 1, nombreCorredor, paisCorredor, puntos(i))
+                Else
+                    DataGridViewEdicion.Rows.Add(i + 1, nombreCorredor, paisCorredor, 0) 'Y si haces un ToString tras objeto piloto?
+                End If
+                'NUEVA CLASIFICACION_CARRERA DE CADA PILOTO, CON LA EDICION PASADA POR REFERENCIA
+                banderacuadrospiloto = New ClasificacionCarrera With {
+                    .PILOTO = driver, .POSICION = i + 1, .EDICION = edicioninsert.idEDICION
+                }
+                banderacuadrospiloto.InsertarClasif()
+                'SI ES EL PILOTO DE LA VUELTA RÁPIDA, LO AÑADIMOS A LA EDICIÓN
+                If (i = VMR) Then
+                    edicioninsert.PILOTO_VR = dorsal
+                    edicioninsert.ActualizarEdicion()
+                End If
+                'QUITAMOS DE LA LISTA EL PILOTO YA CLASIFICADO
+                dorsalesDisponibles.RemoveAt(j)
+            Next i
 
-        ' Configuración de las propiedades del DataGridView
-        DataGridViewEdicion.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill ' Ajusta el ancho de las columnas automáticamente
-        DataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
-        ' Habilitar el botón nuevamente
+            DataGridView2.Columns.Add("Piloto", "Piloto")
+            DataGridView2.Columns.Add("Pais", "Pais")
+            DataGridViewEdicion.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            DataGridViewEdicion.ColumnHeadersDefaultCellStyle.Font = New Font(DataGridViewEdicion.Font, FontStyle.Bold)
+            DataGridView2.Rows.Add(DataGridViewEdicion.Rows(VMR).Cells(1).Value, DataGridViewEdicion.Rows(VMR).Cells(2).Value)
+
+            ' Configuración de las propiedades del DataGridView
+            DataGridViewEdicion.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill ' Ajusta el ancho de las columnas automáticamente
+            DataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+            ' Habilitar el botón nuevamente
+        Catch
+            MessageBox.Show("Año de edición inválido. No hay corredores")
+        End Try
         ButtonAnadirEdicion.Enabled = False
 
-        DataGridViewEdicion.ReadOnly = True
+            DataGridViewEdicion.ReadOnly = True
         DataGridViewEdicion.RowHeadersVisible = False
 
         DataGridView2.ReadOnly = True

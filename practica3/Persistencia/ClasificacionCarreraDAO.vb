@@ -5,17 +5,21 @@
         Me.Clasificaciones = New Collection
     End Sub
 
-    Public Sub LeerTodas()
-        Dim c As ClasificacionCarrera
+    Public Function LeerTodas() As Collection
+        Dim c As New ClasificacionCarrera
         Dim col, aux As Collection
+        Dim Pilto As New Piloto
         col = AgenteBD.ObtenerAgente().Leer("SELECT * FROM CLASIFICACION_CARRERA ORDER BY EDICION")
         For Each aux In col
-            c = New ClasificacionCarrera((aux(1)))
-            c.EDICION = aux(2).ToString
+            c.EDICION = aux(1).ToString
+            Pilto.idPILOTO = aux(2).ToString
+            c.PILOTO = Pilto
             c.POSICION = aux(3).ToString
             Me.Clasificaciones.Add(c)
         Next
-    End Sub
+        Return Me.Clasificaciones
+
+    End Function
 
     Public Sub Leer(ByRef c As ClasificacionCarrera)
         Dim col As Collection : Dim aux As Collection
@@ -32,7 +36,6 @@
         Dim c As New ClasificacionCarrera
         col = AgenteBD.ObtenerAgente().Leer("SELECT POSICION FROM CLASIFICACION_CARRERA WHERE EDICION='" & edicion & "' AND PILOTO='" & id & "';")
         For Each aux In col
-
             c.POSICION = aux(1).ToString
         Next
         Return c.POSICION

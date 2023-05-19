@@ -19,9 +19,9 @@ Public Class ClasificacionCarrera
         Return Me.ClasifDAO.PosicionCarrera(id, edicion)
     End Function
 
-    Public Sub LeerTodosClasif()
-        Me.ClasifDAO.LeerTodas()
-    End Sub
+    Public Function LeerTodosClasif() As Collection
+        Return Me.ClasifDAO.LeerTodas()
+    End Function
 
     Public Sub LeerClasif()
         Me.ClasifDAO.Leer(Me)

@@ -1296,10 +1296,15 @@ Public Class IU_VentanaPrincipal
         DataGridView2.Visible = True
         DataGridViewEdicion.Visible = True
         PictureBox1.Visible = True
+        GroupBox1.Visible = True
 
         Dim num As Integer
         num = edicion.idEDICION
-
+        MessageBox.Show(edicion.idEDICION)
+        Dim i As Integer = 0
+        Dim clas As New ClasificacionCarrera
+        Dim pilotos As Collection
+        Dim driver As Piloto
 
         ' Agrega las columnas al control DataGridView
         DataGridViewEdicion.Columns.Add("Posición", "Posición")
@@ -1321,21 +1326,9 @@ Public Class IU_VentanaPrincipal
         Dim InscripcionMd As New InscripcionMundial()
 
         dorsales = InscripcionMd.ObtenerDorsalesInscripcion(edicion.ANIO)
-
         ' Asignación de los dorsales aleatorios al control DataGridView
-        Dim dorsalesDisponibles As New List(Of Integer)(dorsales)
-        Dim rnd As New Random()
-        Dim j As Integer
-        Dim driver As Piloto = New Piloto()
-        Dim dorsal As Integer
-        Dim nombreCorredor As String
-        Dim paisCorredor As String
-        Dim banderacuadrospiloto As ClasificacionCarrera
 
         Try
-
-
-
             DataGridView2.Columns.Add("Piloto", "Piloto")
             DataGridView2.Columns.Add("Pais", "Pais")
             DataGridViewEdicion.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
@@ -1349,11 +1342,22 @@ Public Class IU_VentanaPrincipal
         Catch
             MessageBox.Show("Año de edición inválido. No hay corredores")
         End Try
-        ButtonAnadirEdicion.Enabled = False
 
+
+        Dim pais As Pais
+        For Each clasi As ClasificacionCarrera In clas.ClasifDAO.LeerTodas
+            If clasi.EDICION = edicion.idEDICION Then
+                driver.idPILOTO = clasi.PILOTO.idPILOTO
+                driver.LeerPiloto()
+                pais.idPAIS = driver.Pais
+                pais.LeerPais()
+                DataGridViewEdicion.Rows.Add(i + 1, driver.Nombre, pais.Nombre, CalcularPuntuacion(clasi.POSICION, edicion.PILOTO_VR))
+            End If
+        Next
+
+        ButtonAnadirEdicion.Enabled = False
         DataGridViewEdicion.ReadOnly = True
         DataGridViewEdicion.RowHeadersVisible = False
-
         DataGridView2.ReadOnly = True
         DataGridView2.RowHeadersVisible = False
         DataGridView2.ScrollBars = False

@@ -848,30 +848,41 @@ Public Class IU_VentanaPrincipal
                 End If
             Next
 
+            Dim checkIII As Boolean = False
+            For Each iteradorEdi As Edicion In myEdi.EdDAO.LeerTodas
+                If iteradorEdi.idGRAN_PREMIO = TextBoxNoGP.Text() & iteradorEdi.ANIO = TextBoxAnioEdi.Text Then
+                    checkIII = True
+                End If
+            Next
             '
             ' COMPROBAR QUE EL NO. GP PUESTO TAMBIÉN COINCIDA CON EL CIRCUITO
             '
 
             'And Me.estadoEdicion = 0
             If (checkII) Then 'Intento generar una edición con un GP inexistente
-                MsgBox("ID de GP no existe.", vbExclamation)
-                ButtonLimpiarEdi.PerformClick()
-            ElseIf (Not check) Then 'Intento generar una edicion con un ID ya existente
-                MsgBox("ID de edicion ya existe.", vbExclamation)
-                ButtonLimpiarEdi.PerformClick()
-                'Y AQUI EL ULTIMO ELSEIF
-            Else
-                If comprobarCamposEdicion() Then
-                    'Si cumple con todos los requisitos, se puede hacer la carrera o torneo
-                    Dim myEdicion As Edicion = New Edicion With {
-                        .idEDICION = CInt(TextBoxIDEdicion.Text), .idGRAN_PREMIO = CInt(TextBoxNoGP.Text), .NOMBRE = TextBoxNombreEdicion.Text, .CIRCUITO = CInt(CBCircuitoEdi.SelectedIndex), .FECHA = DateTimeEdicion.Value, .ANIO = CInt(TextBoxAnioEdi.Text), .PILOTO_VR = 1
-                    } 'Temporalmente el VMR es de 1, pero se cambiará
-                    edicion = myEdicion
-                    MessageBox.Show(TextBoxAnioEdi.Text)
-                    myEdicion.InsertarEdicion()
-                    Carrera(edicion)
+                    MsgBox("ID de GP no existe.", vbExclamation)
+                    ButtonLimpiarEdi.PerformClick()
+                ElseIf (Not check) Then 'Intento generar una edicion con un ID ya existente
+                    MsgBox("ID de edicion ya existe.", vbExclamation)
+                    ButtonLimpiarEdi.PerformClick()
+                    'Y AQUI EL ULTIMO ELSEIF
+                ElseIf (checkIII) Then
+                    MessageBox.Show("Solo se puede crear una edición al año por GP")
+                    ButtonLimpiarEdi.PerformClick()
+                Else
+                    If comprobarCamposEdicion() Then
+                        'Si cumple con todos los requisitos, se puede hacer la carrera o torneo
+                        Dim myEdicion As Edicion = New Edicion With {
+                            .idEDICION = CInt(TextBoxIDEdicion.Text), .idGRAN_PREMIO = CInt(TextBoxNoGP.Text), .NOMBRE = TextBoxNombreEdicion.Text, .CIRCUITO = CInt(CBCircuitoEdi.SelectedIndex), .FECHA = DateTimeEdicion.Value, .ANIO = CInt(TextBoxAnioEdi.Text), .PILOTO_VR = 1
+                        } 'Temporalmente el VMR es de 1, pero se cambiará
+                        edicion = myEdicion
+                        MessageBox.Show(TextBoxAnioEdi.Text)
+                        myEdicion.InsertarEdicion()
+                        Carrera(edicion)
+
+                    End If
                 End If
-            End If
+
         End If
 
     End Sub
@@ -1297,5 +1308,9 @@ Public Class IU_VentanaPrincipal
 
         Dim num As Integer
         num = edicion.idEDICION
+    End Sub
+
+    Private Sub GroupBoxAgregarEdi_Enter(sender As Object, e As EventArgs) Handles GroupBoxAgregarEdi.Enter
+
     End Sub
 End Class

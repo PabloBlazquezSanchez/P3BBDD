@@ -87,6 +87,7 @@ Partial Class IU_VentanaPrincipal
         Me.ListBoxPilotos = New System.Windows.Forms.ListBox()
         Me.TabGranPremio = New System.Windows.Forms.TabPage()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.PaisCircuitoInform = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.IDCircuitoInform = New System.Windows.Forms.TextBox()
         Me.CurCircuitoInform = New System.Windows.Forms.TextBox()
@@ -154,7 +155,6 @@ Partial Class IU_VentanaPrincipal
         Me.ListBoxPaises = New System.Windows.Forms.ListBox()
         Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.ToolTipAñadir = New System.Windows.Forms.ToolTip(Me.components)
-        Me.PaisCircuitoInform = New System.Windows.Forms.TextBox()
         Me.TabControl1.SuspendLayout()
         Me.TabPageCircuitos.SuspendLayout()
         Me.GBEditarAñadirCircuito.SuspendLayout()
@@ -218,7 +218,7 @@ Partial Class IU_VentanaPrincipal
         Me.TabPageCircuitos.Padding = New System.Windows.Forms.Padding(4)
         Me.TabPageCircuitos.Size = New System.Drawing.Size(4270, 2014)
         Me.TabPageCircuitos.TabIndex = 0
-        Me.TabPageCircuitos.Text = "Circuitos"
+        Me.TabPageCircuitos.Text = "Circuito"
         '
         'GBEditarAñadirCircuito
         '
@@ -534,7 +534,7 @@ Partial Class IU_VentanaPrincipal
         Me.TabPagePilotos.Padding = New System.Windows.Forms.Padding(4)
         Me.TabPagePilotos.Size = New System.Drawing.Size(4270, 2014)
         Me.TabPagePilotos.TabIndex = 1
-        Me.TabPagePilotos.Text = "Pilotos"
+        Me.TabPagePilotos.Text = "Piloto"
         '
         'GroupBoxInformePil2
         '
@@ -938,7 +938,7 @@ Partial Class IU_VentanaPrincipal
         Me.TabGranPremio.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.TabGranPremio.Size = New System.Drawing.Size(4270, 2014)
         Me.TabGranPremio.TabIndex = 4
-        Me.TabGranPremio.Text = "Grandes Premios"
+        Me.TabGranPremio.Text = "Gran Premio"
         '
         'GroupBox1
         '
@@ -966,6 +966,17 @@ Partial Class IU_VentanaPrincipal
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Datos del circuito"
         Me.GroupBox1.Visible = False
+        '
+        'PaisCircuitoInform
+        '
+        Me.PaisCircuitoInform.BackColor = System.Drawing.SystemColors.Control
+        Me.PaisCircuitoInform.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.PaisCircuitoInform.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.PaisCircuitoInform.Location = New System.Drawing.Point(143, 90)
+        Me.PaisCircuitoInform.Margin = New System.Windows.Forms.Padding(4)
+        Me.PaisCircuitoInform.Name = "PaisCircuitoInform"
+        Me.PaisCircuitoInform.Size = New System.Drawing.Size(198, 23)
+        Me.PaisCircuitoInform.TabIndex = 31
         '
         'Label2
         '
@@ -1644,7 +1655,7 @@ Partial Class IU_VentanaPrincipal
         Me.TabPageConfi.Name = "TabPageConfi"
         Me.TabPageConfi.Size = New System.Drawing.Size(4270, 2014)
         Me.TabPageConfi.TabIndex = 2
-        Me.TabPageConfi.Text = "Configuración"
+        Me.TabPageConfi.Text = "Otros ajustes"
         '
         'GroupBoxInformes
         '
@@ -1903,17 +1914,6 @@ Partial Class IU_VentanaPrincipal
         Me.ImageList1.Images.SetKeyName(1, "piloto_f1")
         Me.ImageList1.Images.SetKeyName(2, "ajustes.png")
         Me.ImageList1.Images.SetKeyName(3, "f1.png")
-        '
-        'PaisCircuitoInform
-        '
-        Me.PaisCircuitoInform.BackColor = System.Drawing.SystemColors.Control
-        Me.PaisCircuitoInform.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PaisCircuitoInform.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.PaisCircuitoInform.Location = New System.Drawing.Point(143, 90)
-        Me.PaisCircuitoInform.Margin = New System.Windows.Forms.Padding(4)
-        Me.PaisCircuitoInform.Name = "PaisCircuitoInform"
-        Me.PaisCircuitoInform.Size = New System.Drawing.Size(198, 23)
-        Me.PaisCircuitoInform.TabIndex = 31
         '
         'IU_VentanaPrincipal
         '

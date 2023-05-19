@@ -851,28 +851,32 @@ Public Class IU_VentanaPrincipal
             If (Not check) Then 'Intento generar una edicion con un ID ya existente
                 MsgBox("ID de edicion ya existe.", vbExclamation)
                 TextBoxIDEdicion.Clear()
+                DataGridViewEdicion.Columns.Clear()
+                DataGridView2.Visible = False
+                DataGridViewEdicion.Visible = False
+                PictureBox1.Visible = False
                 'Y AQUI EL ULTIMO ELSEIF
             ElseIf (Not checkIII) Then
                 MessageBox.Show("Solo se puede crear una edición al año por GP")
                 DeshacerCamposEdicion()
                 CBCircuitoEdi.Items.Clear()
-
+                DataGridViewEdicion.Columns.Clear()
                 DataGridView2.Visible = False
                 DataGridViewEdicion.Visible = False
                 PictureBox1.Visible = False
 
             Else
-                If comprobarCamposEdicion() Then
-                        'Si cumple con todos los requisitos, se puede hacer la carrera o torneo
-                        Dim myEdicion As Edicion = New Edicion With {
+                If comprobarCamposEdicion() AndAlso check AndAlso checkIII Then
+                    'Si cumple con todos los requisitos, se puede hacer la carrera o torneo
+                    Dim myEdicion As Edicion = New Edicion With {
                             .idEDICION = CInt(TextBoxIDEdicion.Text), .idGRAN_PREMIO = CInt(TextBoxNoGP.Text), .NOMBRE = TextBoxNombreEdicion.Text, .CIRCUITO = CInt(CBCircuitoEdi.SelectedIndex), .FECHA = DateTimeEdicion.Value, .ANIO = CInt(TextBoxAnioEdi.Text), .PILOTO_VR = 1
                         } 'Temporalmente el VMR es de 1, pero se cambiará
                     edicion = myEdicion
                     myEdicion.InsertarEdicion()
-                        Carrera(edicion)
+                    Carrera(edicion)
                     ListBoxEdición.Items.Add(myEdicion.idEDICION & " - " & myEdicion.NOMBRE)
                 End If
-                End If
+            End If
 
         End If
         ButtonLimpiarEdi.PerformClick()
